@@ -1,0 +1,136 @@
+﻿@using ProyectoFinal.Data;
+@using ProyectoFinal.ViewModels;
+@model RegisterViewModel
+@{
+    ViewData["Title"] = "Sign up";
+    string estilos = "/css/estilosGenerales.css";
+}
+@section Estilos
+    {
+    
+}
+
+<div class="row">
+    <div class="col-md-6 offset-3">
+        <p>
+            <h4>Sign up for a new account</h4>
+        </p>
+
+        @if (TempData["Error"] != null)
+        {
+            <div class="col-md-12 alert alert-danger">
+                <span><b>Sorry!</b> - @TempData["Error"] </span>
+            </div>
+        }
+
+        <div class="row">
+            <div class="col-md-8 offset-2">
+                <form asp-action="Register" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="form-group">
+                        <label asp-for="CUI" class="control-label"></label>
+                        <input asp-for="CUI" class="form-control" />
+                        <span asp-validation-for="CUI" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Nombres" class="control-label"></label>
+                        <input asp-for="Nombres" class="form-control" />
+                        <span asp-validation-for="Nombres" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Apellidos" class="control-label"></label>
+                        <input asp-for="Apellidos" class="form-control" />
+                        <span asp-validation-for="Apellidos" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Telefono" class="control-label"></label>
+                        <input type="number" asp-for="Telefono" class="form-control" />
+                        <span asp-validation-for="Telefono" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Date" class="control-label"></label>
+                        <input type="date" value="2001-12-26" asp-for="Date" class="form-control" />
+                        <span asp-validation-for="Date" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="EmailAddress" class="control-label"></label>
+                        <input asp-for="EmailAddress" class="form-control" />
+                        <span asp-validation-for="EmailAddress" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Password" class="control-label"></label>
+                        <input asp-for="Password" class="form-control" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ConfirmPassword" class="control-label"></label>
+                        <input asp-for="ConfirmPassword" class="form-control" />
+                        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="SelectedRole">Rol</label>
+                        <select asp-for="SelectedRole" asp-validation-for="SelectedRole">
+                            <option>Seleccione un rol</option>
+                            @foreach (var roleItem in Model.Roles)
+                            {
+                                <option value="@roleItem.Value">@roleItem.Text</option>
+                            }
+                        </select>
+                    </div>
+
+@*                     <div class="form-group">
+                        <label asp-for="@Model.Direccioness.MunicipioGt.DepartamentoGt.Id"></label>
+                        <select asp-for="@Model.Direccioness.MunicipioGt.DepartamentoGt.Id" asp-validation-for="IdDepartamento" id="lstDep" asp-items="@Model.Departamento"> 
+                        <option value="">Seleccione Departamento</option>    
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@Model.Direccioness.MunicipioGt.Id"></label>
+                        <select asp-for="@Model.Direccioness.MunicipioGt.Id" asp-validation-for="IdMunicipio" id="lstMuni" asp-items="@Model.Municipio">
+                            <option value="">Seleccione Municipio</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="DireccionName" class="control-label"></label>
+                        <input type="text" asp-for="DireccionName" class="form-control" />
+                        <span asp-validation-for="DireccionName" class="text-danger"></span>
+                    </div> *@
+                    <div>
+                        <label asp-for="AntecedentesPenales">Imagen</label>
+                        <input asp-for="AntecedentesPenales" type="file" placeholder="Imagen" />
+                        <span asp-validation-for="AntecedentesPenales"></span>
+                    </div>
+                    <div>
+                        <label asp-for="AntecedentesPoliciacos">Imagen</label>
+                        <input asp-for="AntecedentesPoliciacos" type="file" placeholder="Imagen" />
+                        <span asp-validation-for="AntecedentesPoliciacos"></span>
+                    </div>
+                    <div>
+                        <label asp-for="Fotografia">Imagen</label>
+                        <input asp-for="Fotografia" type="file" placeholder="Imagen" />
+                        <span asp-validation-for="Fotografia"></span>
+                    </div>
+                    <div>
+                        <label asp-for="Diplomas">Imagen</label>
+                        <input asp-for="Diplomas" type="file" placeholder="Imagen" />
+                        <span asp-validation-for="Diplomas"></span>
+                    </div>
+                    <div>
+                        <label asp-for="Titulos">Imagen</label>
+                        <input asp-for="Titulos" type="file" placeholder="Imagen" />
+                        <span asp-validation-for="Titulos"></span>
+                    </div>
+                    <div>
+                        <input class="btn btn-outline-success float-right" type="submit" value="Sign up" />
+                        <a class="btn btn-outline-secondary" asp-controller="Home" asp-action="Index">Cancel</a>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

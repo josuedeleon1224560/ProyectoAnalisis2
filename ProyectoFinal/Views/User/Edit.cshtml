@@ -1,0 +1,88 @@
+﻿@using ProyectoFinal.ViewModels
+@model UserEditViewModel
+
+<form method="post" asp-action="Edit" enctype="multipart/form-data">
+    <div>
+        <div>
+            <label asp-for="CUI">CUI</label>
+            <input asp-for="CUI"/>
+            <span asp-validation-for="CUI"></span>
+        </div>
+        <div>
+            <label asp-for="Nombres">Nombres</label>
+            <input asp-for="Nombres"/>
+            <span asp-validation-for="Nombres"></span>
+        </div>
+        <div>
+            <label asp-for="Apellidos">Apellidos</label>
+            <input asp-for="Apellidos"/>
+            <span asp-validation-for="Apellidos"></span>
+        </div>
+        <label asp-for="Telefono">Telefono</label>
+        <input asp-for="Telefono"/>
+        <span asp-validation-for="Telefono"></span>
+    </div>
+    <div>
+        <label asp-for="Date">Fecha</label>
+        <input asp-for="Date" type="date"/>
+        <span asp-validation-for="Date"></span>
+    </div>
+    <div>
+        <img src="@Model.UrlAntecedentesPenales">
+        <br />
+        <label asp-for="AntecedentesPenales">Imagen</label>
+        <input asp-for="AntecedentesPenales" type="file" placeholder="Imagen"/>
+        <span asp-validation-for="AntecedentesPenales"></span>
+    </div>
+    <div>
+        <img src="@Model.UrlAntecedentesPoliciacos">
+        <br />
+        <label asp-for="AntecedentesPoliciacos">Imagen</label>
+        <input asp-for="AntecedentesPoliciacos" type="file" placeholder="Imagen" />
+        <span asp-validation-for="AntecedentesPoliciacos"></span>
+    </div>
+    <div>
+        <img src="@Model.UrlFotografia">
+        <br />
+        <label asp-for="Fotografia">Imagen</label>
+        <input asp-for="Fotografia" type="file" placeholder="Imagen" />
+        <span asp-validation-for="Fotografia"></span>
+    </div>
+    <div>
+        <img src="@Model.UrlDiplomas">
+        <br />
+        <label asp-for="Diplomas">Imagen</label>
+        <input asp-for="Diplomas" type="file" placeholder="Imagen" />
+        <span asp-validation-for="Diplomas"></span>
+    </div>
+    <div>
+        <img src="@Model.UrlTitulos">
+        <br />
+        <label asp-for="Titulos">Imagen</label>
+        <input asp-for="Titulos" type="file" placeholder="Imagen" />
+        <span asp-validation-for="Titulos"></span>
+    </div>
+@*     <div>
+        <label asp-for="DireccionName">Direccion:</label>
+        <input asp-for="DireccionName" />
+        <span asp-validation-for="DireccionName"></span>
+    </div>
+    <div>
+        <label asp-for="Municipio">Municipio:</label>
+        <input type="number" asp-for="IdMunicipio" />
+        <span asp-validation-for="IdMunicipio"></span>
+    </div>
+    <div>
+        <label asp-for="Departamento">Departamento:</label>
+        <input type="number" asp-for="IdDepartamento" />
+        <span asp-validation-for="IdDepartamento"></span>
+    </div> *@
+
+    <button type="submit">Submit</button>
+</form>
+
+
+
+
+
+

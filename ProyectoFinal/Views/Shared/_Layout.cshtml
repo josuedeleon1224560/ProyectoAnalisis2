@@ -1,0 +1,73 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@inject UserManager<AppUser> UserManager
+
+@{
+    var userName = User.Identity.Name;
+    var userId = "";
+    if (!string.IsNullOrEmpty(userName))
+    {
+        var user = await UserManager.FindByNameAsync(userName);
+        if (user != null)
+        {
+            userId = user.Id;
+        }
+    }
+
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    @RenderSection("Estilos", required: false)
+    <title>@ViewData["Title"] - ProyectoFinal</title>
+</head>
+<body>
+    @if (User.Identity.IsAuthenticated)
+    {
+        @if (User.IsInRole("admin"))
+        {
+            <div>
+                <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                <a asp-area="" asp-controller="User" asp-action="Index">Usuarios</a>
+                <a asp-area="" asp-controller="Role" asp-action="ListRoles">Roles</a>
+                <a asp-area="" asp-controller="Account" asp-action="Logout">Cerrar Sesion</a>
+                <label>Bienvenido @userName</label>
+            </div>
+        }
+        else
+        {
+            if (!string.IsNullOrEmpty(userId))
+            {
+                <a asp-area="" asp-controller="User" asp-action="Detail" asp-route-id="@userId">Detalle</a>
+                <a asp-area="" asp-controller="Account" asp-action="Logout">Cerrar Sesion</a>
+                <label>Bienvenido @userName</label>
+            }
+        }
+
+    }
+    else
+    {
+        <a asp-area="" asp-controller="Account" asp-action="Login">Logearse</a>
+    }
+
+
+
+
+    <div class="container">
+        <main role="main">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div>
+            &copy; 2023 - ProyectoFinal -          
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

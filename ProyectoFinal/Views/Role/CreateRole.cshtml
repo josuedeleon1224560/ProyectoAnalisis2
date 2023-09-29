@@ -1,0 +1,22 @@
+﻿@using ProyectoFinal.ViewModels;
+@model CreateRoleViewModel
+
+@{
+    ViewBag.Title = "Create Rol";
+}
+
+<h1>Create Role</h1>
+
+<div>
+    <div>
+        <form method="POST">
+            <div asp-validation-summary="All"></div>
+            <div>
+                <label asp-for="Nombre"></label>
+                <input asp-for="Nombre" />
+                <span asp-validation-for="Nombre"></span>
+            </div>
+            <button type="submit">Create</button>
+        </form>
+    </div>
+</div>

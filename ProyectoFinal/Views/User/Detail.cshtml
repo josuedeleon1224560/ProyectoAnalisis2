@@ -1,0 +1,99 @@
+﻿@using ProyectoFinal.ViewModels
+@model UserDetailViewModel
+
+        <!--end of container-->
+    <section >
+        <div >
+            <div >
+                <div>
+                    <div>
+                        @* <img alt="Image" src="@Model.ProfileImageUrl" class="mr-md-5 avatar avatar-xlg"> *@
+                        <div >
+                            <div">
+                                <h1>@Model.Nombres, @Model.Apellidos</h1>     
+                                <label asp-for="CUI"> </label> 
+                                <p> @Model.CUI</p>
+                                <label asp-for="Numero">@Model.Telefono</label>
+                                <label asp-for="Fecha de Nacimiento">@Model.Date </label>
+                                <label asp-for="Id">@Model.Id</label>
+                        @if (!string.IsNullOrEmpty(Model.AntecedentesPenales))
+                        {
+                                <img src="@Model.AntecedentesPenales" alt="Antecedentes Penales" width="100" height="100" />
+                        }
+                        else
+                        {
+                                <p>Sin Antecedentes Penales</p>
+                        }
+                        @if (!string.IsNullOrEmpty(Model.AntecedentesPoliciacos))
+                        {
+                                <img src="@Model.AntecedentesPoliciacos" alt="Antecedentes Policiacos" width="100" height="100" />
+                        }
+                        else
+                        {
+                                <p>Sin Antecedentes Policiacos</p>
+                        }
+                        @if (!string.IsNullOrEmpty(Model.Fotografia))
+                        {
+                                <img src="@Model.Fotografia" alt="Fotografía" width="100" height="100" />
+                        }
+                        else
+                        {
+                                <p>Sin Fotografía</p>
+                        }
+                        @if (!string.IsNullOrEmpty(Model.Diplomas))
+                        {
+                                <img src="@Model.Diplomas" alt="Diplomas" width="100" height="100" />
+                        }
+                        else
+                        {
+                                <p>Sin Diplomas</p>
+                        }
+                        @if (!string.IsNullOrEmpty(Model.Titulos))
+                        {
+                                <img src="@Model.Titulos" alt="Titulos" width="100" height="100" />
+                        }
+                        else
+                        {
+                                <p>Sin Titulos</p>
+                        }
+
+                            <h4>Roles:</h4>
+                            <ul>
+                        @foreach (var role in Model.Roles)
+                        {
+                                    <li>@role</li>
+                        }
+                            </ul>
+
+                       @*  @if (Model.DireccionId != null)
+                        {
+                                <h2>Dirección</h2>
+                                <ul>
+                                    <li><strong>Nombre de la Dirección:</strong> @Model.Direccion_Name</li>
+                                    <li><strong>Nombre de la Dirección:</strong> @Model.Municipio_Name</li>
+                                    <li><strong>Nombre de la Dirección:</strong> @Model.Departamento_Name</li>
+
+                            </ul>
+                        }
+                        else
+                        {
+                                <h2>Dirección</h2>
+                                <p>Sin Direccion</p>
+                        } *@
+
+
+
+
+
+
+
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end of col-->
+            <!--end of row-->
+        </section>
+    <!--end of section-->
+   

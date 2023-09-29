@@ -1,0 +1,30 @@
+﻿@using ProyectoFinal.ViewModels
+@model List<UserRoleViewModel>
+
+    @{
+        var roleId = ViewBag.roleId;
+    }
+
+    <form method="post">
+        <div>
+            <div>
+                <h2>Añadir o remover usuarios de este Rol</h2>
+            </div>
+        <div>
+            @for(int i=0;i<Model.Count;i++)
+            {
+            <div>
+                <input type="hidden" asp-for="@Model[i].UserId"/>
+                <input asp-for="@Model[i].IsSelected"/> 
+                <label asp-for="@Model[i].IsSelected">
+                    @Model[i].UserName
+                </label>
+            </div>
+        }
+        </div>
+        <div>
+            <input type="submit" value="Update"/>
+            <a asp-action="EditRole" asp-route-id="@roleId">Cancelar</a>
+        </div>
+        </div>
+    </form>

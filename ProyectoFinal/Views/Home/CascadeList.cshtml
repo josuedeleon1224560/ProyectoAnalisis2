@@ -1,0 +1,44 @@
+﻿@{
+    ViewData["Title"] = "CascadeList";
+}
+
+<h1>CascadeList</h1>
+<form>
+    <select id="CountryList" asp-items="@ViewBag.Countries">
+        <option>Select Country</option>
+    </select>
+
+    <select id="StateList">
+        <option value="-1">Select State</option>
+    </select>
+
+    <select id="CityList">
+        <option>Select City</option>
+    </select>
+</form>
+@section Scripts{
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#CountryList").change(function () {
+                $("#StateList").empty();
+                $("#CityList").empty();
+                $.ajax({
+                    type: 'GET',
+                    url: '@Url.Action("LoadDepartamento")',
+                    dataType: 'json',
+                    data: { id: $("#CountryList").val() },
+                    success: function (departamentos) {
+                        $("#StateList").append('<option value="' + -1 + '">' +
+                            "Selecciona departamento" + '</option>');
+
+                        $.each(departamentos, function (i, departamentos) {
+                            $("#StateList").append('<option value="' + departamentos.value + '">' +
+                                departamentos.text + '</option>');
+                        });
+                    },
+                    error: function(ex)
+                });
+            })
+        })
+    </script>
+}

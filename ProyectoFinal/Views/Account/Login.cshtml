@@ -1,0 +1,65 @@
+﻿
+@using ProyectoFinal.ViewModels;
+@model LoginViewModel
+@{
+    ViewData["Title"] = "Login";
+    string estilos = "/css/estilosGenerales.css";
+}
+
+@section Estilos
+{
+    <link rel="stylesheet" type="text/css" href="@estilos" />
+}
+
+<div class="container-login">
+    <div class="description">
+        <div class="description-content">
+            <h1 class="com-title">CONSULTING S.A </h1>
+            <P>
+                Bienvenido a <strong>
+                    CONSULTING S.A
+                </strong>, somos una empresa que se encarga del manejo y control de
+                nominas.
+            </P>
+            <br>
+            <p> - Si ya cuentas con tus credenciales puedes iniciar sesion </p>
+            <br>
+            <p>
+                - Si te gustaria formar parte de nuestro equipo de trabajo puedes
+                hacerlo desde el sitio web
+            </p>
+            <br>
+            <p>
+                - Si has olvidado tus credenciales puedes comunicarte con el
+                departamento de IT para que puedan brindarte tu informacion
+            </p>
+        </div>
+
+    </div>
+
+    <div class="container-form-login">
+        <div class="sub-container-form-login">
+            <div class="content-login-form">
+                <h3 class="form-name-login">BIENVENIDO</h3>
+                <form asp-action="Login" class="login-form">
+                    @if (TempData["Error"] != null)
+                    {
+                        <div class="description-content">
+                            <p>Sorry!- @TempData["Error"]</p>
+                        </div>
+                    }
+                    <div asp-validation-summary="ModelOnly"></div>
+                    <input asp-for="Email" type="email" placeholder="Correo">
+                    <span asp-validation-for="Email"></span>
+                    <input asp-for="Password" type="password" placeholder="Contraseña">
+                    <span asp-validation-for="Password" ></span>
+                    <div>
+                        <input type="submit" value="Iniciar Sesion" class="sing-in" />
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+</div>

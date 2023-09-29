@@ -1,0 +1,53 @@
+﻿@using ProyectoFinal.ViewModels;
+@model EditRoleViewModel
+@{
+    ViewBag.Title = "Editar Role";
+}
+
+<h1>Editar Role</h1>
+
+<form method="POST">
+    <div>
+        <label asp-for="Id"></label>
+        <div>
+            <input asp-for="Id" disabled/>
+        </div>
+    </div>
+    <div>
+        <label asp-for="RoleName"></label>
+        <div>
+            <input asp-for="RoleName"/>
+            <span asp-validation-for="RoleName"></span>
+        </div>
+    </div>
+
+    <div asp-validation-summary="All"></div>
+    <div>
+        <div>
+            <button type="submit">Actualizar</button>
+            <a asp-action="ListRoles">Cancelar</a>
+        </div>
+    </div>
+
+    <div>
+        <div>
+            <h3>Usuarios en este Rol</h3>
+        </div>
+        <div>
+            @if(Model.Users.Any())
+            {
+                foreach(var user in Model.Users)
+                {
+                    <h5>@user</h5>
+                }
+            }
+            else
+            {
+                <h5>Ningun Usuario en este momento</h5>
+            }
+        </div>
+        <div>
+            <a asp-action="EditUsersInRole" asp-controller="Role" asp-route-roleId="@Model.Id">Agregar o eliminar usuarios</a>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,43 @@
+﻿@using System.Collections;
+@using Microsoft.AspNetCore.Identity;
+@model IEnumerable<IdentityRole>
+@{
+    ViewBag.Title= "Todos los roles";
+}
+
+<h1>Lista de Roles</h1>
+
+@if(Model.Any())
+{
+    <a asp-action="CreateRole" asp-controller="Role">Añadir nuevo Role</a>
+    foreach(var role in Model)
+    {
+        <div>
+            <div>
+                Role Id : @role.Id
+            </div>
+        </div>
+
+        <div>
+            <h5>@role.Name</h5>
+            <div>
+                <a asp-action="EditRole" asp-controller="Role" asp-route-id="@role.Id">Editar</a>
+                <a>Eliminar</a>
+            </div>
+        </div>
+    }
+}
+else
+{
+    <div>
+        <div>
+            Ningún Rol creado
+        </div>
+    </div>
+    <div>
+        <h5>
+            Crear Roles
+        </h5>
+        <a asp-controller="Role" asp-action="CreateRole">Crear Roles</a>
+    </div>
+}
