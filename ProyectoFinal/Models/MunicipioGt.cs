@@ -7,10 +7,7 @@ namespace ProyectoFinal.Models
     {
         [Key]
         public int Id { get; set; }
-
         public string Nombre { get; set; }
-        [ForeignKey("DepartamentoGt")]
-        public int DepartamentoId { get; set; }
         public DepartamentoGt DepartamentoGt { get; set; }
     }
 }
