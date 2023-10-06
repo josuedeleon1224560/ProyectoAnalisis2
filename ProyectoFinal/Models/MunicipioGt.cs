@@ -7,7 +7,7 @@ namespace ProyectoFinal.Models
     {
         [Key]
         public int Id { get; set; }
-        public string Nombre { get; set; }
-        public DepartamentoGt DepartamentoGt { get; set; }
+        public string Nombre { get; set; }        
+        public DepartamentoGt? DepartamentoGt { get; set; }
     }
 }

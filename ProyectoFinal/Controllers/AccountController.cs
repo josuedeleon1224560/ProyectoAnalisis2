@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;      
 using ProyectoFinal.Data;
 using ProyectoFinal.Interfaces;
+using ProyectoFinal.Migrations;
 using ProyectoFinal.Models;
 using ProyectoFinal.Repository;
 using ProyectoFinal.ViewModels;
@@ -71,12 +72,11 @@ namespace ProyectoFinal.Controllers
             return View(loginViewModel);
         }
 
+        [Authorize(Roles = "admin")]
         public IActionResult Register()
         {
             var model = new RegisterViewModel();
             var roles = _roleManager.Roles.ToList();
-            var departamentos = _direccionRepository.GetAllDepartamento();
-            var municipios = _direccionRepository.GetAllMunicipio();
 
             model.Roles = roles.Select(r => new SelectListItem
             {
@@ -96,6 +96,20 @@ namespace ProyectoFinal.Controllers
 
 
             return View(model);
+        }
+
+        public JsonResult Departamento()
+        {
+            return new JsonResult(_direccionRepository.GetAllDepartamento());
+        }
+
+        public JsonResult Municipio(int id)
+        {
+            return new JsonResult(_direccionRepository.GetAllMunicipio(id));
+        }
+        public JsonResult Direccion(int id)
+        {
+            return new JsonResult(_direccionRepository.GetAllDirecciones(id));
         }
 
         [HttpPost]
@@ -136,6 +150,19 @@ namespace ProyectoFinal.Controllers
                     CUI = registerViewModel.CUI,
                     Telefono = registerViewModel.Telefono,
                     Date = registerViewModel.Date,
+                    Direcciones = new DireccionGt
+                    {
+                        Name = registerViewModel.NombreDireccion,
+                        MunicipioGt = new MunicipioGt
+                        {
+                            Id = registerViewModel.idMunicipioSelected,
+                            DepartamentoGt = new DepartamentoGt()
+                            {
+                                Id = registerViewModel.idDepartamentoSelected
+                            }
+                            
+                        }
+                    }                    
                     //Direcciones = new DireccionGt()
                     //{
                     //    Name = registerViewModel.DireccionName

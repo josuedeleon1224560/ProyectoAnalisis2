@@ -3,13 +3,202 @@
 @model RegisterViewModel
 @{
     ViewData["Title"] = "Sign up";
-    string estilos = "/css/estilosGenerales.css";
+    string estilos = "/css/styles.css";
 }
 @section Estilos
     {
-    
+    <link rel="stylesheet" type="text/css" href="@estilos" />
 }
 
+@if (TempData["Error"] != null)
+{
+    <div class="col-md-12 alert alert-danger">
+        <span><b>Sorry!</b> - @TempData["Error"] </span>
+    </div>
+}
+
+<div class="container">
+        <div class="sub-body">
+        <form asp-action="Register" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="body-personal-data">
+                    <div class="title">
+                        <h2>Registro de Usuarios</h2>
+                    </div>                                     
+                    <div class="sub-body-registro">                       
+                        <div class="min-cont">
+                        <label asp-for="Nombres" class="control-label"></label>
+                        <input asp-for="Nombres" class="name" />
+                        <span asp-validation-for="Nombres" class="name"></span>
+                        </div>    
+                        <div class="min-cont">
+                        <label asp-for="Apellidos" ></label>
+                        <input asp-for="Apellidos" class="last-name" />
+                        <span asp-validation-for="Apellidos" class="last-name"></span>
+                        </div>
+                        <div class="min-cont">
+                        <label asp-for="NombreDireccion" class="control-label"></label>
+                        <input asp-for="NombreDireccion" class="address" />
+                        <span asp-validation-for="NombreDireccion" class="address"></span>
+                        </div>   
+                        <div class="min-cont">
+                        <label>Departamento</label>
+                        <select id="Departamento" class="address-depto">
+                            <option>--Seleccione Departamento--</option>
+                        </select>
+                        </div>  
+                        <div class="min-cont">
+                        <label>Municipio</label>
+                        <select id="Municipio" class="address-municipality">
+                            <option>--Seleccione Municipio--</option>
+                        </select>
+                        </div>  
+                        <div class="min-cont">
+                        <label asp-for="Date"></label>
+                        <input type="date" value="2001-12-26" asp-for="Date" class="date" />
+                        <span asp-validation-for="Date" class="text-danger"></span>
+                        </div>                       
+                        
+                    </div>
+                    
+                    <div class="sub-body-registro2">
+                        <div class="min-cont">
+                            <label>Edad</label>
+                            <input type="number" class="age">
+                        </div>
+                        <div class="min-cont">
+                        <label asp-for="Telefono" class="control-label"></label>
+                        <input type="number" asp-for="Telefono" class="number-ph" />
+                        <span asp-validation-for="Telefono" class="text-danger"></span>
+                        </div>
+                        <div class="min-cont">
+                        <label asp-for="CUI" class="control-label"></label>
+                        <input asp-for="CUI" class="number-ph" />
+                        <span asp-validation-for="CUI" class="text-danger"></span>
+                        </div>
+                        <div class="min-cont">
+                            <label>Genero</label>
+                            <select name="" class="gen">
+                                <option value=""></option>
+                                <option value="Masculino">Masculino</option>
+                                <option value="Masculino">Femenino</option>
+                            </select>
+                        </div>
+                        <div class="min-cont">
+                        <label asp-for="EmailAddress" class="control-label"></label>
+                        <input asp-for="EmailAddress" class="email" />
+                        <span asp-validation-for="EmailAddress" class="text-danger"></span>
+                        </div>
+                        <div class="min-cont">
+                        <label asp-for="Password" class="control-label"></label>
+                        <input asp-for="Password" class="pass" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+                        <div class="min-cont">
+                            <label>Rol</label>
+                            <select name="" class="rol">
+                                <option value=""></option>
+                                <option value="Masculino">Administrador</option>
+                                <option value="Masculino">Usuario</option>
+                            </select>
+                        </div>
+                    </div>                   
+                </div>          
+
+                <div class="professional-data-body">
+                    <div class="title">
+                        <h2>Datos Profesionales</h2>
+                    </div> 
+                    <div class="professional-data-sub-body">
+                        <div class="min-cont">
+                        <label asp-for="AntecedentesPenales">AntecedentesPenales</label>
+                        <input asp-for="AntecedentesPenales" type="file" placeholder="Imagen" />
+                        <span asp-validation-for="AntecedentesPenales"></span>
+                        </div>
+                        <div class="min-cont">
+                        <label asp-for="AntecedentesPoliciacos">AntecedentesPoliciacos</label>
+                        <input asp-for="AntecedentesPoliciacos" type="file" placeholder="Imagen" />
+                        <span asp-validation-for="AntecedentesPoliciacos"></span>
+                        </div>
+                        <div class="min-cont">
+                        <label asp-for="Fotografia">Imagen</label>
+                        <input asp-for="Fotografia" type="file" placeholder="Imagen" />
+                        <span asp-validation-for="Fotografia"></span>
+                        </div>
+                        <div class="min-cont">
+                        <label asp-for="Diplomas">Imagen</label>
+                        <input asp-for="Diplomas" type="file" placeholder="Imagen" />
+                        <span asp-validation-for="Diplomas"></span>
+                        </div>                        
+                    </div>
+
+                    <div class="professional-data-sub-body2">
+                        <div class="min-cont">
+                        <label asp-for="Titulos">Imagen</label>
+                        <input asp-for="Titulos" type="file" placeholder="Imagen" />
+                        <span asp-validation-for="Titulos"></span>
+                        </div>
+                        <div class="min-cont">
+                            <label>Puesto</label>
+                            <input type="text" class="position">
+                        </div>
+                        <div class="min-cont">
+                            <label>Departamento</label>
+                            <input type="text" class="Departament">
+                        </div>
+                        <div class="min-cont">
+                            <label>Salario</label>
+                            <input type="number" class="salary" >
+                        </div>
+                        <div class="min-cont">
+                            <label>Jornadas</label>
+                            <input type="number" class="Work-day">
+                        </div>
+                        <div class="min-cont">
+                            <label>Horas</label>
+                            <input type="number" class="hours">
+                        </div>
+                    </div>   
+                </div>
+
+                <div class="marital-information-body">
+                    <div class="title">
+                        <h2>Datos Familiares</h2>
+                    </div> 
+                    <div class="marital-information-sub-body">
+                        <div class="min-cont">
+                            <label>Nombres</label>
+                            <input type="number" class="Name-conjugal">
+                        </div>
+                        <div class="min-cont">
+                            <label>Apellidos</label>
+                            <input type="number" class="last-name-conjugal">
+                        </div>
+                        <div class="min-cont">
+                            <label>Parentesco</label>
+                            <input type="number" class="relationship">
+                        </div>
+                        <div class="min-cont">
+                            <label>Numero de DPI</label>
+                            <input type="number" class="DPI-conjugal">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="button-section">
+                <input type="submit" class="Rbutton" value="Sign up" />
+                <a class="btn btn-outline-secondary" asp-controller="Home" asp-action="Index">Cancel</a>
+                    <input type="reset" class="vbutton" value="Vaciar formulario">
+                </div>
+            </form>
+        </div>  
+    </div>
+
+
+
+
+    @* ACTUAL FORMULARIO *@
+@* 
 <div class="row">
     <div class="col-md-6 offset-3">
         <p>
@@ -80,25 +269,23 @@
                             }
                         </select>
                     </div>
-
-@*                     <div class="form-group">
-                        <label asp-for="@Model.Direccioness.MunicipioGt.DepartamentoGt.Id"></label>
-                        <select asp-for="@Model.Direccioness.MunicipioGt.DepartamentoGt.Id" asp-validation-for="IdDepartamento" id="lstDep" asp-items="@Model.Departamento"> 
-                        <option value="">Seleccione Departamento</option>    
+                    <div>
+                        <label>Departamento</label>
+                        <select id="Departamento">
+                            <option>--Seleccione Departamento--</option>
                         </select>
                     </div>
-                    <div class="form-group">
-                        <label asp-for="@Model.Direccioness.MunicipioGt.Id"></label>
-                        <select asp-for="@Model.Direccioness.MunicipioGt.Id" asp-validation-for="IdMunicipio" id="lstMuni" asp-items="@Model.Municipio">
-                            <option value="">Seleccione Municipio</option>
+                    <div>
+                        <label>Municipio</label>
+                        <select id="Municipio">
+                            <option>--Seleccione Municipio--</option>
                         </select>
                     </div>
-
-                    <div class="form-group">
-                        <label asp-for="DireccionName" class="control-label"></label>
-                        <input type="text" asp-for="DireccionName" class="form-control" />
-                        <span asp-validation-for="DireccionName" class="text-danger"></span>
-                    </div> *@
+                    <div>
+                        <label asp-for="NombreDireccion" class="control-label"></label>
+                        <input asp-for="NombreDireccion" class="form-control" />
+                        <span asp-validation-for="NombreDireccion" class="text-danger"></span>
+                    </div>
                     <div>
                         <label asp-for="AntecedentesPenales">Imagen</label>
                         <input asp-for="AntecedentesPenales" type="file" placeholder="Imagen" />
@@ -133,4 +320,10 @@
             </div>
         </div>
     </div>
-</div>
+</div> *@
+
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/js/cascadadepartamentos.js"></script>
+<script src="~/js/index.js"></script>

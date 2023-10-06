@@ -18,15 +18,19 @@ namespace ProyectoFinal.Repository
             return  _context.Tabla_Departamentos.ToList();
         }
 
-        public IEnumerable<MunicipioGt> GetAllMunicipio()
+        public IEnumerable<MunicipioGt> GetAllMunicipio(int id)
         {
-            return _context.Tabla_Municipios.ToList();
+            return _context.Tabla_Municipios.Where(e => e.DepartamentoGt.Id == id).ToList();
+        }
+        public IEnumerable<DireccionGt> GetAllDirecciones(int id)
+        {
+            return _context.Tabla_Direcciones.Where(dir => dir.MunicipioGt.Id == id).ToList();
         }
 
-        public IEnumerable<MunicipioGt> GetAllMunicipiosByDepartamento(int departamentoId)
-        {
-            return _context.Tabla_Municipios.Where(m => m.DepartamentoId == departamentoId).ToList();
-        }
+        //public IEnumerable<MunicipioGt> GetAllMunicipiosByDepartamento(int departamentoId)
+        //{
+        //    return _context.Tabla_Municipios.Where(m => m.DepartamentoId == departamentoId).ToList();
+        //}
 
         public async Task<DireccionGt> GetDireccionById(int? id)
         {

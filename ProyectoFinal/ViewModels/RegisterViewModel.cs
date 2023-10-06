@@ -45,14 +45,13 @@ namespace ProyectoFinal.ViewModels
         [Display(Name = "Ingrese sus titulos")]
         public IFormFile? Titulos { get; set; }
         [Display(Name = "Seleccione un Rol")]
-            [Required(ErrorMessage ="Seleccione un Rol valido")]
-            public string SelectedRole { get; set; } 
-            public List<SelectListItem>? Roles { get; set; }
-            public int? idDireccion { get; set; }
-            public string? DireccionName { get; set; }
-        public DireccionGt? Direccioness { get; set; }
-        public IEnumerable<SelectListItem> Departamento { get; set; }
-        public IEnumerable<SelectListItem> Municipio { get; set; }
+        [Required(ErrorMessage ="Seleccione un Rol valido")]
+        public string SelectedRole { get; set; } 
+        public List<SelectListItem> Roles { get; set; }
+
+        public int idDepartamentoSelected { get; set; }
+        public int idMunicipioSelected { get; set; }
+        public string NombreDireccion { get; set; }
 
     }
 }

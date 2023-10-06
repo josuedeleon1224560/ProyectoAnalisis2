@@ -13,6 +13,10 @@
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
+      "Id": "E:\\ProyectoNET\\ProyectoFinal\\ProyectoFinal\\wwwroot\\css\\styles.css",
+      "PackagePath": "staticwebassets\\css\\styles.css"
+    },
+    {
       "Id": "E:\\ProyectoNET\\ProyectoFinal\\ProyectoFinal\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
     },
@@ -51,6 +55,14 @@
     {
       "Id": "E:\\ProyectoNET\\ProyectoFinal\\ProyectoFinal\\wwwroot\\images\\wallpaper2.jpg",
       "PackagePath": "staticwebassets\\images\\wallpaper2.jpg"
+    },
+    {
+      "Id": "E:\\ProyectoNET\\ProyectoFinal\\ProyectoFinal\\wwwroot\\js\\CascadaDepartamentos.js",
+      "PackagePath": "staticwebassets\\js\\CascadaDepartamentos.js"
+    },
+    {
+      "Id": "E:\\ProyectoNET\\ProyectoFinal\\ProyectoFinal\\wwwroot\\js\\index.js",
+      "PackagePath": "staticwebassets\\js\\index.js"
     },
     {
       "Id": "E:\\ProyectoNET\\ProyectoFinal\\ProyectoFinal\\wwwroot\\js\\site.js",

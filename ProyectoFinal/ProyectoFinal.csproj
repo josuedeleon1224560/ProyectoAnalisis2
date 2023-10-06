@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <Folder Include="Data\Enum\" />
+    <Folder Include="Prueba\" />
   </ItemGroup>
 
 </Project>

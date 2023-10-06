@@ -18,10 +18,9 @@ namespace ProyectoFinal.Models
         //public float Salario { get; set; }
         //public float Horas { get; set; }
 
-        //[ForeignKey("Direcciones")]
-        //public int? IdDireccion { get; set; }
-        //public DireccionGt? Direcciones { get; set; }
-
+        [ForeignKey("Direcciones")]
+        public int? IdDireccion { get; set; }
+        public DireccionGt? Direcciones { get; set; }
         public string? AntecedentesPenales { get; set; }
         public string? AntecedentesPoliciacos { get; set; }
         public string? Fotografia { get; set; }
