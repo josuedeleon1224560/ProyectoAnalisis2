@@ -77,12 +77,14 @@ namespace ProyectoFinal.Controllers
         {
             var model = new RegisterViewModel();
             var roles = _roleManager.Roles.ToList();
+            var municipios = _direccionRepository.ListaMunicipios();
 
             model.Roles = roles.Select(r => new SelectListItem
             {
                 Text = r.Name,
                 Value = r.Name
             }).ToList();
+
             //model.Departamento = departamentos.Select(r => new SelectListItem
             //{
             //    Text = r.Nombre,
@@ -123,6 +125,7 @@ namespace ProyectoFinal.Controllers
                     Text = r.Name,
                     Value = r.Name
                 }).ToList();
+
                 //registerViewModel.Direccioness = new DireccionGt();
                 //List<SelectListItem> departamento = _context.Tabla_Departamentos
                 //    .OrderBy(n => n.Nombre)
@@ -153,20 +156,8 @@ namespace ProyectoFinal.Controllers
                     Direcciones = new DireccionGt
                     {
                         Name = registerViewModel.NombreDireccion,
-                        MunicipioGt = new MunicipioGt
-                        {
-                            Id = registerViewModel.idMunicipioSelected,
-                            DepartamentoGt = new DepartamentoGt()
-                            {
-                                Id = registerViewModel.idDepartamentoSelected
-                            }
-                            
-                        }
+                        idMunicipio = registerViewModel.idMunicipioSelected
                     }                    
-                    //Direcciones = new DireccionGt()
-                    //{
-                    //    Name = registerViewModel.DireccionName
-                    //}
                 };
 
 

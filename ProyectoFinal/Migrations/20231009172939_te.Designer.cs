@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProyectoFinal.Data;
 
@@ -11,9 +12,10 @@ using ProyectoFinal.Data;
 namespace ProyectoFinal.Migrations
 {
     [DbContext(typeof(AplicationDbContext))]
-    partial class AplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231009172939_te")]
+    partial class te
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -271,7 +273,7 @@ namespace ProyectoFinal.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Tabla_Departamentos", (string)null);
+                    b.ToTable("Tabla_Departamentos");
                 });
 
             modelBuilder.Entity("ProyectoFinal.Models.DireccionGt", b =>
@@ -296,7 +298,7 @@ namespace ProyectoFinal.Migrations
 
                     b.HasIndex("MunicipioGtId");
 
-                    b.ToTable("Tabla_Direcciones", (string)null);
+                    b.ToTable("Tabla_Direcciones");
                 });
 
             modelBuilder.Entity("ProyectoFinal.Models.MunicipioGt", b =>
@@ -318,7 +320,7 @@ namespace ProyectoFinal.Migrations
 
                     b.HasIndex("DepartamentoGtId");
 
-                    b.ToTable("Tabla_Municipios", (string)null);
+                    b.ToTable("Tabla_Municipios");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

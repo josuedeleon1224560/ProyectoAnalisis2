@@ -32,18 +32,9 @@ namespace ProyectoFinal.Repository
         //    return _context.Tabla_Municipios.Where(m => m.DepartamentoId == departamentoId).ToList();
         //}
 
-        public async Task<DireccionGt> GetDireccionById(int? id)
+        public IEnumerable<MunicipioGt> ListaMunicipios()
         {
-            if (id == null)
-            {
-                return null;
-            }
-
-            // Buscar la dirección por su ID
-            var direccion = await _context.Tabla_Direcciones
-                .FirstOrDefaultAsync(d => d.Id == id);
-
-            return direccion;
+            return _context.Tabla_Municipios.ToList();
         }
 
         public async Task<MunicipioGt> GetMunicipioById(int? id)

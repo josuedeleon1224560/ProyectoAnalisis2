@@ -50,7 +50,8 @@ namespace ProyectoFinal.ViewModels
         public List<SelectListItem> Roles { get; set; }
 
         public int idDepartamentoSelected { get; set; }
-        public int idMunicipioSelected { get; set; }
+        public string idMunicipioSelected { get; set; }
+        public List<SelectListItem> municipios { get; set; }
         public string NombreDireccion { get; set; }
 
     }

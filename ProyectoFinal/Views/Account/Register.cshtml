@@ -49,7 +49,7 @@
                         </div>  
                         <div class="min-cont">
                         <label>Municipio</label>
-                        <select id="Municipio" class="address-municipality">
+                        <select id="Municipio" asp-for="idMunicipioSelected" class="address-municipality">
                             <option>--Seleccione Municipio--</option>
                         </select>
                         </div>  
@@ -94,14 +94,16 @@
                         <input asp-for="Password" class="pass" />
                         <span asp-validation-for="Password" class="text-danger"></span>
                         </div>
-                        <div class="min-cont">
-                            <label>Rol</label>
-                            <select name="" class="rol">
-                                <option value=""></option>
-                                <option value="Masculino">Administrador</option>
-                                <option value="Masculino">Usuario</option>
-                            </select>
-                        </div>
+
+                    <div class="min-cont">
+                        <label asp-for="SelectedRole">Rol</label>
+                        <select asp-for="SelectedRole" asp-validation-for="SelectedRole" class="gen">
+                            <option>Seleccione un rol</option>
+                            @foreach (var roleItem in Model.Roles)
+                            {
+                                <option value="@roleItem.Value">@roleItem.Text</option>
+                            }
+                        </select>
                     </div>                   
                 </div>          
 
