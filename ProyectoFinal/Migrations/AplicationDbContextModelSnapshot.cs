@@ -180,7 +180,7 @@ namespace ProyectoFinal.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("Date")
+                    b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Diplomas")
@@ -242,6 +242,9 @@ namespace ProyectoFinal.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
+                    b.Property<int?>("idPuestos")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("IdDireccion");
@@ -254,7 +257,26 @@ namespace ProyectoFinal.Migrations
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
+                    b.HasIndex("idPuestos");
+
                     b.ToTable("AspNetUsers", (string)null);
+                });
+
+            modelBuilder.Entity("ProyectoFinal.Models.Departamento", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Departamento");
                 });
 
             modelBuilder.Entity("ProyectoFinal.Models.DepartamentoGt", b =>
@@ -271,7 +293,7 @@ namespace ProyectoFinal.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Tabla_Departamentos", (string)null);
+                    b.ToTable("Tabla_Departamentos");
                 });
 
             modelBuilder.Entity("ProyectoFinal.Models.DireccionGt", b =>
@@ -289,14 +311,40 @@ namespace ProyectoFinal.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("idMunicipio")
+                    b.Property<int?>("idMunicipio")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("MunicipioGtId");
 
-                    b.ToTable("Tabla_Direcciones", (string)null);
+                    b.ToTable("Tabla_Direcciones");
+                });
+
+            modelBuilder.Entity("ProyectoFinal.Models.Mensaje", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("AppUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Contenido")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Estado")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppUserId");
+
+                    b.ToTable("Mensajes");
                 });
 
             modelBuilder.Entity("ProyectoFinal.Models.MunicipioGt", b =>
@@ -314,11 +362,39 @@ namespace ProyectoFinal.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("idDepartamento")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("DepartamentoGtId");
 
-                    b.ToTable("Tabla_Municipios", (string)null);
+                    b.ToTable("Tabla_Municipios");
+                });
+
+            modelBuilder.Entity("ProyectoFinal.Models.Puesto", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int?>("IdDepartamento")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<float>("Salario")
+                        .HasColumnType("real");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IdDepartamento");
+
+                    b.ToTable("Puesto");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -378,7 +454,13 @@ namespace ProyectoFinal.Migrations
                         .WithMany()
                         .HasForeignKey("IdDireccion");
 
+                    b.HasOne("ProyectoFinal.Models.Puesto", "IdPuesto")
+                        .WithMany()
+                        .HasForeignKey("idPuestos");
+
                     b.Navigation("Direcciones");
+
+                    b.Navigation("IdPuesto");
                 });
 
             modelBuilder.Entity("ProyectoFinal.Models.DireccionGt", b =>
@@ -390,6 +472,17 @@ namespace ProyectoFinal.Migrations
                     b.Navigation("MunicipioGt");
                 });
 
+            modelBuilder.Entity("ProyectoFinal.Models.Mensaje", b =>
+                {
+                    b.HasOne("ProyectoFinal.Models.AppUser", "Appuser")
+                        .WithMany("Mensajes")
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Appuser");
+                });
+
             modelBuilder.Entity("ProyectoFinal.Models.MunicipioGt", b =>
                 {
                     b.HasOne("ProyectoFinal.Models.DepartamentoGt", "DepartamentoGt")
@@ -397,6 +490,20 @@ namespace ProyectoFinal.Migrations
                         .HasForeignKey("DepartamentoGtId");
 
                     b.Navigation("DepartamentoGt");
+                });
+
+            modelBuilder.Entity("ProyectoFinal.Models.Puesto", b =>
+                {
+                    b.HasOne("ProyectoFinal.Models.Departamento", "Departamento")
+                        .WithMany()
+                        .HasForeignKey("IdDepartamento");
+
+                    b.Navigation("Departamento");
+                });
+
+            modelBuilder.Entity("ProyectoFinal.Models.AppUser", b =>
+                {
+                    b.Navigation("Mensajes");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,0 +1,29 @@
+﻿@model ProyectoFinal.ViewModels.ViewMensajesViewModel
+
+@{
+    ViewData["Title"] = "Mensajes del Usuario";
+}
+
+<h2>Mensajes del Usuario: @Model.Usuario.UserName</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Contenido del Mensaje</th>
+            <th>Estado</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var mensaje in Model.MensajesUsuario)
+        {
+            <tr>
+                <td>@mensaje.Contenido</td>
+                <td>@mensaje.Estado</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="mt-4">
+    <a asp-controller="Mensaje" asp-action="SeleccionarUsuario" class="btn btn-primary">Seleccionar Otro Usuario</a>
+</div>

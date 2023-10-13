@@ -1,0 +1,21 @@
+﻿@model ProyectoFinal.ViewModels.SeleccionarUsuarioViewModel
+
+@{
+    ViewData["Title"] = "Seleccionar Usuario";
+}
+
+<h2>Seleccionar Usuario</h2>
+
+<form asp-controller="Mensaje" asp-action="VerMensajesUsuario" method="get">
+    <div class="form-group">
+        <label for="nombreUsuario">Seleccionar Usuario:</label>
+        <select asp-for="CUI" class="form-control">
+            <option value="">Seleccionar Usuario</option>
+            @foreach (var usuario in Model.UsuariosDisponibles)
+            {
+                <option value="@usuario.CUI">@usuario.Nombres</option>
+            }
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Ver Mensajes del Usuario</button>
+</form>

@@ -9,7 +9,7 @@ namespace ProyectoFinal.Models
         public int Id { get; set; }
         public string Name { get; set; }
         [ForeignKey("Municipio")]
-        public string idMunicipio { get; set; }
+        public int? idMunicipio { get; set; }
 
         public MunicipioGt? MunicipioGt { get; set; }
     }

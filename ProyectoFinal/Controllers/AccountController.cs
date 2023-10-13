@@ -20,10 +20,11 @@ namespace ProyectoFinal.Controllers
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly iPhotoService _iPhotoService;
         private readonly DireccionRepository _direccionRepository;
+        private readonly PuestoRepository _puestoRepository;
 
         public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager,
         AplicationDbContext context, RoleManager<IdentityRole> roleManager, iPhotoService iPhotoService,
-        DireccionRepository direccionRepository)
+        DireccionRepository direccionRepository, PuestoRepository puestoRepository)
         {
             _context = context;
             _signInManager = signInManager;
@@ -31,6 +32,7 @@ namespace ProyectoFinal.Controllers
             _roleManager = roleManager;
             _iPhotoService = iPhotoService;
             _direccionRepository = direccionRepository;
+            _puestoRepository = puestoRepository;
         }
         public IActionResult Login()
         {
@@ -77,24 +79,12 @@ namespace ProyectoFinal.Controllers
         {
             var model = new RegisterViewModel();
             var roles = _roleManager.Roles.ToList();
-            var municipios = _direccionRepository.ListaMunicipios();
 
             model.Roles = roles.Select(r => new SelectListItem
             {
                 Text = r.Name,
                 Value = r.Name
             }).ToList();
-
-            //model.Departamento = departamentos.Select(r => new SelectListItem
-            //{
-            //    Text = r.Nombre,
-            //    Value = r.Id.ToString()
-            //}).ToList();
-            //model.Municipio = municipios.Select(r => new SelectListItem
-            //{
-            //    Text = r.Nombre,
-            //    Value = r.Id.ToString()
-            //}).ToList();
 
 
             return View(model);
@@ -104,7 +94,14 @@ namespace ProyectoFinal.Controllers
         {
             return new JsonResult(_direccionRepository.GetAllDepartamento());
         }
-
+        public JsonResult DepartamentoTrabajo()
+        {
+            return new JsonResult(_puestoRepository.GetDepartamentos());
+        }
+        public JsonResult Puesto(int id)
+        {
+            return new JsonResult(_puestoRepository.GetAllPuestos(id));
+        }
         public JsonResult Municipio(int id)
         {
             return new JsonResult(_direccionRepository.GetAllMunicipio(id));
@@ -114,37 +111,60 @@ namespace ProyectoFinal.Controllers
             return new JsonResult(_direccionRepository.GetAllDirecciones(id));
         }
 
+ 
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel registerViewModel)
          {
+            var roles = _roleManager.Roles.ToList();
+            registerViewModel.Roles = roles.Select(r => new SelectListItem
+            {
+                Text = r.Name,
+                Value = r.Name
+            }).ToList();
+
+
+
             if (!ModelState.IsValid)
             {
-                var roles = _roleManager.Roles.ToList();
-                registerViewModel.Roles = roles.Select(r => new SelectListItem
-                {
-                    Text = r.Name,
-                    Value = r.Name
-                }).ToList();
+                return View(registerViewModel);
+            }
+            //registerViewModel.Direccioness = new DireccionGt();
+            //List<SelectListItem> departamento = _context.Tabla_Departamentos
+            //    .OrderBy(n => n.Nombre)
+            //    .Select(n =>
+            //    new SelectListItem
+            //    {
+            //        Value = n.Id.ToString(),
+            //        Text = n.Nombre
+            //    }).ToList();
 
-                //registerViewModel.Direccioness = new DireccionGt();
-                //List<SelectListItem> departamento = _context.Tabla_Departamentos
-                //    .OrderBy(n => n.Nombre)
-                //    .Select(n =>
-                //    new SelectListItem
-                //    {
-                //        Value = n.Id.ToString(),
-                //        Text = n.Nombre
-                //    }).ToList();
+            //registerViewModel.Departamento = departamento;
+            //registerViewModel.Municipio = new List<SelectListItem>();
 
-                //registerViewModel.Departamento = departamento;
-                //registerViewModel.Municipio = new List<SelectListItem>();
-                var user = await _userManager.FindByEmailAsync(registerViewModel.EmailAddress);
-                if (user != null)
-                {
-                    TempData["Error"] = "This email address is already in use";
-                    return View(registerViewModel);
-                }
-                var newUser = new AppUser()
+            var user = await _userManager.FindByEmailAsync(registerViewModel.EmailAddress);
+            if (user != null)
+            {
+                TempData["Error"] = "El correo ya se encuentra registrado";
+                return View(registerViewModel);
+            }
+            var selectedRole = registerViewModel.SelectedRole;
+            if (selectedRole == "0")
+            {
+                TempData["Error"] = "Seleccione un rol valido";
+                return View(registerViewModel);
+            }
+
+            var CUI = await _userManager.FindByIdAsync(registerViewModel.CUI);
+            if (CUI != null)
+            {
+                TempData["Error"] = "Este CUI ya está utilizado";
+                return View(registerViewModel);
+            }
+
+
+
+
+            var newUser = new AppUser()
                 {
                     Email = registerViewModel.EmailAddress,
                     UserName = registerViewModel.EmailAddress,
@@ -157,7 +177,7 @@ namespace ProyectoFinal.Controllers
                     {
                         Name = registerViewModel.NombreDireccion,
                         idMunicipio = registerViewModel.idMunicipioSelected
-                    }                    
+                    }
                 };
 
 
@@ -192,7 +212,7 @@ namespace ProyectoFinal.Controllers
                 if (newUserResponse.Succeeded)
                 {
                     // Captura el rol seleccionado en el formulario
-                    var selectedRole = registerViewModel.SelectedRole;
+
 
                     // Verifica que se haya seleccionado un rol
                     if (!string.IsNullOrEmpty(selectedRole))
@@ -203,9 +223,7 @@ namespace ProyectoFinal.Controllers
 
                     return RedirectToAction("Index", "Home");
                 }
-                return View(registerViewModel);
-            }
-            return View(registerViewModel);
+                return View(registerViewModel);           
 
         }
 

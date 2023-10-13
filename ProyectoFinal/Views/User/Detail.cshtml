@@ -16,6 +16,13 @@
                                 <label asp-for="Numero">@Model.Telefono</label>
                                 <label asp-for="Fecha de Nacimiento">@Model.Date </label>
                                 <label asp-for="Id">@Model.Id</label>
+                                <hr>
+                            <label asp-for="DepartamentoUsuario">@Model.DepartamentoUsuario</label>
+                            <hr>
+                            <label asp-for="MunicipioUsuario">@Model.MunicipioUsuario</label>
+                            <hr>
+                            <label asp-for="DireccionUsuario">@Model.DireccionUsuario</label>
+                            <hr>
                         @if (!string.IsNullOrEmpty(Model.AntecedentesPenales))
                         {
                                 <img src="@Model.AntecedentesPenales" alt="Antecedentes Penales" width="100" height="100" />

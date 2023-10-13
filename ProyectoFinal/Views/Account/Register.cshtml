@@ -29,17 +29,17 @@
                         <div class="min-cont">
                         <label asp-for="Nombres" class="control-label"></label>
                         <input asp-for="Nombres" class="name" />
-                        <span asp-validation-for="Nombres" class="name"></span>
+                        <span asp-validation-for="Nombres"></span>
                         </div>    
                         <div class="min-cont">
                         <label asp-for="Apellidos" ></label>
                         <input asp-for="Apellidos" class="last-name" />
-                        <span asp-validation-for="Apellidos" class="last-name"></span>
+                        <span asp-validation-for="Apellidos"></span>
                         </div>
                         <div class="min-cont">
                         <label asp-for="NombreDireccion" class="control-label"></label>
                         <input asp-for="NombreDireccion" class="address" />
-                        <span asp-validation-for="NombreDireccion" class="address"></span>
+                        <span asp-validation-for="NombreDireccion"></span>
                         </div>   
                         <div class="min-cont">
                         <label>Departamento</label>
@@ -48,10 +48,11 @@
                         </select>
                         </div>  
                         <div class="min-cont">
-                        <label>Municipio</label>
+                        <label asp-for="idMunicipioSelected">Municipio</label>
                         <select id="Municipio" asp-for="idMunicipioSelected" class="address-municipality">
                             <option>--Seleccione Municipio--</option>
                         </select>
+                        <span asp-validation-for="idMunicipioSelected" class="text-danger"></span>                        
                         </div>  
                         <div class="min-cont">
                         <label asp-for="Date"></label>
@@ -98,12 +99,13 @@
                     <div class="min-cont">
                         <label asp-for="SelectedRole">Rol</label>
                         <select asp-for="SelectedRole" asp-validation-for="SelectedRole" class="gen">
-                            <option>Seleccione un rol</option>
+                            <option value="0">Seleccione un rol</option>
                             @foreach (var roleItem in Model.Roles)
                             {
                                 <option value="@roleItem.Value">@roleItem.Text</option>
                             }
                         </select>
+                        <span asp-validation-for="SelectedRole" class="text-danger"></span>
                     </div>                   
                 </div>          
 
@@ -140,9 +142,21 @@
                         <input asp-for="Titulos" type="file" placeholder="Imagen" />
                         <span asp-validation-for="Titulos"></span>
                         </div>
+
                         <div class="min-cont">
-                            <label>Puesto</label>
-                            <input type="text" class="position">
+                            <label>Departamento de Trabajo</label>
+                            <select id="departamentoPuesto" asp-for="SelectedDepartamento">
+                                <option>--Seleccione un Departamento</option>
+                            </select>
+                            <span asp-validation-for="SelectedDepartamento" class="text-danger"></span>
+                        </div>
+
+                        <div class="min-cont">
+                            <label asp-for="SelectedPuesto">Puesto</label>
+                            <select id="Puesto" asp-for="SelectedPuesto" class="address-municipality">
+                                <option>--Seleccione un puesto--</option>
+                            </select>
+                            <span asp-validation-for="SelectedPuesto" class="text-danger"></span>
                         </div>
                         <div class="min-cont">
                             <label>Departamento</label>
@@ -189,7 +203,6 @@
 
                 <div class="button-section">
                 <input type="submit" class="Rbutton" value="Sign up" />
-                <a class="btn btn-outline-secondary" asp-controller="Home" asp-action="Index">Cancel</a>
                     <input type="reset" class="vbutton" value="Vaciar formulario">
                 </div>
             </form>
@@ -328,4 +341,5 @@
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/jquery/dist/jquery.js"></script>
 <script src="~/js/cascadadepartamentos.js"></script>
+<script src="~/js/puesto.js"></script>
 <script src="~/js/index.js"></script>

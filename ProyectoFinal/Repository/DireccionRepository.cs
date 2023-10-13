@@ -32,9 +32,18 @@ namespace ProyectoFinal.Repository
         //    return _context.Tabla_Municipios.Where(m => m.DepartamentoId == departamentoId).ToList();
         //}
 
-        public IEnumerable<MunicipioGt> ListaMunicipios()
+        public async Task<DireccionGt> GetDireccionById(int? id)
         {
-            return _context.Tabla_Municipios.ToList();
+            if (id == null)
+            {
+                return null;
+            }
+
+            // Buscar la dirección por su ID
+            var direccion = await _context.Tabla_Direcciones
+                .FirstOrDefaultAsync(d => d.Id == id);
+
+            return direccion;
         }
 
         public async Task<MunicipioGt> GetMunicipioById(int? id)
@@ -57,9 +66,18 @@ namespace ProyectoFinal.Repository
                 return null;
             }
 
-            // Buscar la dirección por su ID
-            var departamento = await _context.Tabla_Departamentos
-                .FirstOrDefaultAsync(d => d.Id == id);
+            // Buscar el municipio por su ID
+            var municipio = await _context.Tabla_Municipios
+                .Include(m => m.DepartamentoGt) // Incluir la propiedad de navegación al departamento
+                .FirstOrDefaultAsync(m => m.Id == id);
+
+            if (municipio == null)
+            {
+                return null;
+            }
+
+            // Obtener el departamento del municipio
+            var departamento = municipio.DepartamentoGt;
 
             return departamento;
         }

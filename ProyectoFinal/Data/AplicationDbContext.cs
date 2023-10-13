@@ -11,6 +11,9 @@ namespace ProyectoFinal.Data
 
         public DbSet<DepartamentoGt> Tabla_Departamentos { get; set; }
         public DbSet<MunicipioGt> Tabla_Municipios { get; set; }
-        public DbSet<DireccionGt> Tabla_Direcciones { get; set; }        
+        public DbSet<DireccionGt> Tabla_Direcciones { get; set; }
+        public DbSet<Departamento> Departamento { get; set; }
+        public DbSet<Puesto> Puesto { get; set; }
+        public DbSet<Mensaje> Mensajes { get; set; }
     }
 }

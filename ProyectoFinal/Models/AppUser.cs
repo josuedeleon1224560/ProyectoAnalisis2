@@ -7,12 +7,16 @@ namespace ProyectoFinal.Models
 {
     public class AppUser : IdentityUser
     {
+        [Required]
         [Key]
         public string CUI { get; set; }
+        [Required]
         public string Nombres { get; set; }
+        [Required]
         public string Apellidos { get; set; }
         public int? Telefono { get; set; }
-        public DateTime? Date { get; set; }
+        [Required]
+        public DateTime Date { get; set; }
         //public int Edad { get; set; }
         //public string Puesto { get; set; }
         //public float Salario { get; set; }
@@ -20,7 +24,12 @@ namespace ProyectoFinal.Models
 
         [ForeignKey("Direcciones")]
         public int? IdDireccion { get; set; }
+        [ForeignKey("idPuestos")]
+        public Puesto? IdPuesto { get; set; }
         public DireccionGt? Direcciones { get; set; }
+
+        public ICollection<Mensaje> Mensajes { get; set; }
+
         public string? AntecedentesPenales { get; set; }
         public string? AntecedentesPoliciacos { get; set; }
         public string? Fotografia { get; set; }

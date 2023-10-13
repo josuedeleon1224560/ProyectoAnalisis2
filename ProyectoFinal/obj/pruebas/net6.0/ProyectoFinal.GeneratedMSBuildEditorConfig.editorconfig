@@ -28,12 +28,36 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[E:/ProyectoNET/ProyectoFinal/ProyectoFinal/Views/Home/CascadeList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDYXNjYWRlTGlzdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [E:/ProyectoNET/ProyectoFinal/ProyectoFinal/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [E:/ProyectoNET/ProyectoFinal/ProyectoFinal/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/ProyectoNET/ProyectoFinal/ProyectoFinal/Views/Mensaje/Confirmacion.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVuc2FqZVxDb25maXJtYWNpb24uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/ProyectoNET/ProyectoFinal/ProyectoFinal/Views/Mensaje/Crear.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVuc2FqZVxDcmVhci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/ProyectoNET/ProyectoFinal/ProyectoFinal/Views/Mensaje/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVuc2FqZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/ProyectoNET/ProyectoFinal/ProyectoFinal/Views/Mensaje/SeleccionarUsuario.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVuc2FqZVxTZWxlY2Npb25hclVzdWFyaW8uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/ProyectoNET/ProyectoFinal/ProyectoFinal/Views/Mensaje/VerMensajesUsuario.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVuc2FqZVxWZXJNZW5zYWplc1VzdWFyaW8uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [E:/ProyectoNET/ProyectoFinal/ProyectoFinal/Views/Role/CreateRole.cshtml]

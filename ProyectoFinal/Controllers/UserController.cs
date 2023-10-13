@@ -53,7 +53,7 @@ namespace ProyectoFinal.Controllers
                     UrlAntePoli = user.AntecedentesPoliciacos,
                     UrlFotografia = user.Fotografia,
                     UrlDiplomas = user.Diplomas,                    
-                    Date = user.Date,
+                    Date = user.Date
                     //IdDireccion = user.IdDireccion,
                 };
                 // Obtener los roles del usuario
@@ -81,9 +81,9 @@ namespace ProyectoFinal.Controllers
             //Realiza lo mismo que en la línea de código 69 sin embargo lo realiza con el rol del usuario en específico.
             var roles = await _userManager.GetRolesAsync(user);
             //Se extraen los datos            
-            //var direccion = await _direccionRepository.GetDireccionById(user.IdDireccion);
-            //var municipio = await _direccionRepository.GetMunicipioById(direccion.IdMunicipio);
-            //var departamento = await _direccionRepository.GetDepartamentoById(municipio.DepartamentoId);
+            var direccion = await _direccionRepository.GetDireccionById(user.IdDireccion);
+            var municipio = await _direccionRepository.GetMunicipioById(direccion.idMunicipio);
+            var departamento = await _direccionRepository.GetDepartamentoById(municipio.Id);
             //Se crea la variable del modelo vista del detalle Usuario haciendo una creación del objeto del Modelo Vista del detalle usuario
             var userDetailViewModel = new UserDetailViewModel()
             {
@@ -99,7 +99,10 @@ namespace ProyectoFinal.Controllers
                 Fotografia = user.Fotografia,
                 Diplomas = user.Diplomas,
                 Titulos = user.Titulos,
-                Roles = roles.ToList(),
+                Roles = roles.ToList(),     
+                DireccionUsuario = direccion.Name,
+                MunicipioUsuario = municipio.Nombre,
+                DepartamentoUsuario = departamento.Nombre
                 //DireccionId = user.IdDireccion,
                 //Direccion_Name = direccion?.Name,
                 //MunicipioId = user.Direcciones.IdMunicipio,
@@ -213,7 +216,7 @@ namespace ProyectoFinal.Controllers
                 user.Apellidos = userEditViewModel.Apellidos;
                 user.CUI = userEditViewModel.CUI;
                 user.Telefono = userEditViewModel.Telefono;
-                user.Date = userEditViewModel.Date;
+                user.Date = (DateTime)userEditViewModel.Date;
                 ////user.Direcciones.Name = userEditViewModel.DireccionName;
                 ////user.Direcciones.IdMunicipio = userEditViewModel.IdMunicipio;
                 ////user.Direcciones.MunicipioGt.DepartamentoId = userEditViewModel.IdDepartamento;

@@ -36,6 +36,8 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<DireccionRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<iPhotoService, PhotoService>();
+builder.Services.AddScoped<PuestoRepository>();
+builder.Services.AddScoped<MensajesRepository>();
 builder.Services.Configure<CloudinaySettings>(builder.Configuration.GetSection("CloudinarySettings"));
 builder.Services.AddDbContext<AplicationDbContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("BasedeDatos")));

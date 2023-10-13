@@ -23,6 +23,9 @@ namespace ProyectoFinal.ViewModels
         public List<string> Roles { get; set; }
 
         public int? IdDireccion { get; set; }
+        public string? DireccionUsuario { get; set; }
+        public string? MunicipioUsuario { get; set; }
+        public string? DepartamentoUsuario { get; set; }
         public DireccionGt DireccionName { get; set; }
     }
 

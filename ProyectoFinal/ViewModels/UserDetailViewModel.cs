@@ -17,6 +17,9 @@ namespace ProyectoFinal.ViewModels
         public string? Diplomas { get; set; }
         public string? Titulos { get; set; }
         public List<string> Roles { get; set; }
+        public string DireccionUsuario { get; set; }
+        public string MunicipioUsuario { get; set; }
+        public string DepartamentoUsuario { get; set; }
         public int? DireccionId { get; set; }
         //public string Direccion_Name { get; set; }
         public int? MunicipioId { get; set; }

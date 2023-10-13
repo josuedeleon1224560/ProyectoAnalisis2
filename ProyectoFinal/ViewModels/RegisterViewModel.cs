@@ -26,14 +26,14 @@ namespace ProyectoFinal.ViewModels
             [Display(Name = "Email address")]
             [Required(ErrorMessage = "Email address is required")]
             public string EmailAddress { get; set; }
-            [Required]
+            [Required(ErrorMessage ="Escriba una contraseña")]
             [DataType(DataType.Password)]
             public string Password { get; set; }
-            [Display(Name = "Confirm password")]
-            [Required(ErrorMessage = "Confirm password is required")]
-            [DataType(DataType.Password)]
-            [Compare("Password", ErrorMessage = "Password do not match")]
-            public string ConfirmPassword { get; set; }
+            //[Display(Name = "Confirm password")]
+            //[Required(ErrorMessage = "Confirm password is required")]
+            //[DataType(DataType.Password)]
+            //[Compare("Password", ErrorMessage = "Password do not match")]
+            //public string ConfirmPassword { get; set; }
         [Display(Name = "Ingrese sus antecedentes")]
             public IFormFile? AntecedentesPenales { get; set; }
         [Display(Name = "Ingrese sus policiacos")]
@@ -48,10 +48,11 @@ namespace ProyectoFinal.ViewModels
         [Required(ErrorMessage ="Seleccione un Rol valido")]
         public string SelectedRole { get; set; } 
         public List<SelectListItem> Roles { get; set; }
+        public int SelectedDepartamento { get; set; }
+        public int SelectedPuesto { get; set; }
 
-        public int idDepartamentoSelected { get; set; }
-        public string idMunicipioSelected { get; set; }
-        public List<SelectListItem> municipios { get; set; }
+        [Required(ErrorMessage = "Seleccione Municipio Valido")]
+        public int idMunicipioSelected { get; set; }
         public string NombreDireccion { get; set; }
 
     }

@@ -1,0 +1,31 @@
+﻿@using ProyectoFinal.Models
+@model List<Mensaje>
+
+@{
+    ViewData["Title"] = "Mensajes Pendientes";
+}
+
+<h2>Mensajes Pendientes</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Contenido del Mensaje</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var mensaje in Model)
+        {
+            <tr>
+                <td>@mensaje.Contenido</td>
+                <td>@mensaje.Estado</td>
+                <td>
+                    <a asp-action="AprobarMensaje" asp-route-id="@mensaje.Id" class="btn btn-success">Aprobar</a>
+                    <a asp-action="RechazarMensaje" asp-route-id="@mensaje.Id" class="btn btn-danger">Rechazar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
