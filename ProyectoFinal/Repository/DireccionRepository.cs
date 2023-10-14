@@ -17,11 +17,11 @@ namespace ProyectoFinal.Repository
         {
             return  _context.Tabla_Departamentos.ToList();
         }
-
         public IEnumerable<MunicipioGt> GetAllMunicipio(int id)
         {
             return _context.Tabla_Municipios.Where(e => e.DepartamentoGt.Id == id).ToList();
         }
+
         public IEnumerable<DireccionGt> GetAllDirecciones(int id)
         {
             return _context.Tabla_Direcciones.Where(dir => dir.MunicipioGt.Id == id).ToList();
@@ -34,31 +34,20 @@ namespace ProyectoFinal.Repository
 
         public async Task<DireccionGt> GetDireccionById(int? id)
         {
-            if (id == null)
-            {
-                return null;
-            }
-
-            // Buscar la dirección por su ID
-            var direccion = await _context.Tabla_Direcciones
-                .FirstOrDefaultAsync(d => d.Id == id);
-
-            return direccion;
+            return await _context.Tabla_Direcciones.Include(i => i.Id).FirstOrDefaultAsync(i => i.Id == id);
         }
 
-        public async Task<MunicipioGt> GetMunicipioById(int? id)
+        //public async Task<AppUser> GetDireccionMunicipioById(string id)
+        //{
+        //        return await _context.Users.Include(u => u.Direcciones).ThenInclude(d=> d.MunicipioGt).SingleOrDefault(
+        //            u=>u.Direcciones.idMunicipio ==)
+        //}
+
+        public async Task<MunicipioGt> MunicipioById(int? id)
         {
-            if (id == null)
-            {
-                return null;
-            }
-
-            // Buscar la dirección por su ID
-            var municipio = await _context.Tabla_Municipios
-                .FirstOrDefaultAsync(m => m.Id == id);
-
-            return municipio;
+            return await _context.Tabla_Municipios.FindAsync(id);
         }
+
         public async Task<DepartamentoGt> GetDepartamentoById(int? id)
         {
             if (id == null)

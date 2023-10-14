@@ -4,12 +4,14 @@
 @{
     var userName = User.Identity.Name;
     var userId = "";
+    var userCUI = "";
     if (!string.IsNullOrEmpty(userName))
     {
         var user = await UserManager.FindByNameAsync(userName);
         if (user != null)
         {
             userId = user.Id;
+            userCUI = user.CUI;
         }
     }
 
@@ -55,6 +57,7 @@
                         {
                         <ul class="nav-menu">
                                 <li class="nav-item"> <a asp-area="" class="nav-link" asp-controller="User" asp-action="Detail" asp-route-id="@userId">Detalle</a> </li>
+                            <li class="nav-item"> <a asp-area="" class="nav-link" asp-controller="User" asp-action="Mensajeria" asp-route-CUI="@userCUI">Mensajería</a> </li>
                                 <li class="nav-item"> <a asp-area="" class="nav-link" asp-controller="Account" asp-action="Logout">Cerrar Sesion</a> </li>
                             <label>Bienvenido @userName</label>
                             </ul>

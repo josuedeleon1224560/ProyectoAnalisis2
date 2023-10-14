@@ -16,12 +16,13 @@
                                 <label asp-for="Numero">@Model.Telefono</label>
                                 <label asp-for="Fecha de Nacimiento">@Model.Date </label>
                                 <label asp-for="Id">@Model.Id</label>
-                                <hr>
-                            <label asp-for="DepartamentoUsuario">@Model.DepartamentoUsuario</label>
+                                <hr/>
+                            <label asp-for="DireccionId">@Model.DireccionId, @Model.DireccionUsuario</label>
                             <hr>
-                            <label asp-for="MunicipioUsuario">@Model.MunicipioUsuario</label>
+                            <label asp-for="MunicipioId">@Model.MunicipioId , @Model.MunicipioUsuario</label>
                             <hr>
-                            <label asp-for="DireccionUsuario">@Model.DireccionUsuario</label>
+                            <hr />
+                            <label asp-for="DepartamentoId">@Model.DepartamentoId , @Model.DepartamentoUsuario</label>
                             <hr>
                         @if (!string.IsNullOrEmpty(Model.AntecedentesPenales))
                         {

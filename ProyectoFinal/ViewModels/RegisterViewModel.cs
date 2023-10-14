@@ -46,13 +46,21 @@ namespace ProyectoFinal.ViewModels
         public IFormFile? Titulos { get; set; }
         [Display(Name = "Seleccione un Rol")]
         [Required(ErrorMessage ="Seleccione un Rol valido")]
-        public string SelectedRole { get; set; } 
-        public List<SelectListItem> Roles { get; set; }
+        public string SelectedRole { get; set; }
+        [Display(Name = "Seleccione un Rol")]
+        [Required(ErrorMessage = "Seleccione un Rol valido")]
+        public List<SelectListItem>? Roles { get; set; }
+        [Display(Name = "Departamento")]
+        [Required(ErrorMessage = "Seleccione Departamento Valido")]
         public int SelectedDepartamento { get; set; }
         public int SelectedPuesto { get; set; }
-
+        [Display(Name = "Municipio")]
         [Required(ErrorMessage = "Seleccione Municipio Valido")]
         public int idMunicipioSelected { get; set; }
+        public int idPuesto { get; set; }
+        public int idDepartamento { get; set; }
+        [Display(Name = "Ingrese un correo")]
+        [Required(ErrorMessage = "El campo del correo es necesario")]
         public string NombreDireccion { get; set; }
 
     }

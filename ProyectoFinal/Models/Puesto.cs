@@ -9,7 +9,7 @@ namespace ProyectoFinal.Models
         public int Id { get; set; }
         public string Nombre { get; set; }
         public float Salario { get; set; }
-        [ForeignKey("IdDepartamento")]
+        [ForeignKey("IdDepartamento")]        
         public Departamento? Departamento { get; set; }
     }
 }

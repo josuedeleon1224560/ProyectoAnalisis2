@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "/NZGFklpWsx7/ZkObozjvCVOxrRILV8fPVd7j4pYt4E=",
+  "Hash": "qFCNxloKKNHAy96/0+B2U3rE2aa8T4rNuJjK3zkBXEE=",
   "Source": "ProyectoFinal",
   "BasePath": "_content/ProyectoFinal",
   "Mode": "Default",
@@ -1105,12 +1105,12 @@
       "OriginalItemSpec": "wwwroot\\css\\site.css"
     },
     {
-      "Identity": "E:\\ProyectoNET\\ProyectoFinal\\ProyectoFinal\\wwwroot\\css\\styles.css",
+      "Identity": "E:\\ProyectoNET\\ProyectoFinal\\ProyectoFinal\\wwwroot\\css\\style.css",
       "SourceId": "ProyectoFinal",
       "SourceType": "Discovered",
       "ContentRoot": "E:\\ProyectoNET\\ProyectoFinal\\ProyectoFinal\\wwwroot\\",
       "BasePath": "_content/ProyectoFinal",
-      "RelativePath": "css/styles.css",
+      "RelativePath": "css/style.css",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -1119,7 +1119,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\css\\styles.css"
+      "OriginalItemSpec": "wwwroot\\css\\style.css"
     },
     {
       "Identity": "E:\\ProyectoNET\\ProyectoFinal\\ProyectoFinal\\wwwroot\\favicon.ico",

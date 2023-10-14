@@ -154,32 +154,38 @@ namespace ProyectoFinal.Controllers
                 return View(registerViewModel);
             }
 
-            var CUI = await _userManager.FindByIdAsync(registerViewModel.CUI);
-            if (CUI != null)
+            var userByCUI =  _context.Users.FirstOrDefault(u => u.CUI == registerViewModel.CUI);
+
+            if (userByCUI != null)
             {
-                TempData["Error"] = "Este CUI ya está utilizado";
+                TempData["Error"] = "Este CUI ya está siendo utilizado";
                 return View(registerViewModel);
             }
 
 
 
+            var direccionNueva = new DireccionGt
+            {
+                Name = registerViewModel.NombreDireccion,
+                MunicipioGt = _context.Tabla_Municipios.FirstOrDefault(m => m.Id == registerViewModel.idMunicipioSelected)
+            };
+
 
             var newUser = new AppUser()
-                {
-                    Email = registerViewModel.EmailAddress,
-                    UserName = registerViewModel.EmailAddress,
-                    Nombres = registerViewModel.Nombres,
-                    Apellidos = registerViewModel.Apellidos,
-                    CUI = registerViewModel.CUI,
-                    Telefono = registerViewModel.Telefono,
-                    Date = registerViewModel.Date,
-                    Direcciones = new DireccionGt
-                    {
-                        Name = registerViewModel.NombreDireccion,
-                        idMunicipio = registerViewModel.idMunicipioSelected
-                    }
+            {
+                Email = registerViewModel.EmailAddress,
+                UserName = registerViewModel.EmailAddress,
+                Nombres = registerViewModel.Nombres,
+                Apellidos = registerViewModel.Apellidos,
+                CUI = registerViewModel.CUI,
+                Telefono = registerViewModel.Telefono,
+                Date = registerViewModel.Date,  
+                Direcciones = direccionNueva,
+                IdPuesto = _context.Puesto.FirstOrDefault(p=>p.Id == registerViewModel.SelectedPuesto)
                 };
 
+
+            
 
 
                 if (registerViewModel.AntecedentesPenales != null)
