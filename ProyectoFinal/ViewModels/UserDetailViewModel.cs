@@ -26,5 +26,6 @@ namespace ProyectoFinal.ViewModels
         //public string Municipio_Name { get; set; }
         public int? DepartamentoId { get; set; }
         //public string Departamento_Name { get; set; }
+
     }
 }

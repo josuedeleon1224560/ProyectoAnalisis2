@@ -1,50 +1,60 @@
 ﻿@using ProyectoFinal.ViewModels
 @model List<UserViewModel>
-<section class="flush-with-above">
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <table class="table table-hover align-items-center table-borderless">
-                    <tbody>
-                        @foreach (var user in Model)
-                        {
-                            <tr class="bg-white">
-                                <th scope="row">
-                                    <div class="media align-items-center">                                        
-                                        <div class="media-body">                                            
-                                            <span class="h6 mb-0">@user.Nombres, @user.Apellidos</span>
-                                        </div>
-                                    </div>
-                                </th>
-                                <td>
-                                    <a class="btn btn-outline-primary" asp-controller="User" asp-action="Detail" asp-route-id="@user.Id">
-                                        View Profile
-                                    </a>
-                                    <a class="btn btn-outline-primary" asp-controller="User" asp-action="Mensajeria" asp-route-CUI="@user.CUI">
-                                        Mensajeria
-                                    </a>
-                                    <a class="btn btn-outline-primary" asp-controller="User" asp-action="Edit" asp-route-id="@user.Id">
-                                        Editar
-                                    </a>
-                                </td>
-
-                                @{
-                                    // var mileage = user.Mileage == null ? "?" : user.Mileage.ToString();
-                                    // var pace = user.Pace == null ? "?" : user.Mileage.ToString();
-                                }
-                                @* <td>@mileage mile at @pace mph</td> *@
-                            </tr>
-                            <tr class="table-divider">
-                                <th></th>
-                                <td></td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
-            <!--end of col-->
+@{
+    ViewData["Title"] = "Empleados";
+    string estilos = "/css/styles2.css";
+}
+@section Estilos
+    {
+    <link rel="stylesheet" type="text/css" href="@estilos" />
+}
+<div class="sub-container-consult">
+    <div class="sub-body-container-consult">
+        <div class="consult-tittle">
+            <h2>Usuarios</h2>
         </div>
-        <!--end of row-->
+        <div class="user-list">
+            <table class="user-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombres</th>
+                        <th>Apellidos</th>
+                        <th>Puesto</th>
+                        <th>Departamento</th>
+                        <th colspan="3">Accion</th>
+
+                    </tr>
+                </thead>
+                <tbody class="user-table-body">
+                   @foreach (var user in Model)
+                        {
+                    <tr>
+                        <td>@user.CUI</td>
+                        <td>@user.Nombres</td>
+                        <td>@user.Apellidos</td>
+                        <td>@user.NombrePuesto</td>
+                        <td>@user.NombreDepartamentoPuesto</td>
+                        <td>
+                                <a type="button" class="btn btn-outline-primary" asp-controller="User" asp-action="Detail" asp-route-id="@user.Id">
+                            View Profile
+                        </a>
+                    </td>
+                        <td>
+                                <a type="button" class="btn btn-outline-primary" asp-controller="User" asp-action="Mensajeria" asp-route-CUI="@user.CUI">
+                            Mensajeria
+                        </a>
+                        </td>
+                        <td>
+                                <a type="button"  class="btn btn-outline-primary" asp-controller="User" asp-action="Edit" asp-route-id="@user.Id">
+                            Editar
+                        </a>
+                        </td>
+                    </tr>
+                        }
+                </tbody>
+            </table>
+        </div>
     </div>
-    <!--end of container-->
-</section>
+</div>
+

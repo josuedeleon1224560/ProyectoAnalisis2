@@ -283,3 +283,5 @@ E:\ProyectoNET\ProyectoFinal\ProyectoFinal\obj\Release\net6.0\refint\ProyectoFin
 E:\ProyectoNET\ProyectoFinal\ProyectoFinal\obj\Release\net6.0\ProyectoFinal.pdb
 E:\ProyectoNET\ProyectoFinal\ProyectoFinal\obj\Release\net6.0\ProyectoFinal.genruntimeconfig.cache
 E:\ProyectoNET\ProyectoFinal\ProyectoFinal\obj\Release\net6.0\ref\ProyectoFinal.dll
+E:\ProyectoNET\ProyectoFinal\ProyectoFinal\bin\Release\net6.0\libman.json
+E:\ProyectoNET\ProyectoFinal\ProyectoFinal\bin\Release\net6.0\CloudinaryDotNet.dll

@@ -4,6 +4,8 @@
     ViewData["Title"] = "Mensajes del Usuario";
 }
 
+<div class="container">
+    <div class="sub-body">
 <h2>Mensajes del Usuario: @Model.Usuario.UserName</h2>
 
 <table class="table">
@@ -27,3 +29,5 @@
 <div class="mt-4">
     <a asp-controller="Mensaje" asp-action="SeleccionarUsuario" class="btn btn-primary">Seleccionar Otro Usuario</a>
 </div>
+    </div>
+    </div>

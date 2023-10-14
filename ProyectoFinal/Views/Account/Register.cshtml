@@ -3,7 +3,7 @@
 @model RegisterViewModel
 @{
     ViewData["Title"] = "Sign up";
-    string estilos = "/css/styles.css";
+    string estilos = "/css/styles2.css";
 }
 @section Estilos
     {
@@ -19,7 +19,7 @@
 
 <div class="container">
         <div class="sub-body">
-        <form asp-action="Register" enctype="multipart/form-data">
+        <form asp-action="Register" id="FormularioCrear" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="body-personal-data">
                     <div class="title">
@@ -28,102 +28,104 @@
                     <div class="sub-body-registro">                       
                         <div class="min-cont">
                         <label asp-for="Nombres" class="control-label"></label>
-                        <input asp-for="Nombres" class="name" />
-                        <span asp-validation-for="Nombres"></span>
+                        <input name="Nombres" asp-for="Nombres" class="name" />
+                        <span id="errorNombre" class="error" asp-validation-for="Nombres"></span>
                         </div>    
                         <div class="min-cont">
                         <label asp-for="Apellidos" ></label>
-                        <input asp-for="Apellidos" class="last-name" />
-                        <span asp-validation-for="Apellidos"></span>
+                        <input name="Apellidos" asp-for="Apellidos" class="last-name" />
+                        <span id="errorApellido" class="error" asp-validation-for="Apellidos"></span>
                         </div>
                         <div class="min-cont">
                         <label asp-for="NombreDireccion" class="control-label"></label>
-                        <input asp-for="NombreDireccion" class="address" />
-                        <span asp-validation-for="NombreDireccion"></span>
+                        <input name="NombreDireccion" asp-for="NombreDireccion" class="address" />
+                        <span id="errorDireccion" class="error" asp-validation-for="NombreDireccion"></span>
                         </div>   
                         <div class="min-cont">
-                        <label asp-for="SelectedDepartamento"></label>
-                        <select asp-for="SelectedDepartamento" id="Departamento" class="address-depto">
-                            <option>--Seleccione Departamento--</option>
+                        <label asp-for="idDepartamento"></label>
+                        <select name="idDepartamento" asp-for="idDepartamento" id="Departamento" class="address-depto">
+                            <option value="">--Seleccione Departamento--</option>
                         </select>
-                        <span asp-validation-for="SelectedDepartamento" class="text-danger"></span>
+                        <span id="errorDepartamento" class="error" asp-validation-for="idDepartamento" class="text-danger"></span>
                     </div>  
                         <div class="min-cont">
                         <label asp-for="idMunicipioSelected"></label>
-                        <select id="Municipio" asp-for="idMunicipioSelected" class="address-municipality">
-                            <option>--Seleccione Municipio--</option>
+                        <select name="idMunicipioSelected" id="Municipio" asp-for="idMunicipioSelected" class="address-municipality">
+                            <option value="">--Seleccione Municipio--</option>
                         </select>
-                        <span asp-validation-for="idMunicipioSelected" class="text-danger"></span>                        
-                        </div>  
+                        <span id="errorMunicipio" class="error" asp-validation-for="idMunicipioSelected" class="text-danger"></span>
+                    </div>  
                         <div class="min-cont">
                         <label asp-for="Date"></label>
-                        <input type="date" asp-for="Date" class="date" />
-                        <span asp-validation-for="Date" class="text-danger"></span>
+                        <input name="Fecha" type="date" max="2005-01-01" min="1923-01-01" asp-for="Date" value="1980-01-01" class="date">
+                        <span id="errorFecha" class="error" asp-validation-for="Date" class="text-danger"></span>
                         </div>                       
                         
                     </div>
                     
                     <div class="sub-body-registro2">
-                        <div class="min-cont">
+@*                         <div class="min-cont">
                             <label>Edad</label>
                             <input type="number" class="age">
-                        </div>
+                        </div> *@
                         <div class="min-cont">
                         <label asp-for="Telefono" class="control-label"></label>
-                        <input type="number" asp-for="Telefono" class="number-ph" />
-                        <span asp-validation-for="Telefono" class="text-danger"></span>
+                        <input name="Telefono" type="number" asp-for="Telefono" class="number-ph" />
+                        <span id="errorTelefono"  class="error" asp-validation-for="Telefono" class="text-danger"></span>
                         </div>
                         <div class="min-cont">
                         <label asp-for="CUI" class="control-label"></label>
-                        <input asp-for="CUI" class="number-ph" />
-                        <span asp-validation-for="CUI" class="text-danger"></span>
+                        <input name="Cui" type="number" asp-for="CUI" class="number-ph" />
+                        <span id="errorCui" class="error" asp-validation-for="CUI" class="text-danger"></span>
                         </div>
                         <div class="min-cont">
                             <label>Genero</label>
-                            <select name="" class="gen">
-                                <option value=""></option>
+                        <select name="Genero" class="gen">
+                                <option value="">Seleccione un genero</option>
                                 <option value="Masculino">Masculino</option>
                                 <option value="Masculino">Femenino</option>
                             </select>
+                        <span asp-validation-for="Genero" id="errorGenero" class="error"></span>
                         </div>
                         <div class="min-cont">
                         <label asp-for="EmailAddress" class="control-label"></label>
                         <input asp-for="EmailAddress" class="email" />
-                        <span asp-validation-for="EmailAddress" class="text-danger"></span>
+                        <span asp-validation-for="EmailAddress" class="error"></span>
                         </div>
                         <div class="min-cont">
                         <label asp-for="Password" class="control-label"></label>
                         <input asp-for="Password" class="pass" />
-                        <span asp-validation-for="Password" class="text-danger"></span>
+                        <span asp-validation-for="Password" class="error"></span>
                         </div>
 
                     <div class="min-cont">
                         <label asp-for="SelectedRole">Rol</label>
-                        <select asp-for="SelectedRole" asp-validation-for="SelectedRole" class="gen">
-                            <option>Seleccione un rol</option>
+                        <select name="SelectedRole" asp-for="SelectedRole" class="gen">
+                            <option value=''>Seleccione un rol</option>
                             @foreach (var roleItem in Model.Roles)
                             {
                                 <option value="@roleItem.Value">@roleItem.Text</option>
                             }
                         </select>
-                        <span asp-validation-for="SelectedRole" class="text-danger"></span>
+                        <span id="errorRole" asp-validation-for="SelectedRole" class="error" ></span>
                     </div>     
+
              </div>
 
                 <div class="sub-body-registro3">
                     <div class="min-cont">
                         <label>Departamento de Trabajo</label>
-                        <select class="Departament" id="departamentoPuesto" asp-for="SelectedDepartamento">
-                            <option>--Seleccione un Departamento</option>
+                        <select name="SelectedDepartamento" class="Departament" id="departamentoPuesto" asp-for="SelectedDepartamento">
+                            <option >--Seleccione un Departamento</option>
                         </select>
-                        <span asp-validation-for="SelectedDepartamento" class="text-danger"></span>
+                        <span id="errorDepartamento" asp-validation-for="SelectedDepartamento" class="error"></span>
                     </div>
                     <div class="min-cont">
                         <label asp-for="SelectedPuesto">Puesto</label>
-                        <select id="Puesto" asp-for="SelectedPuesto" class="address-municipality">
+                        <select name="SelectedPuesto" id="Puesto" asp-for="SelectedPuesto" class="address-municipality">
                             <option>--Seleccione un puesto--</option>
                         </select>
-                        <span asp-validation-for="SelectedPuesto" class="text-danger"></span>
+                        <span id="errorPuesto" asp-validation-for="SelectedPuesto" class="error"></span>
                     </div>
                 </div>
 
@@ -166,19 +168,19 @@
                 <div class="marital-information-body">
                     <div class="title">
                         <h2>Datos Familiares</h2>
-                    </div> 
+                    </div>
                     <div class="marital-information-sub-body">
                         <div class="min-cont">
                             <label>Nombres</label>
-                            <input type="number" class="Name-conjugal">
+                            <input type="text" class="Name-conjugal">
                         </div>
                         <div class="min-cont">
                             <label>Apellidos</label>
-                            <input type="number" class="last-name-conjugal">
+                            <input type="text" class="last-name-conjugal">
                         </div>
                         <div class="min-cont">
                             <label>Parentesco</label>
-                            <input type="number" class="relationship">
+                            <input type="text" class="relationship">
                         </div>
                         <div class="min-cont">
                             <label>Numero de DPI</label>
@@ -189,7 +191,7 @@
 
                 <div class="button-section">
                 <input type="submit" class="Rbutton" value="Sign up" />
-                    <input type="reset" class="vbutton" value="Vaciar formulario">
+                    <input type="reset" asp-controller="Account" asp-action="Register" class="vbutton" value="Vaciar Formulario"/>
                 </div>
             </form>
         </div>  

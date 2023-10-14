@@ -75,10 +75,10 @@ namespace ProyectoFinal.Controllers
         }
 
         [Authorize(Roles = "admin")]
-        public IActionResult Register()
+        public async Task<IActionResult> Register()
         {
-            var model = new RegisterViewModel();
-            var roles = _roleManager.Roles.ToList();
+            var model =  new RegisterViewModel();
+            var roles =  _roleManager.Roles.ToList();
 
             model.Roles = roles.Select(r => new SelectListItem
             {
@@ -123,6 +123,43 @@ namespace ProyectoFinal.Controllers
             }).ToList();
 
 
+            var selectedRole = registerViewModel.SelectedRole;
+            //var selectedGenero = registerViewModel.Genero;
+            //var dept = registerViewModel.SelectedDepartamento;
+            //var puesto = registerViewModel.SelectedPuesto;
+            //var selecteDept = registerViewModel.idDepartamento;
+            //var selectMunicipio = registerViewModel.idMunicipioSelected;
+            //if (selectedRole == null)
+            //{
+            //    ModelState.AddModelError("SelectedRole", "Por favor, seleccione una opcion válida.");
+            //    return View(registerViewModel);
+            //}
+            // if (selectedGenero == null)
+            //{
+            //    ModelState.AddModelError("Genero", "Por favor, seleccione una opcion válida.");
+            //    return View(registerViewModel);
+            //}
+            // if(dept==2001)
+            //{
+            //    ModelState.AddModelError("SelectedDepartamento", "Por favor, seleccione una opcion válida.");
+            //    return View(registerViewModel);
+            //}
+            // if (puesto == 2001)
+            //{
+            //    ModelState.AddModelError("SelectedPuesto", "Por favor, seleccione una opcion válida.");
+            //    return View(registerViewModel);
+            //}
+            // if (selecteDept == 2001)
+            //{
+            //    ModelState.AddModelError("idDepartamento", "Por favor, seleccione una opcion válida.");
+            //    return View(registerViewModel);
+            //}
+            // if (selectMunicipio==2001)
+            //{
+            //    ModelState.AddModelError("idMunicipioSelected", "Por favor, seleccione una opcion válida.");
+            //    return View(registerViewModel);
+            //}
+
 
             if (!ModelState.IsValid)
             {
@@ -147,12 +184,7 @@ namespace ProyectoFinal.Controllers
                 TempData["Error"] = "El correo ya se encuentra registrado";
                 return View(registerViewModel);
             }
-            var selectedRole = registerViewModel.SelectedRole;
-            if (selectedRole == "0")
-            {
-                TempData["Error"] = "Seleccione un rol valido";
-                return View(registerViewModel);
-            }
+
 
             var userByCUI =  _context.Users.FirstOrDefault(u => u.CUI == registerViewModel.CUI);
 

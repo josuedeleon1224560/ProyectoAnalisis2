@@ -38,11 +38,17 @@ namespace ProyectoFinal.Controllers
         {
             //Se buscan los usuarios del repositorio de la función obtener todos los usuarios para almacenarlos en una variable
             var users = await _userRepository.GetAllUsers();
+    
+
             //Se obtiene una lista del modelo vista del usuario para utilizarse y se guarda en un result
             List<UserViewModel> result = new List<UserViewModel>();
             //Se hace un foreach para recorrer todos los datos del usuario 
             foreach (var user in users)
             {
+                var puesto = _aplicationDbContext.Users
+.Include(u => u.IdPuesto) // Incluye el puesto del usuario
+.ThenInclude(p => p.Departamento) // Incluye el departamento del puesto
+.SingleOrDefault(u => u.Id == user.Id);
                 //Se crea la variable del modelo vista del Usuario haciendo una creación del objeto del Modelo Vista del usuario
                 var userViewModel = new UserViewModel()
                 {
@@ -56,7 +62,9 @@ namespace ProyectoFinal.Controllers
                     UrlAntePoli = user.AntecedentesPoliciacos,
                     UrlFotografia = user.Fotografia,
                     UrlDiplomas = user.Diplomas,                    
-                    Date = user.Date
+                    Date = user.Date,             
+                    NombrePuesto = puesto.IdPuesto.Nombre,
+                    NombreDepartamentoPuesto = puesto.IdPuesto.Departamento.Nombre
                     //IdDireccion = user.IdDireccion,
                 };
                 // Obtener los roles del usuario
