@@ -21,7 +21,16 @@ namespace ProyectoFinal.Controllers
 
         public IActionResult Index()
         {
-        return View(); 
+            if (User.IsInRole("admin"))
+            {
+                // Redirige a los administradores a una página específica
+                return RedirectToAction("Privacy", "Home");
+            }
+            else
+            {
+                // Redirige a otros usuarios a la página de inicio
+                return RedirectToAction("Index", "Usuario");
+            }
         }
 
         public IActionResult Privacy()

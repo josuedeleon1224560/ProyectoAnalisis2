@@ -23,7 +23,6 @@ body {
     height: 60px;
     top: 0;
     left: 0;
-    position: fixed;
 }
 
 .logo {
@@ -770,17 +769,21 @@ body {
     justify-content: center;
 }
 
-    .header-store button {
-        height: 45px;
-        width: 130px;
-        margin-top: 45px;
-        margin-left: 7rem;
-        background-color: #8B008B;
-        border: solid 2px white;
-        color: white;
-        font-size: 16px;
-        border-radius: 3px;
-    }
+.svg2 {
+    fill: black;
+}
+
+.header-store button {
+    height: 45px;
+    width: 130px;
+    margin-top: 45px;
+    margin-left: 7rem;
+    background-color: #8B008B;
+    border: solid 2px white;
+    color: white;
+    font-size: 16px;
+    border-radius: 3px;
+}
 
 .logo-header-store {
     display: flex;
@@ -827,10 +830,12 @@ body {
     overflow-y: auto;
     border-bottom: solid 1px rgb(189, 188, 188);
     margin-top: 2rem;
+    overflow-y: auto;
 }
 
 .table-products {
     margin-top: 1rem;
+    border-collapse: collapse;
 }
 
     .table-products caption {
@@ -842,6 +847,10 @@ body {
     .table-products th {
         font-size: 20px;
         font-family: Arial, Helvetica, sans-serif;
+        position: sticky;
+        top: 0;
+        background-color: white;
+        z-index: 2;
     }
 
     .table-products td {
@@ -905,7 +914,18 @@ body {
         color: white;
     }
 
+.credit-client {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    margin-top: 0.5rem;
+    margin-left: 4rem;
+}
 
+    .credit-client label {
+        font-size: 28px;
+        font-family: Arial, Helvetica, sans-serif;
+    }
 
 .actions {
     width: 65%;
@@ -938,7 +958,6 @@ body {
             color: white;
         }
 
-
     .actions label {
         font-size: 30px;
         line-height: 45px;
@@ -947,9 +966,67 @@ body {
     }
 /* FIN TIENDA */
 
+/* INVENTARIO */
+.inventory-container {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    background-color: #8B008B;
+}
+
+.inventory-sub-body {
+    background-color: white;
+    width: 100%;
+    height: 100%;
+    border-top-right-radius: 18px;
+    border-top-left-radius: 18px;
+}
+
+.products-container {
+    width: 1200px;
+    height: 500px;
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-bottom: solid 1px rgb(168, 166, 166);
+    overflow-y: auto;
+}
+
+.inventory-table {
+    border-collapse: collapse;
+}
+
+.inventory-body {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.inventory-table th {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 24px;
+    color: gray;
+    position: sticky;
+    background-color: white;
+    top: 0;
+}
+
+.inventory-table td {
+    width: 250px;
+    height: 25px;
+    text-align: center;
+    font-size: 18px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    border: none;
+    color: gray;
+}
+/* FIN INVENTARIO */
+
 
 /* PERFIL  */
-
 .profile-container {
     width: 100vW;
     height: 100vh;
@@ -1145,14 +1222,12 @@ body {
     border: solid 1px gray;
     display: flex;
     flex-direction: column;
-    overflow-y: auto;
 }
 
 .consult-tittle {
-    width: 75%;
+    width: 100%;
     height: 50px;
     background-color: #0375B4;
-    position: fixed;
 }
 
     .consult-tittle h2 {
@@ -1167,17 +1242,20 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 5rem;
+    margin-top: 1rem;
+    overflow-y: auto;
 }
 
 .user-table {
     border: none;
+    border-collapse: collapse;
 }
 
 .user-table-body td {
     border: none;
     text-align: center;
     font-size: 16px;
+    height: 25px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
@@ -1185,9 +1263,12 @@ body {
     width: 200px;
     font-size: 16px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    top: 0;
+    position: sticky;
+    background-color: white;
 }
 
-.user-table-body td > a {
+.user-table-body td > input {
     width: 100px;
     height: 30px;
     background-color: #0375B4;
@@ -1198,12 +1279,12 @@ body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-    .user-table-body td > a:hover {
+    .user-table-body td > input:hover {
         background-color: black;
         color: white;
     }
 
-    .user-table-body td > a:active {
+    .user-table-body td > input:active {
         background-color: #0375B4;
         color: black;
     }
@@ -1212,253 +1293,341 @@ body {
 
 
 /* NOMINA */
-
-.generate-payroll {
-    display: flex;
-    flex-direction: column;
-    margin-top: 5rem;
-}
-
-.payroll-data {
-    border: solid 1px black;
-    margin: 1rem 2rem 0 2rem;
-    background-color: white;
-}
-
-    .payroll-data thead {
-        background-color: white;
-    }
-
-    .payroll-data th {
-        border: solid 1px black;
-        padding: 0.5rem 2rem;
-        font-size: 16px;
-        font-family: Verdana, Geneva, Tahoma, sans-serif;
-        color: black;
-    }
-
-#payroll-dates {
-    background-color: white;
-    text-align: center;
-    font-size: 16px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-
-.payroll-title {
-    background-color: rgb(22, 148, 148);
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    font-size: 20px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    border: solid 1px black;
-    color: black;
-}
-
-
-.payroll-table-calculation {
-    margin-left: 2rem;
-    border: solid 1px black;
-    background-color: white;
-}
-
-    .payroll-table-calculation th {
-        border: solid 1px black;
-        font-size: 15px;
-        height: 35px;
-        font-family: Verdana, Geneva, Tahoma, sans-serif;
-        color: black;
-        background-color: white;
-    }
-
-.TCth1 {
-    width: 90px;
-}
-
-.TCth2 {
-    width: 160px;
-}
-
-.TCth3 {
-    width: 110px;
-}
-
-.TCth4 {
-    width: 210px;
-}
-
-.TCth5 {
-    width: 125px;
-}
-
-.TCth6 {
-    width: 220px;
-}
-
-#payroll-calculation {
-    background-color: white;
-    text-align: center;
-}
-
-    #payroll-calculation td {
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
-        height: 35px;
-    }
-
-        #payroll-calculation td > input {
-            width: 100%;
-            height: 100%;
-            border: none;
-            text-align: center;
-            font-size: 18px;
-            font-family: Verdana, Geneva, Tahoma, sans-serif;
-        }
-
-    #payroll-calculation select {
-        width: 100%;
-        height: 100%;
-    }
-
-
-.payroll-section-2 {
-    display: flex;
-    flex-direction: row;
-}
-
-.payroll-table-bonus {
-    border: solid 1px black;
-    background-color: white;
-}
-
-    .payroll-table-bonus th {
-        border: solid 1px black;
-        font-size: 15px;
-        height: 35px;
-        font-family: Verdana, Geneva, Tahoma, sans-serif;
-        background-color: white;
-        color: black;
-    }
-
-.TBth1 {
-    width: 120px;
-}
-
-.TBth2 {
-    width: 130px;
-}
-
-.TBth3 {
-    width: 120px;
-}
-
-.TBth4 {
-    width: 250px;
-}
-
-#payroll-bonus {
-    background-color: white;
-    text-align: center;
-}
-
-    #payroll-bonus td {
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
-        height: 35px;
-    }
-
-        #payroll-bonus td > input {
-            width: 100%;
-            height: 100%;
-            border: none;
-            text-align: center;
-            font-size: 18px;
-            font-family: Verdana, Geneva, Tahoma, sans-serif;
-        }
-
-
-.legal-benefits {
-    display: flex;
-    flex-direction: row;
-}
-
-.payroll-legal-benefits {
-    margin: 0 2rem 0 2rem;
-    border: solid 1px black;
-    border-right: solid 4px black;
-    background-color: antiquewhite;
-}
-
-    .payroll-legal-benefits th {
-        border: solid 1px black;
-        font-size: 16px;
-        padding: 0.5rem 1.13rem;
-        font-family: Verdana, Geneva, Tahoma, sans-serif;
-        background-color: antiquewhite;
-        color: black;
-    }
-
-#benefits-data {
-    background-color: white;
-    text-align: center;
-    font-size: 16px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-
-
-
-
 .nomina-container {
     display: flex;
     flex-direction: column;
     width: 100%;
     height: 100vh;
-    width: 100%;
-    height: 100vh;
-    background-color: aliceblue;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    overflow-y: hidden;
 }
 
-.table-nomina th,
-td {
-    border: solid 1px black;
-    padding: 8px 15px;
-}
-
-.table-nomina td {
-    font-size: 18px;
-}
-
-.table-nomina thead {
-    background-color: rgb(22, 148, 148);
-    border-bottom: solid 2px black;
-    font-size: 22px;
-    font-family: Arial, Helvetica, sans-serif;
-    color: white;
-}
-
-.table-nomina {
-    border-collapse: collapse;
-    background-color: white;
-}
 
 .nomina-sub-body {
     display: flex;
     flex-direction: column;
     width: 100%;
     height: 100vh;
-}
-
-.nomina-contenido {
-    display: flex;
     align-items: center;
-    margin: auto;
 }
 
+.payroll-user-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 4rem;
+    align-items: start;
+}
+
+.payroll-content-section-1 {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.user-data-payroll-table {
+    margin-left: 3rem;
+    border-spacing: 0;
+}
+
+    .user-data-payroll-table th {
+        width: 200px;
+        height: 42px;
+        background-color: #0375B4;
+        color: white;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 18px;
+        border: solid 1px black;
+    }
+
+    .user-data-payroll-table td {
+        border: solid 1px black;
+        height: 40px;
+        text-align: center;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 18px;
+    }
+
+.select-employee {
+    margin-left: 2rem;
+}
+
+    .select-employee select {
+        width: 300px;
+        height: 45px;
+        border-radius: 8px;
+        margin-left: 2rem;
+        margin-top: 1.5rem;
+    }
+
+.payroll-benefits {
+    margin-left: 1rem;
+    margin-top: 0.5rem;
+    border-spacing: 0;
+}
+
+    .payroll-benefits th {
+        width: 130px;
+        height: 35px;
+        background-color: #B8860B;
+        color: white;
+        font-size: 18px;
+        font-family: Arial, Helvetica, sans-serif;
+        border: solid 1px black;
+    }
+
+    .payroll-benefits td {
+        height: 40px;
+        border: solid 1px black;
+        text-align: center;
+        font-size: 18px;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+.payroll-benefits-content {
+    margin-left: 2rem;
+    display: flex;
+    flex-direction: row;
+}
+
+.discounts-table {
+    margin-left: 0.5rem;
+    margin-top: 0.5rem;
+    border-spacing: 0;
+}
+
+    .discounts-table caption {
+        height: 37px;
+        background-color: #DC143C;
+        line-height: 37px;
+        color: white;
+        font-size: 18px;
+        font-family: Arial, Helvetica, sans-serif;
+        border: solid 1px black;
+    }
+
+.discounts-content th {
+    width: 110px;
+    border: solid 1px black;
+    background-color: #DC143C;
+    height: 42px;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.discounts-content td {
+    border: solid 1px black;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    height: 40px;
+    text-align: center;
+}
+
+.employer-fee-content {
+    margin-left: 2rem;
+    margin-top: 0.5rem;
+    display: flex;
+    flex-direction: row;
+}
+
+.employer-fee-table {
+    margin-left: 1rem;
+    border-spacing: 0;
+}
+
+    .employer-fee-table caption {
+        height: 40px;
+        line-height: 40px;
+        background-color: #D2691E;
+        border: solid 1px black;
+        color: white;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 18px;
+    }
+
+    .employer-fee-table th {
+        width: 110px;
+        height: 40px;
+        border: solid 1px black;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 18px;
+        color: white;
+        background-color: #D2691E;
+    }
+
+    .employer-fee-table td {
+        border: solid 1px black;
+        height: 40px;
+        text-align: center;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 18px;
+    }
+
+
+.bono-14-table {
+    border-spacing: 0;
+    margin-left: 0.5rem;
+}
+
+    .bono-14-table caption {
+        height: 41px;
+        background-color: #2F4F4F;
+        color: white;
+        font-size: 18px;
+        font-family: Arial, Helvetica, sans-serif;
+        line-height: 41px;
+    }
+
+    .bono-14-table th {
+        border: solid 1px black;
+        width: 120px;
+        height: 41px;
+        background-color: #2F4F4F;
+        color: white;
+        font-size: 18px;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .bono-14-table td {
+        border: solid 1px black;
+        height: 40px;
+        text-align: center;
+        font-size: 18px;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+.commissions-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.commissions-table {
+    margin-top: 0.5rem;
+    border-spacing: 0;
+}
+
+    .commissions-table caption {
+        height: 40px;
+        line-height: 40px;
+        background-color: #008080;
+        border: solid 1px black;
+        font-size: 22px;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .commissions-table th {
+        width: 144px;
+        height: 40px;
+        border: solid 1px black;
+        font-size: 18px;
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: #008080;
+    }
+
+    .commissions-table td {
+        text-align: center;
+        border: solid 1px black;
+        height: 40px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 18px;
+    }
+
+.pays-data {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+}
+
+.tabla-sueldos {
+    margin-top: 0.5rem;
+    border-spacing: 0;
+}
+
+    .tabla-sueldos caption {
+        height: 40px;
+        line-height: 40px;
+        background-color: #9ACD32;
+        border: solid 1px black;
+        font-size: 22px;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .tabla-sueldos th {
+        width: 144px;
+        height: 40px;
+        border: solid 1px black;
+        font-size: 18px;
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: #9ACD32;
+    }
+
+    .tabla-sueldos td {
+        text-align: center;
+        border: solid 1px black;
+        height: 40px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 18px;
+    }
+
+.payroll-options {
+    display: flex;
+    flex-direction: row;
+    margin-top: 2rem;
+    gap: 2rem;
+}
+
+    .payroll-options button {
+        width: 190px;
+        height: 60px;
+        background-color: #696969;
+        border: solid 3px black;
+        border-radius: 15px;
+        color: white;
+        font-size: 18px;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+        .payroll-options button:hover {
+            background-color: #778899;
+        }
+
+        .payroll-options button:active {
+            background-color: #696969;
+        }
+
+.vacations-table {
+    margin-left: 0.5rem;
+    border-spacing: 0;
+}
+
+    .vacations-table caption {
+        height: 40px;
+        line-height: 40px;
+        border: solid 1px black;
+        font-size: 18px;
+        color: white;
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: #B22222;
+    }
+
+    .vacations-table th {
+        width: 138px;
+        height: 41px;
+        border: solid 1px black;
+        color: white;
+        background-color: #B22222;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 18px;
+    }
+
+    .vacations-table td {
+        height: 40px;
+        border: solid 1px black;
+        font-size: 18px;
+        font-family: Arial, Helvetica, sans-serif;
+        text-align: center;
+    }
 /*FIN NOMINA */
 
 

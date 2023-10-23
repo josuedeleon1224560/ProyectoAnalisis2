@@ -2,19 +2,135 @@
 @model UserDetailViewModel
 
         <!--end of container-->
-    <section >
+  @*               <div class="info-personal-view-sub-body">
+             <div class="personal-data-view">
+        @if (!string.IsNullOrEmpty(Model.Fotografia))
+        {
+            <img src="@Model.Fotografia" alt="Fotografía" />
+        }
+        else
+        {
+            <p>Sin Fotografía</p>
+        }
+
+        <h1>@Model.Nombres, @Model.Apellidos</h1>
+        <label asp-for="CUI"> </label>
+        <p> @Model.CUI</p>
+        <label asp-for="Telefono">@Model.Telefono</label>
+        <label asp-for="Date">@Model.Date </label>
+        <label asp-for="Id">@Model.Id</label>
+        <hr />
+        <label asp-for="DireccionId">@Model.DireccionId, @Model.DireccionUsuario</label>
+        <hr>
+        <label asp-for="MunicipioId">@Model.MunicipioId , @Model.MunicipioUsuario</label>
+        <hr>
+        <hr />
+        <label asp-for="DepartamentoId">@Model.DepartamentoId , @Model.DepartamentoUsuario</label>
+        <hr> *@
+
+@section Header
+    {
+    <div class="container">
+        <header class="header">
+            <nav class="nav-bar">
+                <a class="logo" href="#">CONSULTING S.A</a>
+                <button class="nav-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
+                        <!--! Font Awesome Free 6.4.2 by fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                        <style>
+                            svg {
+                                fill: #ffffff
+                            }</style>
+                        <path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z" />
+                    </svg>
+                </button>
+                <ul class="nav-menu">
+                    <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Home" asp-action="Privacy">Privacy</a></li>
+                    <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="User" asp-action="Index">Usuarios</a></li>
+                    <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Role" asp-action="ListRoles">Roles</a></li>
+                    <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Account" asp-action="Register">Registrar Usuarios</a></li>
+                    <li class="nav-item"> <a asp-area="" class="nav-link" asp-controller="Account" asp-action="Logout">Cerrar Sesion</a> </li>
+                </ul>
+            </nav>
+        </header>
+    }
+
+    <div class="container">
+        <div class="sub-body">
+@*         
+<div class="info-personal-view-sub-body">
+    <div class="personal-data-view">
+        @if (!string.IsNullOrEmpty(Model.Fotografia))
+        {
+            <img src="@Model.Fotografia" alt="Fotografía" />
+        }
+        else
+        {
+            <p>Sin Fotografía</p>
+        }
+
+                <div class="personal-data-info-view">
+                    <div class="names-space">
+                        <label asp-for="Nombres">@Model.Nombres</label>
+                        <label asp-for="Apellidos">@Model.Apellidos</label>
+                    </div>
+                    <div class="all-data-container">
+                        <div class="contact-data-section-1">
+                            <div class="contact-data">
+                                <label >Numero Telefonico:</label>
+                                <label asp-for="Telefono">@Model.Telefono</label>
+                            </div>
+                            <div class="contact-data">
+                                <label >Direccion:</label>
+                                <label asp-for="DireccionId">@Model.DireccionUsuario</label>
+                            </div>
+                            <div class="rol-data">
+                                <label >DPI</label>
+                                <label asp-for="CUI">@Model.CUI</label>
+                            </div>
+                        </div>
+                        <div class="contact-data-section-2">
+                            <div class="contact-data-2">
+                                <label >Puesto:</label>
+                                <label >@Model.Puesto</label>
+                            </div>
+                            <div class="contact-data-2">
+                                <label >Departamento:</label>
+                                <label >@Model.DepartamentoPuesto</label>
+                            </div>
+                            <div class="rol-data">
+                                <label >ROL</label>
+                                <label >
+                            <ul>
+                                @foreach (var role in Model.Roles)
+                                {
+                                    <li>@role</li>
+                                }
+                            </ul>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                   
+                   
+                </div>
+             </div>
+        </div> *@
+
+
+     <section >
         <div >
             <div >
                 <div>
                     <div>
-                        @* <img alt="Image" src="@Model.ProfileImageUrl" class="mr-md-5 avatar avatar-xlg"> *@
+
                         <div >
-                            <div">
+                            <div>
                                 <h1>@Model.Nombres, @Model.Apellidos</h1>     
                                 <label asp-for="CUI"> </label> 
                                 <p> @Model.CUI</p>
-                                <label asp-for="Numero">@Model.Telefono</label>
-                                <label asp-for="Fecha de Nacimiento">@Model.Date </label>
+                                <label asp-for="Telefono">@Model.Telefono</label>
+                                <label asp-for="Date">@Model.Date </label>
                                 <label asp-for="Id">@Model.Id</label>
                                 <hr/>
                             <label asp-for="DireccionId">@Model.DireccionId, @Model.DireccionUsuario</label>
@@ -72,29 +188,6 @@
                                     <li>@role</li>
                         }
                             </ul>
-
-                       @*  @if (Model.DireccionId != null)
-                        {
-                                <h2>Dirección</h2>
-                                <ul>
-                                    <li><strong>Nombre de la Dirección:</strong> @Model.Direccion_Name</li>
-                                    <li><strong>Nombre de la Dirección:</strong> @Model.Municipio_Name</li>
-                                    <li><strong>Nombre de la Dirección:</strong> @Model.Departamento_Name</li>
-
-                            </ul>
-                        }
-                        else
-                        {
-                                <h2>Dirección</h2>
-                                <p>Sin Direccion</p>
-                        } *@
-
-
-
-
-
-
-
                             </div>
                             </div>
                         </div>
@@ -103,5 +196,7 @@
                 <!--end of col-->
             <!--end of row-->
         </section>
+        
     <!--end of section-->
-   
+    </div>
+   </div>

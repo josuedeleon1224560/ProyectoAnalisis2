@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;      
@@ -64,7 +66,8 @@ namespace ProyectoFinal.Controllers
                     var result = await _signInManager.PasswordSignInAsync(user, loginViewModel.Password, false, false);
                     if(result.Succeeded)
                     {
-                        return RedirectToAction("Index", "Home");
+                            return RedirectToAction("Index", "Home");                        
+                        //return RedirectToAction("Index", "Home");
                     }
                 }
                 TempData["Error"] = "Credenciales incorrectas. Por favor intente denuevo.";
@@ -77,8 +80,16 @@ namespace ProyectoFinal.Controllers
         [Authorize(Roles = "admin")]
         public async Task<IActionResult> Register()
         {
-            var model =  new RegisterViewModel();
-            var roles =  _roleManager.Roles.ToList();
+            var model = new RegisterViewModel();
+            var roles = _roleManager.Roles.ToList();
+            model.GeneroList = Enum.GetValues(typeof(Sexo))
+                .Cast<Sexo>()
+                .Select(s => new SelectListItem
+                {
+                    Text = s.ToString(),
+                    Value = s.ToString()
+                }).ToList();
+
 
             model.Roles = roles.Select(r => new SelectListItem
             {
@@ -121,6 +132,14 @@ namespace ProyectoFinal.Controllers
                 Text = r.Name,
                 Value = r.Name
             }).ToList();
+
+            registerViewModel.GeneroList = Enum.GetValues(typeof(Sexo))
+    .Cast<Sexo>()
+    .Select(s => new SelectListItem
+    {
+        Text = s.ToString(),
+        Value = s.ToString()
+    }).ToList();
 
 
             var selectedRole = registerViewModel.SelectedRole;
@@ -214,7 +233,7 @@ namespace ProyectoFinal.Controllers
                 Date = registerViewModel.Date,  
                 Direcciones = direccionNueva,
                 IdPuesto = _context.Puesto.FirstOrDefault(p=>p.Id == registerViewModel.SelectedPuesto)
-                };
+            };
 
 
             
@@ -268,7 +287,17 @@ namespace ProyectoFinal.Controllers
         [HttpGet]
         public async Task<IActionResult> Logout()
         {
-            await _signInManager.SignOutAsync();            
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+
+            // Cerrar la sesión del usuario
+            await _signInManager.SignOutAsync();
+
+            // Configurar las cabeceras HTTP para evitar el almacenamiento en caché
+            Response.Headers["Cache-Control"] = "no-cache, no-store";
+            Response.Headers["Pragma"] = "no-cache";
+            Response.Headers["Expires"] = "0";
+
+            // Redirigir al usuario a la página de inicio o a cualquier otra página deseada
             return RedirectToAction("Login", "Account");
         }
 

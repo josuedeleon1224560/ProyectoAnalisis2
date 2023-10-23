@@ -67,6 +67,7 @@ namespace ProyectoFinal.ViewModels
 
         [Required(ErrorMessage = "Seleccione un Genero Valido")]
         public string Genero { get; set; }
+        public List<SelectListItem>? GeneroList { get; set; }
 
         [Required(ErrorMessage = "Escriba una direccion")]
         public string NombreDireccion { get; set; }

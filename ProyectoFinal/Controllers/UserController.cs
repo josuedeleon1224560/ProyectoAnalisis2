@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ProyectoFinal.Data;
 using ProyectoFinal.Interfaces;
@@ -20,10 +21,13 @@ namespace ProyectoFinal.Controllers
         private readonly DireccionRepository _direccionRepository;
         private readonly iPhotoService _photoService;
         private readonly AplicationDbContext _aplicationDbContext;
+        private readonly DireccionRepository _direccionRepository1;
+        private readonly PuestoRepository _puestoRepository;
 
         public UserController(IUserRepository userRepository, RoleManager<IdentityRole> roleManager, UserManager<AppUser> userManager,
             iPhotoService photoService, DireccionRepository direccionRepository,
-            AplicationDbContext aplicationDbContext)
+            AplicationDbContext aplicationDbContext, DireccionRepository direccionRepository1,
+            PuestoRepository puestoRepository)
         {
             _userRepository = userRepository;
             _roleManager = roleManager;
@@ -31,6 +35,8 @@ namespace ProyectoFinal.Controllers
             _direccionRepository = direccionRepository;
             _photoService = photoService;
             _aplicationDbContext = aplicationDbContext;
+            _direccionRepository1 = direccionRepository1;
+            _puestoRepository = puestoRepository;
         }
         //Controlador encargado de ejecutar el Index desde un HttpGet para mostrar el resultado con la búsqueda de Users
         [HttpGet("Users")]
@@ -38,17 +44,17 @@ namespace ProyectoFinal.Controllers
         {
             //Se buscan los usuarios del repositorio de la función obtener todos los usuarios para almacenarlos en una variable
             var users = await _userRepository.GetAllUsers();
-    
+
 
             //Se obtiene una lista del modelo vista del usuario para utilizarse y se guarda en un result
             List<UserViewModel> result = new List<UserViewModel>();
             //Se hace un foreach para recorrer todos los datos del usuario 
             foreach (var user in users)
-            {
+            {                
                 var puesto = _aplicationDbContext.Users
-.Include(u => u.IdPuesto) // Incluye el puesto del usuario
-.ThenInclude(p => p.Departamento) // Incluye el departamento del puesto
-.SingleOrDefault(u => u.Id == user.Id);
+    .Include(u => u.IdPuesto) // Incluye el puesto del usuario
+    .ThenInclude(p => p.Departamento) // Incluye el departamento del puesto
+    .SingleOrDefault(u => u.Id == user.Id);
                 //Se crea la variable del modelo vista del Usuario haciendo una creación del objeto del Modelo Vista del usuario
                 var userViewModel = new UserViewModel()
                 {
@@ -90,6 +96,11 @@ namespace ProyectoFinal.Controllers
     .ThenInclude(m => m.DepartamentoGt) // Incluye los departamentos
     .SingleOrDefault(u => u.Id == id);
 
+            var puesto = _aplicationDbContext.Users
+                .Include(u => u.IdPuesto)
+                .ThenInclude(d => d.Departamento)
+                .SingleOrDefault(i => i.Id == id);
+
             int idMunicipio = (int)direccion.Direcciones.MunicipioGt.Id;
             int departamento = (int)direccion.Direcciones.MunicipioGt.DepartamentoGt.Id;
             //Si se produce un error en buscar el id del usuario, en terminos de que no exista como tal, lo devuelve a la vista de todos los usuarios.
@@ -120,7 +131,10 @@ namespace ProyectoFinal.Controllers
                     DepartamentoId = departamento,
                     DireccionUsuario = direccion.Direcciones.Name,
                     MunicipioUsuario = direccion.Direcciones.MunicipioGt.Nombre,
-                    DepartamentoUsuario = direccion.Direcciones.MunicipioGt.DepartamentoGt.Nombre
+                    DepartamentoUsuario = direccion.Direcciones.MunicipioGt.DepartamentoGt.Nombre,                    
+                    Puesto = puesto.IdPuesto.Nombre,
+                    IdDepartamentoPuesto = puesto.IdPuesto.Departamento.Id,
+                    DepartamentoPuesto = puesto.IdPuesto.Departamento.Nombre,
                     //DireccionUsuario = direccion.Name,
                     //MunicipioUsuario = municipio.Name,                
                     //DireccionId = user.IdDireccion,
@@ -135,6 +149,28 @@ namespace ProyectoFinal.Controllers
             return View(userDetailViewModel);
         }
         //Se hace una accion de forma GET por defecto y se crea una función de manera que necesita el parámetro del id del usuario para editar ese perfil exactamente.
+
+        public JsonResult Departamento()
+        {
+            return new JsonResult(_direccionRepository.GetAllDepartamento());
+        }
+        public JsonResult DepartamentoTrabajo()
+        {
+            return new JsonResult(_puestoRepository.GetDepartamentos());
+        }
+        public JsonResult Puesto(int id)
+        {
+            return new JsonResult(_puestoRepository.GetAllPuestos(id));
+        }
+        public JsonResult Municipio(int id)
+        {
+            return new JsonResult(_direccionRepository.GetAllMunicipio(id));
+        }
+        public JsonResult Direccion(int id)
+        {
+            return new JsonResult(_direccionRepository.GetAllDirecciones(id));
+        }
+
         public async Task<IActionResult> Edit(string id)
         {
             //Se realiza una creación de una variable de usuario asincronica del repositorio del usuario que hace un llamado al id especifico del id de un usuario seleccionado
@@ -144,7 +180,23 @@ namespace ProyectoFinal.Controllers
             {
                 return View("Error");
             }
+            var direccion = _aplicationDbContext.Users
+.Include(u => u.Direcciones) // Incluye las direcciones
+.ThenInclude(d => d.MunicipioGt) // Incluye los municipios
+.ThenInclude(m => m.DepartamentoGt) // Incluye los departamentos
+.SingleOrDefault(u => u.Id == id);
 
+
+
+            var puesto = _aplicationDbContext.Users
+                .Include(u => u.IdPuesto)
+                .ThenInclude(d => d.Departamento)
+                .SingleOrDefault(i => i.Id == id);
+
+            int idMunicipio = (int)direccion.Direcciones.MunicipioGt.Id;
+            int departamento = (int)direccion.Direcciones.MunicipioGt.DepartamentoGt.Id;
+
+            var roles = await _userManager.GetRolesAsync(user);
             ////var direccion = await _direccionRepository.GetDireccionById(user.IdDireccion);
             ////var municipio = await _direccionRepository.GetMunicipioById(direccion.IdMunicipio);
             ////var departamento = await _direccionRepository.GetDepartamentoById(municipio.DepartamentoId);
@@ -155,12 +207,25 @@ namespace ProyectoFinal.Controllers
                 Nombres = user.Nombres,
                 Apellidos = user.Apellidos,
                 Telefono = user.Telefono,
-                Date = user.Date,    
+                Date = user.Date,
+                Email = user.Email,
+                UserName = user.Email,
                 UrlAntecedentesPoliciacos = user.AntecedentesPoliciacos,
                 UrlAntecedentesPenales = user.AntecedentesPenales,
                 UrlDiplomas = user.Diplomas,
                 UrlFotografia = user.Fotografia,
                 UrlTitulos = user.Titulos,
+                DireccionName = direccion.Direcciones.Name,
+                Municipio = direccion.Direcciones.MunicipioGt.Nombre,
+                Departamento = direccion.Direcciones.MunicipioGt.DepartamentoGt.Nombre,
+                IdMunicipio = idMunicipio,
+                IdDepartamento = departamento,
+                Puesto = puesto.IdPuesto.Nombre,
+                IdDepartamentoPuesto = puesto.IdPuesto.Departamento.Id,
+                DepartamentoPuesto = puesto.IdPuesto.Departamento.Nombre,
+                IdPuesto = puesto.IdPuesto.Id,
+                RolesList = roles.ToList(),
+                DepartamentoItems = _direccionRepository1.GetAllDepartamentoEditar()
                 //DireccionName = direccion?.Name,
                 //Municipio = municipio?.Nombre,
                 //IdMunicipio = user.Direcciones.IdMunicipio,
@@ -231,12 +296,34 @@ namespace ProyectoFinal.Controllers
                 ////var municipio = await _direccionRepository.GetMunicipioById(direccion.IdMunicipio);
                 ////var departamento = await _direccionRepository.GetDepartamentoById(municipio.DepartamentoId);
 
+                    var direccion = _aplicationDbContext.Users
+                    .Include(u => u.Direcciones) // Incluye las direcciones
+                    .ThenInclude(d => d.MunicipioGt) // Incluye los municipios
+                    .ThenInclude(m => m.DepartamentoGt) // Incluye los departamentos
+                    .SingleOrDefault(u => u.Id == id);
+
+                var puesto = _aplicationDbContext.Users
+    .Include(u => u.IdPuesto)
+    .ThenInclude(d => d.Departamento)
+    .SingleOrDefault(i => i.Id == id);
+
+
                 //Se asignan los nuevos valores al usuario seleccionado.
                 user.Nombres = userEditViewModel.Nombres;
                 user.Apellidos = userEditViewModel.Apellidos;
                 user.CUI = userEditViewModel.CUI;
                 user.Telefono = userEditViewModel.Telefono;
                 user.Date = (DateTime)userEditViewModel.Date;
+                user.Email = userEditViewModel.Email;
+                user.Direcciones.MunicipioGt.DepartamentoGt = _aplicationDbContext.Tabla_Departamentos.FirstOrDefault(m => m.Id == userEditViewModel.IdDepartamento);
+                user.Direcciones.MunicipioGt = _aplicationDbContext.Tabla_Municipios.FirstOrDefault(m=>m.Id == userEditViewModel.IdMunicipio);
+                user.IdPuesto = _aplicationDbContext.Puesto.FirstOrDefault(m => m.Id == userEditViewModel.IdPuesto);
+                user.IdPuesto.Departamento = _aplicationDbContext.Departamento.FirstOrDefault(m => m.Id == userEditViewModel.IdDepartamentoPuesto);
+                _aplicationDbContext.SaveChanges();
+
+
+
+
                 ////user.Direcciones.Name = userEditViewModel.DireccionName;
                 ////user.Direcciones.IdMunicipio = userEditViewModel.IdMunicipio;
                 ////user.Direcciones.MunicipioGt.DepartamentoId = userEditViewModel.IdDepartamento;

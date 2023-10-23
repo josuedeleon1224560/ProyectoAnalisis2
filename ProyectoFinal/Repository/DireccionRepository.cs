@@ -17,6 +17,13 @@ namespace ProyectoFinal.Repository
         {
             return  _context.Tabla_Departamentos.ToList();
         }
+
+
+        public List<DepartamentoGt> GetAllDepartamentoEditar()
+        {
+            return _context.Tabla_Departamentos.ToList();
+        }
+
         public IEnumerable<MunicipioGt> GetAllMunicipio(int id)
         {
             return _context.Tabla_Municipios.Where(e => e.DepartamentoGt.Id == id).ToList();

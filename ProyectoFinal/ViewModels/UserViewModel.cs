@@ -21,8 +21,10 @@ namespace ProyectoFinal.ViewModels
 
         public string RoleName { get; set;}
         public List<string> Roles { get; set; }
-        public string NombreDepartamentoPuesto { get; set; }
-        public string NombrePuesto { get; set; }
+        public int idDepartamentoPuesto { get; set; }
+        public int idPuesto { get; set; }
+        public string? NombreDepartamentoPuesto { get; set; }
+        public string? NombrePuesto { get; set; }
 
 
     }

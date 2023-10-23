@@ -1,8 +1,26 @@
-﻿@model ProyectoFinal.ViewModels.SeleccionarUsuarioViewModel
+﻿@using Microsoft.AspNetCore.Identity;
+@model ProyectoFinal.ViewModels.SeleccionarUsuarioViewModel
+@inject UserManager<AppUser> UserManager
 
 @{
-    ViewData["Title"] = "Seleccionar Usuario";
+    var userName = User.Identity.Name;
+    var userId = "";
+    var userCUI = "";
+    if (!string.IsNullOrEmpty(userName))
+    {
+        var user = await UserManager.FindByNameAsync(userName);
+        if (user != null)
+        {
+            userId = user.Id;
+            userCUI = user.CUI;
+        }
+    }
+
 }
+
+@* @{
+    ViewData["Title"] = "Seleccionar Usuario";
+} *@
 <div class="container">
     <div class="sub-body">
 <h2>Seleccionar Usuario</h2>

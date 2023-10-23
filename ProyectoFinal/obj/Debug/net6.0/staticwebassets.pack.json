@@ -65,6 +65,10 @@
       "PackagePath": "staticwebassets\\js\\CascadaDepartamentos.js"
     },
     {
+      "Id": "E:\\ProyectoNET\\ProyectoFinal\\ProyectoFinal\\wwwroot\\js\\CascadeDepartamentoEditar.js",
+      "PackagePath": "staticwebassets\\js\\CascadeDepartamentoEditar.js"
+    },
+    {
       "Id": "E:\\ProyectoNET\\ProyectoFinal\\ProyectoFinal\\wwwroot\\js\\Puesto.js",
       "PackagePath": "staticwebassets\\js\\Puesto.js"
     },

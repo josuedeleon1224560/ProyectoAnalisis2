@@ -10,6 +10,8 @@ namespace ProyectoFinal.ViewModels
         public string Nombres { get; set; }
         public string Apellidos { get; set; }
         public int? Telefono { get; set; }
+        public string? Email { get; set; }
+        public string? UserName { get; set; }
         public DateTime? Date { get; set; }
         public IFormFile? AntecedentesPenales { get; set; }
         public string? UrlAntecedentesPenales { get; set; }
@@ -29,6 +31,16 @@ namespace ProyectoFinal.ViewModels
         public int IdDepartamento { get; set; }
         //public List<SelectListItem>? Departamentos { get; set; }
         public string? Departamento { get; set; }
+        public string? SelectedRole { get; set; }
+        public List<SelectListItem>? Roles { get; set; }
+        public List<string>? RolesList { get; set; }
+        public Direcciones? Direcciones { get; set; }
+        public int IdPuesto { get; set; }
+        public string? Puesto { get; set; }
+        public int IdDepartamentoPuesto { get; set; }
+        public string? DepartamentoPuesto { get; set; }
+        public List<DepartamentoGt>? DepartamentoItems { get; set; }
+
 
     }
 }

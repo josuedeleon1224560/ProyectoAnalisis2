@@ -5,7 +5,6 @@ using ProyectoFinal.Data;
 using ProyectoFinal.Interfaces;
 using ProyectoFinal.Models;
 using ProyectoFinal.Repository;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using ProyectoFinal.helpers;
 using ProyectoFinal.Services;
 
@@ -47,6 +46,8 @@ builder.Services.AddIdentity<AppUser,IdentityRole>()
     .AddRoles<IdentityRole>();
 builder.Services.AddMemoryCache();
 builder.Services.AddSession();
+builder.Services.AddHttpContextAccessor();
+
 builder.Services.AddAuthentication(CookieAuthenticationDefaults
     .AuthenticationScheme)
     .AddCookie(options =>
@@ -70,7 +71,7 @@ if (!app.Environment.IsDevelopment())
     app.UseExceptionHandler("/Home/Error");
 }
 app.UseStaticFiles();
-
+app.UseSession();
 app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();

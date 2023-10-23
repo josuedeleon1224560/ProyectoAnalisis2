@@ -26,7 +26,9 @@
     <title>@ViewData["Title"] - ProyectoFinal</title>
 </head>
 <body>
-        <header class="header">
+
+      @RenderSection("Header", required:false) 
+@*       <header class="header">
             <nav class="nav-bar">
                 <a class="logo" href="#">CONSULTING S.A</a>
                 <button class="nav-toggle">
@@ -56,8 +58,10 @@
                         if (!string.IsNullOrEmpty(userId))
                         {
                         <ul class="nav-menu">
-                                <li class="nav-item"> <a asp-area="" class="nav-link" asp-controller="User" asp-action="Detail" asp-route-id="@userId">Detalle</a> </li>
-                            <li class="nav-item"> <a asp-area="" class="nav-link" asp-controller="User" asp-action="Mensajeria" asp-route-CUI="@userCUI">Mensajería</a> </li>
+                                <li class="nav-item"> <a asp-area="" class="nav-link" asp-controller="User" asp-action="Detail" asp-route-id="@userId">Informacion Personal</a> </li>
+                            <li class="nav-item"> <a asp-area="" class="nav-link" asp-controller="User" asp-action="Detail" asp-route-id="@userId">Informacion Personal</a> </li>
+                            <li class="nav-item"> <a asp-area="" class="nav-link" asp-controller="User" asp-action="Mensajeria" asp-route-CUI="@userCUI">Solicitudes</a> </li>
+                            <li class="nav-item"> <a asp-area="" class="nav-link" asp-controller="User" asp-action="Mensajeria" asp-route-CUI="@userCUI">Prestamos</a> </li>
                                 <li class="nav-item"> <a asp-area="" class="nav-link" asp-controller="Account" asp-action="Logout">Cerrar Sesion</a> </li>
                             <label>Bienvenido @userName</label>
                             </ul>
@@ -66,16 +70,14 @@
 
                 }
             </nav>
-        </header>
+        </header> *@
 
 
 
-    <div class="container">
-        <main role="main">
+    
             @RenderBody()
-        </main>
-    </div>
 
+    
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

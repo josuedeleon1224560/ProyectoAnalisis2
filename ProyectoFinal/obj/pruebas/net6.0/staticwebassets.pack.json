@@ -29,8 +29,16 @@
       "PackagePath": "staticwebassets\\images\\favicon.png"
     },
     {
+      "Id": "E:\\ProyectoNET\\ProyectoFinal\\ProyectoFinal\\wwwroot\\images\\imagen-de-portada.png",
+      "PackagePath": "staticwebassets\\images\\imagen-de-portada.png"
+    },
+    {
       "Id": "E:\\ProyectoNET\\ProyectoFinal\\ProyectoFinal\\wwwroot\\images\\peakpx.jpg",
       "PackagePath": "staticwebassets\\images\\peakpx.jpg"
+    },
+    {
+      "Id": "E:\\ProyectoNET\\ProyectoFinal\\ProyectoFinal\\wwwroot\\images\\profile-picture.jpg",
+      "PackagePath": "staticwebassets\\images\\profile-picture.jpg"
     },
     {
       "Id": "E:\\ProyectoNET\\ProyectoFinal\\ProyectoFinal\\wwwroot\\images\\tapiz.jpg",
@@ -65,8 +73,16 @@
       "PackagePath": "staticwebassets\\js\\CascadaDepartamentos.js"
     },
     {
+      "Id": "E:\\ProyectoNET\\ProyectoFinal\\ProyectoFinal\\wwwroot\\js\\EditarPuesto.js",
+      "PackagePath": "staticwebassets\\js\\EditarPuesto.js"
+    },
+    {
       "Id": "E:\\ProyectoNET\\ProyectoFinal\\ProyectoFinal\\wwwroot\\js\\Puesto.js",
       "PackagePath": "staticwebassets\\js\\Puesto.js"
+    },
+    {
+      "Id": "E:\\ProyectoNET\\ProyectoFinal\\ProyectoFinal\\wwwroot\\js\\editardepartamento.js",
+      "PackagePath": "staticwebassets\\js\\editardepartamento.js"
     },
     {
       "Id": "E:\\ProyectoNET\\ProyectoFinal\\ProyectoFinal\\wwwroot\\js\\index.js",
