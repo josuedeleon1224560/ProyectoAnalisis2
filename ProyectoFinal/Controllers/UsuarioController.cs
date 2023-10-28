@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ProyectoFinal.Data;
@@ -10,6 +11,7 @@ using System.Security.Claims;
 
 namespace ProyectoFinal.Controllers
 {
+    [Authorize]
     public class UsuarioController : Controller
     {
         private readonly ILogger<UsuarioController> _logger;
@@ -26,7 +28,7 @@ namespace ProyectoFinal.Controllers
         public UsuarioController(ILogger<UsuarioController> logger, IHttpContextAccessor httpContextAccessor, IUserRepository userRepository, RoleManager<IdentityRole> roleManager, UserManager<AppUser> userManager,
             iPhotoService photoService, DireccionRepository direccionRepository,
             AplicationDbContext aplicationDbContext, DireccionRepository direccionRepository1,
-            PuestoRepository puestoRepository) 
+            PuestoRepository puestoRepository)
         {
             _logger = logger;
             _httpContextAccessor = httpContextAccessor;
@@ -203,8 +205,32 @@ namespace ProyectoFinal.Controllers
 
                 return RedirectToAction("Confirmacion");
             }
-            return RedirectToAction("Login", "Account");            
+            return RedirectToAction("Login", "Account");
         }
-            
+
+
+        public async Task<IActionResult> Mensajeria()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (!string.IsNullOrEmpty(userId))
+            {
+                var usuario = await _userManager.FindByIdAsync(userId);
+                //Se realiza una creación de una variable de usuario asincronica del repositorio del usuario que hace un llamado al id especifico del id de un usuario seleccionado
+                var user = await _userRepository.GetUserById(usuario.Id);                
+                if (user != null)
+                {
+                    var mensajesUsuario = _aplicationDbContext.Mensajes.Where(m => m.AppUserId == user.Id).ToList();
+
+                    var viewModel = new ViewMensajesViewModel
+                    {
+                        Usuario = usuario,
+                        MensajesUsuario = mensajesUsuario
+                    };
+                    return View(viewModel);
+                }
+                return NotFound();
+            }
+            return RedirectToAction("Login", "Account");
+        }
     }
 }

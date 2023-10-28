@@ -1,0 +1,117 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@using ProyectoFinal.ViewModels
+@model List<UserViewModel>
+@inject UserManager<AppUser> UserManager
+
+@{
+    var userName = User.Identity.Name;
+    var userId = "";
+    var userCUI = "";
+    if (!string.IsNullOrEmpty(userName))
+    {
+        var user = await UserManager.FindByNameAsync(userName);
+        if (user != null)
+        {
+            userId = user.Id;
+            userCUI = user.CUI;
+        }
+    }
+
+}
+@{
+    var errorMessage = TempData["ErrorMessage"] as string;
+}
+
+@{
+    ViewData["Title"] = "Empleados";
+    string estilos = "/css/styles2.css";
+}
+@section Estilos
+    {
+    <link rel="stylesheet" type="text/css" href="@estilos" />
+}
+@section Header
+    {
+    <div class="container">
+        <header class="header">
+            <nav class="nav-bar">
+                <a class="logo" href="#">CONSULTING S.A</a>
+                <button class="nav-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
+                        <!--! Font Awesome Free 6.4.2 by fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                        <style>
+                            svg {
+                                fill: #ffffff
+                            }</style>
+                        <path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z" />
+                    </svg>
+                </button>
+                <ul class="nav-menu">
+                    <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Home" asp-action="Privacy">Home</a></li>
+                    <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="User" asp-action="Index">Usuarios</a></li>
+                    <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Role" asp-action="ListRoles">Roles</a></li>
+                    <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Account" asp-action="Register">Registrar</a></li>
+                    <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Mensaje" asp-action="Index">Bandeja</a></li>
+                    <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Mensaje" asp-action="SeleccionarUsuario">Mensajes</a></li>
+                    <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Nomina" asp-action="Seleccionar">Nomina</a></li>
+                    <li class="nav-item"> <a asp-area="" class="nav-link" asp-controller="Account" asp-action="Logout">Cerrar Sesion</a> </li>
+                </ul>
+            </nav>
+        </header>
+    }
+
+    <div class="sub-container-consult">
+        <div class="sub-body-container-consult">
+            <div class="consult-tittle">
+                <h2>Usuarios</h2>
+            </div>
+            <div class="user-list">
+                <table class="user-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombres</th>
+                            <th>Apellidos</th>
+                            <th>Puesto</th>
+                            <th>Departamento</th>
+                            <th colspan="3">Accion</th>
+
+                        </tr>
+                    </thead>
+                    <tbody class="user-table-body">
+                    @foreach (var user in Model)
+                    {
+                            <tr>
+                                <td>@user.CUI</td>
+                                <td>@user.Nombres</td>
+                                <td>@user.Apellidos</td>
+                                <td>@user.NombrePuesto</td>
+                                <td>@user.NombreDepartamentoPuesto</td>
+                                <td>
+                                    <a type="button" class="btn btn-outline-primary" asp-controller="Nomina" asp-action="VerNominas" asp-route-id="@user.Id">
+                                        Nominas
+                                    </a>
+                                </td>
+                                <td>
+                                    <a type="button" class="btn btn-outline-primary" asp-controller="" asp-action="" asp-route-CUI="@user.CUI">
+                                        Aguinaldos
+                                    </a>
+                                </td>
+                                <td>
+                                    <a type="button" class="btn btn-outline-primary" asp-controller="User" asp-action="Edit" asp-route-id="@user.Id">
+                                        Bono14
+                                    </a>
+                                </td>
+                                <td>
+                                    <a type="button" class="btn btn-outline-primary" asp-controller="" asp-action="" asp-route-id="@user.Id">
+                                        Vacaciones
+                                    </a>
+                                </td>
+                            </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+

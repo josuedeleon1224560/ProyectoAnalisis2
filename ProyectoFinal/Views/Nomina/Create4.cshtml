@@ -1,0 +1,256 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@using ProyectoFinal.ViewModels
+@model CreateNominaAguinaldoViewModel
+@inject UserManager<AppUser> UserManager
+
+@{
+    var userName = User.Identity.Name;
+    var userId = "";
+    var userCUI = "";
+    if (!string.IsNullOrEmpty(userName))
+    {
+        var user = await UserManager.FindByNameAsync(userName);
+        if (user != null)
+        {
+            userId = user.Id;
+            userCUI = user.CUI;
+        }
+    }
+    @section Header
+        {
+        <div class="container">
+            <header class="header">
+                <nav class="nav-bar">
+                    <a class="logo" href="#">CONSULTING S.A</a>
+                    <button class="nav-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
+                            <!--! Font Awesome Free 6.4.2 by fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                            <style>
+                                svg {
+                                    fill: #ffffff
+                                }</style>
+                            <path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z" />
+                        </svg>
+                    </button>
+                    <ul class="nav-menu">
+                        <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Home" asp-action="Privacy">Home</a></li>
+                        <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="User" asp-action="Index">Usuarios</a></li>
+                        <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Role" asp-action="ListRoles">Roles</a></li>
+                        <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Account" asp-action="Register">Registrar</a></li>
+                        <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Mensaje" asp-action="Index">Bandeja</a></li>
+                        <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Mensaje" asp-action="SeleccionarUsuario">Mensajes</a></li>
+                        <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Nomina" asp-action="Seleccionar">Nomina</a></li>
+                        <li class="nav-item"> <a asp-area="" class="nav-link" asp-controller="Account" asp-action="Logout">Cerrar Sesion</a> </li>
+                    </ul>
+                </nav>
+            </header>
+    }
+
+}
+
+@{
+    var errorMessage = TempData["ErrorMessage"] as string;
+}
+
+@{
+    ViewData["Title"] = "Nomina";
+    string estilos = "~/css/General.css";
+}
+
+@section Estilos
+    {
+    <link rel="stylesheet" type="text/css" href="@estilos" />
+ }
+
+
+<div class="nomina-sub-body">
+
+    <div class="select-employee">
+        <label>Seleccione un empleado</label>
+        <select disabled id="GetUsuarios">
+            <option value="">@Model.Nombres</option>
+        </select>
+        <label>Rango de fecha</label>
+        <input type="date" class="select-date" readonly value="@Model.INICIO.ToString("yyyy-MM-dd")" id="fecha-inicio">
+        <input type="date" class="select-date" readonly value="@Model.FINAL.ToString("yyyy-MM-dd")" id="fecha-fin">
+        <button>  <a asp-controller="Nomina" asp-action="Select2" class="btn btn-primary">Seleccionar Otro Usuario</a> </button>
+
+    </div>
+
+
+    <form asp-action="Aguinaldo" asp-asp-controller="Nomina" method="POST">
+        <div class="aguinaldo">
+            <table class="aguinaldo-table">
+                <caption>Aguinaldo</caption>
+                <thead>
+                    <tr>
+                        <th>Dias laborados</th>
+                        <th>Promedio de salarios</th>
+                        <th>Aguinaldo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><label id="total-de-dias-trabajados"></label></td>
+                        <input hidden asp-for="DiasLaborados" type="text" name="Aguinaldo.DiasLaborados" id="AguinaldoDias" />
+                        <td><label id="promedio-de-sueldos"></label></td>
+                        <input hidden asp-for="PromedioSalario" type="text" name="Aguinaldo.PromedioSalario" id="AguinaldoPromedio" />
+                        <td><label id="total-aguinaldo"></label></td>
+                        <input hidden asp-for="TotalAguinaldo" type="text" name="Aguinaldo.TotalAguinaldo" id="AguinaldoTotal" />
+                    </tr>
+                </tbody>
+            </table>
+            <div class="button-1">
+                <button class="submit-buttons" type="submit">Pagar aguinaldo</button>
+            </div>
+
+        </div>
+
+    </form>
+
+
+
+<div class="pays-data">
+    <table class="tabla-sueldos" id="tabla-sueldos">
+        <caption>Tabla de Sueldos Anuales</caption>
+        <thead>
+            <tr>
+                <th>Enero</th>
+                <th>Febrero</th>
+                <th>Marzo</th>
+                <th>Abril</th>
+                <th>Mayo</th>
+                <th>Junio</th>
+                <th>Julio</th>
+                <th>Agosto</th>
+                <th>Septiembre</th>
+                <th>Octubre</th>
+                <th>Noviembre</th>
+                <th>Diciembre</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><label>@Model.SueldoEnero</label></td>
+                <td><label>@Model.SueldoFebrero</label></td>
+                <td><label>@Model.SueldoMarzo</label></td>
+                <td><label>@Model.SueldoAbril</label></td>
+                <td><label>@Model.SueldoMayo</label></td>
+                <td><label>@Model.SueldoJunio</label></td>
+                <td><label>@Model.SueldoJulio</label></td>
+                <td><label>@Model.SueldoAgosto</label></td>
+                <td><label>@Model.SueldoSeptiembre</label></td>
+                <td><label>@Model.SueldoOctubre</label></td>
+                <td><label>@Model.SueldoNoviembre</label></td>
+                <td><label>@Model.SueldoDiciembre</label></td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+<div class="commissions-content">
+    <table class="commissions-table" id="commissions-table">
+        <caption>Tabla de Comisiones Anuales</caption>
+        <thead>
+            <tr>
+                <th>Enero</th>
+                <th>Febrero</th>
+                <th>Marzo</th>
+                <th>Abril</th>
+                <th>Mayo</th>
+                <th>Junio</th>
+                <th>Julio</th>
+                <th>Agosto</th>
+                <th>Septiembre</th>
+                <th>Octubre</th>
+                <th>Noviembre</th>
+                <th>Diciembre</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><label>@Model.ComisionesEnero</label></td>
+                <td><label>@Model.ComisionesFebrero</label></td>
+                <td><label>@Model.ComisionesMarzo</label></td>
+                <td><label>@Model.ComisionesAbril</label></td>
+                <td><label>@Model.ComisionesMayo</label></td>
+                <td><label>@Model.ComisionesJunio</label></td>
+                <td><label>@Model.ComisionesJulio</label></td>
+                <td><label>@Model.ComisionesAgosto</label></td>
+                <td><label>@Model.ComisionesSeptiembre</label></td>
+                <td><label>@Model.ComisionesOctubre</label></td>
+                <td><label>@Model.ComisionesNoviembre</label></td>
+                <td><label>@Model.ComisionesDiciembre</label></td>
+            </tr>
+
+        </tbody>
+    </table>
+</div>
+<div class="save-horas-extra">
+    <table class="hours-extra-table" id="hours-extra-table">
+        <caption>Tabla de horas extras Anuales</caption>
+        <thead>
+            <tr>
+                <th>Enero</th>
+                <th>Febrero</th>
+                <th>Marzo</th>
+                <th>Abril</th>
+                <th>Mayo</th>
+                <th>Junio</th>
+                <th>Julio</th>
+                <th>Agosto</th>
+                <th>Septiembre</th>
+                <th>Octubre</th>
+                <th>Noviembre</th>
+                <th>Diciembre</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><label>@Model.HoraEnero</label></td>
+                <td><label>@Model.HoraFebrero</label></td>
+                <td><label>@Model.HoraMarzo</label></td>
+                <td><label>@Model.HoraAbril</label></td>
+                <td><label>@Model.HoraMayo</label></td>
+                <td><label>@Model.HoraJunio</label></td>
+                <td><label>@Model.HoraJulio</label></td>
+                <td><label>@Model.HoraAgosto</label></td>
+                <td><label>@Model.HoraSeptiembre</label></td>
+                <td><label>@Model.HoraOctubre</label></td>
+                <td><label>@Model.HoraNoviembre</label></td>
+                <td><label>@Model.HoraDiciembre</label></td>
+            </tr>
+
+        </tbody>
+    </table>
+            <div class="payroll-options">
+                <button onclick=vaciar_nomina()>Vacia Nomina</button>
+                <button onclick=functions_validated_aguinaldo()>Calcular Aguinaldo</button>
+            </div>
+</div>
+    </div>
+
+
+
+</div>
+
+
+</div>
+
+
+
+
+<script>
+    @if (!string.IsNullOrEmpty(errorMessage))
+    {
+        <text>
+            // Muestra una alerta con el mensaje de error
+            alert('@errorMessage');
+        </text>
+    }
+</script>
+
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/js/usuarios.js"></script>

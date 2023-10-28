@@ -1,14 +1,34 @@
-﻿@using ProyectoFinal.ViewModels
-@model UserEditViewModel    
+﻿@using Microsoft.AspNetCore.Identity;
+@using ProyectoFinal.ViewModels
+@model UserEditViewModel   
+
+@inject UserManager<AppUser> UserManager
+
+@{
+    var userName = User.Identity.Name;
+    var userId = "";
+    var userCUI = "";
+    if (!string.IsNullOrEmpty(userName))
+    {
+        var user = await UserManager.FindByNameAsync(userName);
+        if (user != null)
+        {
+            userId = user.Id;
+            userCUI = user.CUI;
+        }
+    }
+
+}
+
 @{
     ViewData["Title"] = "Editar Usuario";
-    string estilos = "/css/styles2.css";
+    string estilos = "~/css/General.css";
 }
+
 @section Estilos
     {
     <link rel="stylesheet" type="text/css" href="@estilos" />
 }
-
 @section Header
     {
     <div class="container">
@@ -26,10 +46,13 @@
                     </svg>
                 </button>
                 <ul class="nav-menu">
-                    <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Home" asp-action="Privacy">Privacy</a></li>
+                    <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Home" asp-action="Privacy">Home</a></li>
                     <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="User" asp-action="Index">Usuarios</a></li>
                     <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Role" asp-action="ListRoles">Roles</a></li>
-                    <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Account" asp-action="Register">Registrar Usuarios</a></li>
+                    <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Account" asp-action="Register">Registrar</a></li>
+                    <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Mensaje" asp-action="Index">Bandeja</a></li>
+                    <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Mensaje" asp-action="SeleccionarUsuario">Mensajes</a></li>
+                    <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Nomina" asp-action="Seleccionar">Nomina</a></li>
                     <li class="nav-item"> <a asp-area="" class="nav-link" asp-controller="Account" asp-action="Logout">Cerrar Sesion</a> </li>
                 </ul>
             </nav>
@@ -85,7 +108,7 @@
                     </div>
                     <div class="min-cont">
                         <label asp-for="Date"></label>
-                        <input name="Date" type="date" max="2005-01-01" min="1923-01-01" asp-for="Date" class="date">
+                            <input name="Date" type="date" value="@Model.Date?.ToString("yyyy-MM-dd")" max="2005-01-01" min="1923-01-01" asp-for="Date" class="date">
                         <span id="errorFecha" class="error" asp-validation-for="Date" class="text-danger"></span>
                     </div>
 
@@ -102,17 +125,17 @@
                         <input name="Cui" type="number" asp-for="CUI" class="number-ph" />
                         <span id="errorCui" class="error" asp-validation-for="CUI" class="text-danger"></span>
                     </div>
-@*                     <div class="min-cont">
-                        <label>Genero</label>
-                        <select name="Genero" class="gen">
-                            <option value="">Seleccione un genero</option>
+                        <div class="min-cont">
+                            <label>Genero</label>
+                            <select name="Genero" class="gen">
+                                <option value="">Seleccione un genero</option>
                             @foreach (var generoItem in Model.GeneroList)
                             {
-                                <option value="@generoItem.Value">@generoItem.Text</option>
+                                    <option value="@generoItem.Value">@generoItem.Text</option>
                             }
-                        </select>
-                        <span asp-validation-for="Genero" id="errorGenero" class="error"></span>
-                    </div> *@
+                            </select>
+                            <span asp-validation-for="Genero" id="errorGenero" class="error"></span>
+                        </div>
                     <div class="min-cont">
                         <label asp-for="Email" class="control-label"></label>
                         <input asp-for="Email" class="email" />
@@ -123,7 +146,7 @@
                 <div class="sub-body-registro3">
                     <div class="min-cont">
                         <label>Departamento de Trabajo</label>
-                        <select name="departamentoPuesto" class="Departament" id="departamentoPuesto" asp-for="DepartamentoPuesto">
+                            <select name="DepartamentoPuesto" class="Departament" id="departamentoPuesto" asp-for="DepartamentoPuesto">
                             <option>--Seleccione un Departamento</option>
                             <option selected value="@Model.IdDepartamentoPuesto">@Model.DepartamentoPuesto</option>
                         </select>

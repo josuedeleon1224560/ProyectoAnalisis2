@@ -1,8 +1,27 @@
-﻿@using ProyectoFinal.ViewModels
+﻿@using Microsoft.AspNetCore.Identity;
+@using ProyectoFinal.ViewModels
 @model UserDetailViewModel
+@inject UserManager<AppUser> UserManager
+
+@{
+    var userName = User.Identity.Name;
+    var userId = "";
+    var userCUI = "";
+    if (!string.IsNullOrEmpty(userName))
+    {
+        var user = await UserManager.FindByNameAsync(userName);
+        if (user != null)
+        {
+            userId = user.Id;
+            userCUI = user.CUI;
+        }
+    }
+
+}
+
 @{
     ViewData["Title"] = "Inicio";
-    string estilos = "/css/styles2.css";
+    string estilos = "/css/General.css";
 }
 
 @section Estilos
@@ -12,57 +31,50 @@
 
 @section Header
     {
-    <div class="info-personal-view-container">
-        <header class="header-user-info">
-            <div class="logo-header-user-info">
-                <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512">
-                    <!--! Font Awesome Free 6.4.2 by fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
-                    <style>
-                        svg {
-                            fill: #ffffff
-                        }</style>
-                    <path d="M304 240V16.6c0-9 7-16.6 16-16.6C443.7 0 544 100.3 544 224c0 9-7.6 16-16.6 16H304zM32 272C32 150.7 122.1 50.3 239 34.3c9.2-1.3 17 6.1 17 15.4V288L412.5 444.5c6.7 6.7 6.2 17.7-1.5 23.1C371.8 495.6 323.8 512 272 512C139.5 512 32 404.6 32 272zm526.4 16c9.3 0 16.6 7.8 15.4 17c-7.7 55.9-34.6 105.6-73.9 142.3c-6 5.6-15.4 5.2-21.2-.7L320 288H558.4z" />
-                </svg>
+    <div class="profile-container">
+        <header class="header-user-interface">
+            <div class="logo-header-user">
+                <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512"><!--! Font Awesome Free 6.4.2 by fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M304 240V16.6c0-9 7-16.6 16-16.6C443.7 0 544 100.3 544 224c0 9-7.6 16-16.6 16H304zM32 272C32 150.7 122.1 50.3 239 34.3c9.2-1.3 17 6.1 17 15.4V288L412.5 444.5c6.7 6.7 6.2 17.7-1.5 23.1C371.8 495.6 323.8 512 272 512C139.5 512 32 404.6 32 272zm526.4 16c9.3 0 16.6 7.8 15.4 17c-7.7 55.9-34.6 105.6-73.9 142.3c-6 5.6-15.4 5.2-21.2-.7L320 288H558.4z" /></svg>
                 <h2>T CONSULTING S.A</h2>
             </div>
 
             <nav class="User-nav-bar-info">
-                <a asp-area="" class="nav-link" asp-controller="Usuario" asp-action="Index">Inicio</a>
-                <a href="#">Estado de cuenta</a>
-                <a asp-area="" class="nav-link" asp-controller="Usuario" asp-action="Crear">Solicitudes</a>
-                <a href="#">Prestamos</a>
+                <a asp-route-Id="" style="color:black" asp-area="" class="nav-link" asp-controller="Usuario" asp-action="Detail">Informacion personal</a>
+            <a style="color:black" href="#">Estado de cuenta</a>
+            <a asp-area="" style="color:black" class="nav-link" asp-controller="Usuario" asp-action="Crear">Solicitudes</a>
+            <a style="color:black" href="#">Prestamos</a>
             </nav>
-            <button>Cerrar Sesion</button>
+            <button> <a asp-controller="Account" asp-action="Logout">Cerrar Sesion</a></button>
         </header>
     }
 
+    <div class="profile-sub-container">
+        <div class="informative-section">
+            <div class="user-wellcome">
+                <h1>BIENVENIDO, </h1>
+                <label for="">@Model.Nombres</label>
+            </div>
+            <div class="informative-content">
+                <div class="help">
+                    <h4>Instruccciones</h4>
+                    <p>En la parte de arriba encuentras todos los modulos a los que tienes acceso</p>
+                </div>
+                <div class="modules">
+                    <h2>Modulos</h2>
+                    <h3>- Infomacion personal</h3>
+                    <p>En el modulo de informacion personal puedes ver toda la informacion de tu usuario</p>
+                    <h3>- Estado de cuenta</h3>
+                    <p>En este modulo puedes acceder a toda tu informacion financiera</p>
+                    <h3>- Solictiudes</h3>
+                    <p>En este modulo puedes solicitar dias de permiso para faltar</p>
+                    <h3>- Prestamos</h3>
+                    <p>En el modulo de prestamos puedes hacer una solicitud al fondo de la empresa</p>
+                    <h3>- Tienda</h3>
+                    <p>Aqui puedes adquirir tus productos, cada empleado cuenta con un credito maximo de Q200.00</p>
+                </div>
+            </div>
+        </div>
 
-<div class="profile-sub-container">
-    <div class="informative-section">
-        <div class="user-wellcome">
-            <h1>BIENVENIDO, </h1>
-            <label for="">@Model.Nombres</label>
-        </div>
-        <div class="informative-content">
-            <div class="help">
-                <h4>Instruccciones</h4>
-                <p>En la parte de arriba encuentras todos los modulos a los que tienes acceso</p>
-            </div>
-            <div class="modules">
-                <h2>Modulos</h2>
-                <h3>- Infomacion personal</h3>
-                <p>En el modulo de informacion personal puedes ver toda la informacion de tu usuario</p>
-                <h3>- Estado de cuenta</h3>
-                <p>En este modulo puedes acceder a toda tu informacion financiera</p>
-                <h3>- Solictiudes</h3>
-                <p>En este modulo puedes solicitar dias de permiso para faltar</p>
-                <h3>- Prestamos</h3>
-                <p>En el modulo de prestamos puedes hacer una solicitud al fondo de la empresa</p>
-                <h3>- Tienda</h3>
-                <p>Aqui puedes adquirir tus productos, cada empleado cuenta con un credito maximo de Q200.00</p>
-            </div>
-        </div>
-    </div>
 
     <div class="informative-image">        
         <img src="~/images/imagen-de-portada.png" alt="t consulting">

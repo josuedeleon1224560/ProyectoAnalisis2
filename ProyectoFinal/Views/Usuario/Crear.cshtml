@@ -1,9 +1,54 @@
-﻿@using ProyectoFinal.ViewModels
+﻿@using Microsoft.AspNetCore.Identity;
+@using ProyectoFinal.ViewModels
 @model CreateMessageViewModel
+@inject UserManager<AppUser> UserManager
+
+@{
+    var userName = User.Identity.Name;
+    var userId = "";
+    var userCUI = "";
+    if (!string.IsNullOrEmpty(userName))
+    {
+        var user = await UserManager.FindByNameAsync(userName);
+        if (user != null)
+        {
+            userId = user.Id;
+            userCUI = user.CUI;
+        }
+    }
+
+}
+
+@{
+    ViewData["Title"] = "Inicio";
+    string estilos = "/css/General.css";
+}
+
+@section Estilos
+    {
+    <link rel="stylesheet" type="text/css" href="@estilos" />
+}
 
 @{
     ViewData["Title"] = "Mensajes del Usuario";
 }
+<style>
+    .custom-textarea {
+        /* Estilos personalizados para el campo de texto de mensaje */
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+    }
+
+    .custom-button {
+        /* Estilos personalizados para el botón de envío */
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+    }
+</style>
 
 @section Header
     {
@@ -34,16 +79,16 @@
 
     <div class="container">
         <div class="sub-body">
-            <h2>Crear Mensaje</h2>
+            <h2>Crear Solicitud de Permiso</h2>
 
             <form asp-controller="Mensaje" asp-action="Crear" method="post">
                 <div class="form-group">
                     <label asp-for="Contenido"></label>
-                    <textarea asp-for="Contenido" class="form-control" rows="4"></textarea>
+                    <textarea asp-for="Contenido" class="form-control custom-textarea" rows="4"></textarea>
                     <span asp-validation-for="Contenido" class="text-danger"></span>
                 </div>
 
-                <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
+                <button type="submit" class="btn btn-primary custom-button">Enviar Mensaje</button>
             </form>
         </div>
     </div>

@@ -11,6 +11,8 @@ using ProyectoFinal.Models;
 using ProyectoFinal.Repository;
 using ProyectoFinal.ViewModels;
 using SQLitePCL;
+using System.ComponentModel.DataAnnotations;
+using System.Text.RegularExpressions;
 
 namespace ProyectoFinal.Controllers
 {
@@ -23,6 +25,7 @@ namespace ProyectoFinal.Controllers
         private readonly iPhotoService _iPhotoService;
         private readonly DireccionRepository _direccionRepository;
         private readonly PuestoRepository _puestoRepository;
+
 
         public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager,
         AplicationDbContext context, RoleManager<IdentityRole> roleManager, iPhotoService iPhotoService,
@@ -122,7 +125,27 @@ namespace ProyectoFinal.Controllers
             return new JsonResult(_direccionRepository.GetAllDirecciones(id));
         }
 
- 
+        public class StrongPasswordAttribute : ValidationAttribute
+        {
+            public override bool IsValid(object value)
+            {
+                if (value == null)
+                {
+                    return false; // La contraseña es nula, por lo que no cumple con los criterios
+                }
+
+
+                string password = value as string;
+
+                // Define una expresión regular que cumple con los criterios
+                string pattern = @"^(?=.*[A-Z])(?=.*[!@#$%^&*])(.{4,})$";
+
+                // Utiliza Regex.IsMatch para verificar si la contraseña coincide con el patrón
+                return Regex.IsMatch(password, pattern);
+            }
+        }
+
+
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel registerViewModel)
          {
@@ -231,6 +254,7 @@ namespace ProyectoFinal.Controllers
                 CUI = registerViewModel.CUI,
                 Telefono = registerViewModel.Telefono,
                 Date = registerViewModel.Date,  
+                Genero = registerViewModel.Genero,
                 Direcciones = direccionNueva,
                 IdPuesto = _context.Puesto.FirstOrDefault(p=>p.Id == registerViewModel.SelectedPuesto)
             };

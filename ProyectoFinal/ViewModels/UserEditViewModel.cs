@@ -1,17 +1,20 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using ProyectoFinal.Migrations;
 using ProyectoFinal.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace ProyectoFinal.ViewModels
 {
     public class UserEditViewModel
     {
+
         public string CUI { get; set; }
         public string Nombres { get; set; }
         public string Apellidos { get; set; }
         public int? Telefono { get; set; }
         public string? Email { get; set; }
         public string? UserName { get; set; }
+        [DataType(DataType.Date)]
         public DateTime? Date { get; set; }
         public IFormFile? AntecedentesPenales { get; set; }
         public string? UrlAntecedentesPenales { get; set; }
@@ -41,6 +44,7 @@ namespace ProyectoFinal.ViewModels
         public string? DepartamentoPuesto { get; set; }
         public List<DepartamentoGt>? DepartamentoItems { get; set; }
 
-
+        public string Genero { get; set; }
+        public List<SelectListItem>? GeneroList { get; set; }
     }
 }

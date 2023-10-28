@@ -32,7 +32,7 @@ namespace ProyectoFinal.Controllers
                 return RedirectToAction("Index", "Usuario");
             }
         }
-
+        [Authorize(Roles ="admin")]
         public IActionResult Privacy()
         {
          return View();

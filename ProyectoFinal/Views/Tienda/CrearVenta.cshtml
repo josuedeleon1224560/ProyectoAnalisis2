@@ -1,0 +1,82 @@
+﻿@model ProyectoFinal.ViewModels.TiendaViewModel
+
+@{
+    ViewData["Title"] = "Crear Venta";
+}
+
+<h2>Crear Venta</h2>
+
+<form method="post" action="CrearVenta" enctype="multipart/form-data">
+    @Html.AntiForgeryToken()
+
+    <div class="min-cont">
+        <label>TipoPago</label>
+        <select name="TipoPago" class="gen">
+            <option value="">Seleccione un Tipo de Pago</option>
+            @foreach (var generoItem in Model.TipoPagoList)
+            {
+                <option value="@generoItem.Value">@generoItem.Text</option>
+            }
+        </select>
+        <span asp-validation-for="TipoPago" id="errorGenero" class="error"></span>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Fecha, new { @class = "control-label" })
+        @Html.TextBoxFor(model => model.Fecha, "{0:yyyy-MM-dd}", new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Fecha, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        <div class="min-cont">
+            <label asp-for="UsuarioId">Rol</label>
+            <select name="UsuarioId" asp-for="UsuarioId" class="gen">
+                <option value=''>Seleccione un rol</option>
+                @foreach (var roleItem in Model.UsuariosDisponibles)
+                {
+                    <option value="@roleItem.Id">@roleItem.Nombres</option>
+                }
+            </select>
+            <span id="errorRole" asp-validation-for="UsuarioId" class="error"></span>
+        </div>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Producto</th>
+                <th>Precio</th>
+                <th>Cantidad</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (var i = 0; i < Model.Productos.Count; i++)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(model => model.Productos[i].Producto.Id)
+                        </td>
+                        <td>
+                        @Html.DisplayFor(model => model.Productos[i].ProductoNombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.Productos[i].Producto.Precio)
+                    </td>
+                    <td>
+                        <input asp-for="Productos[i].Cantidad" class="form-control" />
+                        <span asp-validation-for="Productos[i].Cantidad" class="text-danger"></span>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div class="form-group">
+        <input type="submit" value="Guardar Venta" class="btn btn-primary" />
+    </div>
+</form>
+
+<div>
+    @Html.ActionLink("Volver a la Lista", "Index")
+</div>

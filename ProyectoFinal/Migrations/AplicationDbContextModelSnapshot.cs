@@ -155,6 +155,35 @@ namespace ProyectoFinal.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("ProyectoFinal.Models.Aguinaldo", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("CUI")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<float>("DiasLaborados")
+                        .HasColumnType("real");
+
+                    b.Property<DateTime>("Fecha")
+                        .HasColumnType("datetime2");
+
+                    b.Property<float>("PromedioSalario")
+                        .HasColumnType("real");
+
+                    b.Property<float>("TotalAguinaldo")
+                        .HasColumnType("real");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Aguinaldo");
+                });
+
             modelBuilder.Entity("ProyectoFinal.Models.AppUser", b =>
                 {
                     b.Property<string>("Id")
@@ -194,6 +223,10 @@ namespace ProyectoFinal.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("Fotografia")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Genero")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("IdDireccion")
@@ -262,6 +295,114 @@ namespace ProyectoFinal.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
+            modelBuilder.Entity("ProyectoFinal.Models.Asistencia", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<bool>("EsEntrada")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("FechaRegistro")
+                        .HasColumnType("datetime2");
+
+                    b.Property<double?>("HorasExtras")
+                        .HasColumnType("float");
+
+                    b.Property<double?>("HorasTrabajadas")
+                        .HasColumnType("float");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UsuarioAsistenciaId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UsuarioAsistenciaId");
+
+                    b.ToTable("Asistencias");
+                });
+
+            modelBuilder.Entity("ProyectoFinal.Models.Bono14", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<float>("Bono14Total")
+                        .HasColumnType("real");
+
+                    b.Property<string>("CUI")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<float>("DiasLaborados")
+                        .HasColumnType("real");
+
+                    b.Property<DateTime>("Fecha")
+                        .HasColumnType("datetime2");
+
+                    b.Property<float?>("PromedioComisiones")
+                        .HasColumnType("real");
+
+                    b.Property<float>("PromedioSalario")
+                        .HasColumnType("real");
+
+                    b.Property<float?>("SalarioAdicionalComisiones")
+                        .HasColumnType("real");
+
+                    b.Property<float?>("TotalComisiones")
+                        .HasColumnType("real");
+
+                    b.Property<float>("TotalSalarios")
+                        .HasColumnType("real");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Bono14");
+                });
+
+            modelBuilder.Entity("ProyectoFinal.Models.CuotaPatronal", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("CUI")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Fecha")
+                        .HasColumnType("datetime2");
+
+                    b.Property<float>("IGSS")
+                        .HasColumnType("real");
+
+                    b.Property<float>("IRTRA")
+                        .HasColumnType("real");
+
+                    b.Property<float>("Sueldo")
+                        .HasColumnType("real");
+
+                    b.Property<string>("UsuarioId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("CuotaPatronal");
+                });
+
             modelBuilder.Entity("ProyectoFinal.Models.Departamento", b =>
                 {
                     b.Property<int>("Id")
@@ -276,7 +417,7 @@ namespace ProyectoFinal.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Departamento", (string)null);
+                    b.ToTable("Departamento");
                 });
 
             modelBuilder.Entity("ProyectoFinal.Models.DepartamentoGt", b =>
@@ -293,7 +434,7 @@ namespace ProyectoFinal.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Tabla_Departamentos", (string)null);
+                    b.ToTable("Tabla_Departamentos");
                 });
 
             modelBuilder.Entity("ProyectoFinal.Models.DireccionGt", b =>
@@ -315,7 +456,45 @@ namespace ProyectoFinal.Migrations
 
                     b.HasIndex("idMunicipios");
 
-                    b.ToTable("Tabla_Direcciones", (string)null);
+                    b.ToTable("Tabla_Direcciones");
+                });
+
+            modelBuilder.Entity("ProyectoFinal.Models.Indemnizacion", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("CUI")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<float?>("Comisiones")
+                        .HasColumnType("real");
+
+                    b.Property<DateTime>("Fecha")
+                        .HasColumnType("datetime2");
+
+                    b.Property<float?>("HorasExtras")
+                        .HasColumnType("real");
+
+                    b.Property<float>("Promedio")
+                        .HasColumnType("real");
+
+                    b.Property<float>("PromedioSalarios")
+                        .HasColumnType("real");
+
+                    b.Property<float>("SubTotal")
+                        .HasColumnType("real");
+
+                    b.Property<float>("Total")
+                        .HasColumnType("real");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Indemnizacion");
                 });
 
             modelBuilder.Entity("ProyectoFinal.Models.Mensaje", b =>
@@ -341,7 +520,7 @@ namespace ProyectoFinal.Migrations
 
                     b.HasIndex("AppUserId");
 
-                    b.ToTable("Mensajes", (string)null);
+                    b.ToTable("Mensajes");
                 });
 
             modelBuilder.Entity("ProyectoFinal.Models.MunicipioGt", b =>
@@ -363,7 +542,153 @@ namespace ProyectoFinal.Migrations
 
                     b.HasIndex("idDepartamentos");
 
-                    b.ToTable("Tabla_Municipios", (string)null);
+                    b.ToTable("Tabla_Municipios");
+                });
+
+            modelBuilder.Entity("ProyectoFinal.Models.Nomina", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int?>("AguinaldoNomina")
+                        .HasColumnType("int");
+
+                    b.Property<float>("Anticipo")
+                        .HasColumnType("real");
+
+                    b.Property<string>("Apellido")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AppUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<float>("Bonificaciones")
+                        .HasColumnType("real");
+
+                    b.Property<int?>("Bono14Nomina")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CUI")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<float?>("Comisiones")
+                        .HasColumnType("real");
+
+                    b.Property<int?>("CuotaPatronalNomina")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Departamento")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("FechaNomina")
+                        .HasColumnType("datetime2");
+
+                    b.Property<float?>("HorasExtras")
+                        .HasColumnType("real");
+
+                    b.Property<float>("HorasLaboradas")
+                        .HasColumnType("real");
+
+                    b.Property<float?>("ISR")
+                        .HasColumnType("real");
+
+                    b.Property<float?>("IgssUsuario")
+                        .HasColumnType("real");
+
+                    b.Property<int?>("Indemnizacion")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Nombres")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<float?>("PrecioHoraExtra")
+                        .HasColumnType("real");
+
+                    b.Property<float?>("Prestamo")
+                        .HasColumnType("real");
+
+                    b.Property<float?>("Produccion")
+                        .HasColumnType("real");
+
+                    b.Property<string>("PuestoS")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<float>("Salario")
+                        .HasColumnType("real");
+
+                    b.Property<float>("TotalDescuentos")
+                        .HasColumnType("real");
+
+                    b.Property<float>("TotalDevengado")
+                        .HasColumnType("real");
+
+                    b.Property<float>("TotalLiquido")
+                        .HasColumnType("real");
+
+                    b.Property<string>("UsuarioNomina")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int?>("UsuarioPuesto")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("VacacionesNomina")
+                        .HasColumnType("int");
+
+                    b.Property<float?>("Ventas")
+                        .HasColumnType("real");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AguinaldoNomina");
+
+                    b.HasIndex("Bono14Nomina");
+
+                    b.HasIndex("CuotaPatronalNomina");
+
+                    b.HasIndex("Indemnizacion");
+
+                    b.HasIndex("UsuarioNomina");
+
+                    b.HasIndex("UsuarioPuesto");
+
+                    b.HasIndex("VacacionesNomina");
+
+                    b.ToTable("Nomina");
+                });
+
+            modelBuilder.Entity("ProyectoFinal.Models.Producto", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<bool?>("Existencia")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<float>("Precio")
+                        .HasColumnType("real");
+
+                    b.Property<int>("Stock")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Producto");
                 });
 
             modelBuilder.Entity("ProyectoFinal.Models.Puesto", b =>
@@ -388,7 +713,89 @@ namespace ProyectoFinal.Migrations
 
                     b.HasIndex("IdDepartamento");
 
-                    b.ToTable("Puesto", (string)null);
+                    b.ToTable("Puesto");
+                });
+
+            modelBuilder.Entity("ProyectoFinal.Models.Vacaciones", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("CUI")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<float?>("Comisiones")
+                        .HasColumnType("real");
+
+                    b.Property<DateTime>("Fecha")
+                        .HasColumnType("datetime2");
+
+                    b.Property<float?>("HorasExtras")
+                        .HasColumnType("real");
+
+                    b.Property<float?>("Resultado")
+                        .HasColumnType("real");
+
+                    b.Property<float>("Sueldos")
+                        .HasColumnType("real");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Vacaciones");
+                });
+
+            modelBuilder.Entity("ProyectoFinal.Models.VentaProducto", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("Cantidad")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("idProducto")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("idVenta")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("idProducto");
+
+                    b.HasIndex("idVenta");
+
+                    b.ToTable("VentaProducto");
+                });
+
+            modelBuilder.Entity("ProyectoFinal.Models.Ventas", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("Fecha")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Pago")
+                        .HasColumnType("int");
+
+                    b.Property<string>("idUsuario")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("idUsuario");
+
+                    b.ToTable("Ventas");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -457,6 +864,15 @@ namespace ProyectoFinal.Migrations
                     b.Navigation("IdPuesto");
                 });
 
+            modelBuilder.Entity("ProyectoFinal.Models.Asistencia", b =>
+                {
+                    b.HasOne("ProyectoFinal.Models.AppUser", "UsuarioAsistencia")
+                        .WithMany("Asistencias")
+                        .HasForeignKey("UsuarioAsistenciaId");
+
+                    b.Navigation("UsuarioAsistencia");
+                });
+
             modelBuilder.Entity("ProyectoFinal.Models.DireccionGt", b =>
                 {
                     b.HasOne("ProyectoFinal.Models.MunicipioGt", "MunicipioGt")
@@ -486,6 +902,51 @@ namespace ProyectoFinal.Migrations
                     b.Navigation("DepartamentoGt");
                 });
 
+            modelBuilder.Entity("ProyectoFinal.Models.Nomina", b =>
+                {
+                    b.HasOne("ProyectoFinal.Models.Aguinaldo", "Aguinaldo")
+                        .WithMany("Nomina")
+                        .HasForeignKey("AguinaldoNomina");
+
+                    b.HasOne("ProyectoFinal.Models.Bono14", "Bono14")
+                        .WithMany("Nomina")
+                        .HasForeignKey("Bono14Nomina");
+
+                    b.HasOne("ProyectoFinal.Models.CuotaPatronal", "CuotaPAtronal")
+                        .WithMany("Nomina")
+                        .HasForeignKey("CuotaPatronalNomina");
+
+                    b.HasOne("ProyectoFinal.Models.Indemnizacion", "Indemnizaciones")
+                        .WithMany("Nomina")
+                        .HasForeignKey("Indemnizacion");
+
+                    b.HasOne("ProyectoFinal.Models.AppUser", "Usuario")
+                        .WithMany()
+                        .HasForeignKey("UsuarioNomina");
+
+                    b.HasOne("ProyectoFinal.Models.Puesto", "Puesto")
+                        .WithMany()
+                        .HasForeignKey("UsuarioPuesto");
+
+                    b.HasOne("ProyectoFinal.Models.Vacaciones", "Vacaciones")
+                        .WithMany("Nomina")
+                        .HasForeignKey("VacacionesNomina");
+
+                    b.Navigation("Aguinaldo");
+
+                    b.Navigation("Bono14");
+
+                    b.Navigation("CuotaPAtronal");
+
+                    b.Navigation("Indemnizaciones");
+
+                    b.Navigation("Puesto");
+
+                    b.Navigation("Usuario");
+
+                    b.Navigation("Vacaciones");
+                });
+
             modelBuilder.Entity("ProyectoFinal.Models.Puesto", b =>
                 {
                     b.HasOne("ProyectoFinal.Models.Departamento", "Departamento")
@@ -495,9 +956,65 @@ namespace ProyectoFinal.Migrations
                     b.Navigation("Departamento");
                 });
 
+            modelBuilder.Entity("ProyectoFinal.Models.VentaProducto", b =>
+                {
+                    b.HasOne("ProyectoFinal.Models.Producto", "Producto")
+                        .WithMany()
+                        .HasForeignKey("idProducto");
+
+                    b.HasOne("ProyectoFinal.Models.Ventas", "Venta")
+                        .WithMany("ProductosEnVenta")
+                        .HasForeignKey("idVenta");
+
+                    b.Navigation("Producto");
+
+                    b.Navigation("Venta");
+                });
+
+            modelBuilder.Entity("ProyectoFinal.Models.Ventas", b =>
+                {
+                    b.HasOne("ProyectoFinal.Models.AppUser", "Usuario")
+                        .WithMany()
+                        .HasForeignKey("idUsuario");
+
+                    b.Navigation("Usuario");
+                });
+
+            modelBuilder.Entity("ProyectoFinal.Models.Aguinaldo", b =>
+                {
+                    b.Navigation("Nomina");
+                });
+
             modelBuilder.Entity("ProyectoFinal.Models.AppUser", b =>
                 {
+                    b.Navigation("Asistencias");
+
                     b.Navigation("Mensajes");
+                });
+
+            modelBuilder.Entity("ProyectoFinal.Models.Bono14", b =>
+                {
+                    b.Navigation("Nomina");
+                });
+
+            modelBuilder.Entity("ProyectoFinal.Models.CuotaPatronal", b =>
+                {
+                    b.Navigation("Nomina");
+                });
+
+            modelBuilder.Entity("ProyectoFinal.Models.Indemnizacion", b =>
+                {
+                    b.Navigation("Nomina");
+                });
+
+            modelBuilder.Entity("ProyectoFinal.Models.Vacaciones", b =>
+                {
+                    b.Navigation("Nomina");
+                });
+
+            modelBuilder.Entity("ProyectoFinal.Models.Ventas", b =>
+                {
+                    b.Navigation("ProductosEnVenta");
                 });
 #pragma warning restore 612, 618
         }

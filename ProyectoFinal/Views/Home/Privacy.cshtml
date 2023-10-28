@@ -1,5 +1,11 @@
 ﻿@{
-    ViewData["Title"] = "Privacy Policy";
+    ViewData["Title"] = "Inicio";
+    string estilos = "~/css/General.css";
+}
+
+@section Estilos
+    {
+    <link rel="stylesheet" type="text/css" href="@estilos" />
 }
 
 @section Header
@@ -19,16 +25,45 @@
                     </svg>
                 </button>
                 <ul class="nav-menu">
-                    <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Home" asp-action="Privacy">Privacy</a></li>
+                    <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Home" asp-action="Privacy">Home</a></li>
                     <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="User" asp-action="Index">Usuarios</a></li>
                     <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Role" asp-action="ListRoles">Roles</a></li>
-                    <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Account" asp-action="Register">Registrar Usuarios</a></li>
+                    <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Account" asp-action="Register">Registrar</a></li>
+                    <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Mensaje" asp-action="Index">Bandeja</a></li>
+                    <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Mensaje" asp-action="SeleccionarUsuario">Mensajes</a></li>
+                    <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Nomina" asp-action="Seleccionar">Nomina</a></li>
                     <li class="nav-item"> <a asp-area="" class="nav-link" asp-controller="Account" asp-action="Logout">Cerrar Sesion</a> </li>
                 </ul>
             </nav>
         </header>
     }
 
-<h1>@ViewData["Title"]</h1>
-
-<p>Use this page to detail your site's privacy policy.</p>
+    <div class="index-sub-body">
+        <div class="employee-name-title">
+            <h1>Bienvenido</h1>
+            <label>Nombre admin</label>
+        </div>
+        <div class="content-all">
+            <div class="informative-content">
+                <h2>Bienvenido a T Consulting S.A</h2>
+                <p>como administrador, podras tener acceso a los modulos de control del sistema</p>
+                <br>
+                <h2>Modulo de Ingreso</h2>
+                <p>En el modulo de Ingreso puedes registrar a nuevos usuarios</p>
+                <br>
+                <h2>Modulo de Usuarios</h2>
+                <p>Este modulo te mostrara el listado de todos los empleados que sean parte de la empresa</p>
+                <br>
+                <h2>Modulo de Nomina</h2>
+                <p>El modulo de Nomina genera las nominas mensuales de cada empleado</p>
+                <br>
+                <p>La nomina cuenta con todo lo que al empleado se le debe pagar y descontar</p>
+                <br>
+                <p>Ademas cuenta con funciones como Calcular la Cuota Patronal, El pago del IGSS, pago de Vacaciones, Indeminizacion</p>
+            </div>
+            <div class="imagen-portada">
+                <img src="~/Images/admin-imagen-prortada.png" alt="imagen_de_portada">                
+            </div>
+        </div>
+    </div>
+</div>

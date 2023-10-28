@@ -1,0 +1,117 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@inject UserManager<AppUser> UserManager
+ 
+    @{
+        var userName = User.Identity.Name;
+        var userId = "";
+        var userCUI = "";
+        if (!string.IsNullOrEmpty(userName))
+        {
+            var user = await UserManager.FindByNameAsync(userName);
+            if (user != null)
+            {
+                userId = user.Id;
+                userCUI = user.CUI;
+            }
+        }
+
+
+
+    }
+
+@section Header
+    {
+    <div class="container">
+        <header class="header">
+            <nav class="nav-bar">
+                <a class="logo" href="#">CONSULTING S.A</a>
+                <button class="nav-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
+                        <!--! Font Awesome Free 6.4.2 by fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                        <style>
+                            svg {
+                                fill: #ffffff
+                            }</style>
+                        <path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z" />
+                    </svg>
+                </button>
+                <ul class="nav-menu">
+                    <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Home" asp-action="Privacy">Home</a></li>
+                    <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="User" asp-action="Index">Usuarios</a></li>
+                    <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Role" asp-action="ListRoles">Roles</a></li>
+                    <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Account" asp-action="Register">Registrar</a></li>
+                    <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Mensaje" asp-action="Index">Bandeja</a></li>
+                    <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Mensaje" asp-action="SeleccionarUsuario">Mensajes</a></li>
+                    <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Nomina" asp-action="Seleccionar">Nomina</a></li>
+                    <li class="nav-item"> <a asp-area="" class="nav-link" asp-controller="Account" asp-action="Logout">Cerrar Sesion</a> </li>
+                </ul>
+            </nav>
+        </header>
+    }
+
+    @{
+        var errorMessage = TempData["ErrorMessage"] as string;
+    }
+
+    @{
+        ViewData["Title"] = "Nomina";
+        string estilos = "~/css/General.css";
+    }
+
+    @section Estilos
+        {
+        <link rel="stylesheet" type="text/css" href="@estilos" />
+    }
+
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        .menu {
+            display: flex;
+            background-color: #333; /* Fondo oscuro */
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+        }
+
+            .menu a {
+                display: block;
+                width: 336px;
+                height: 144px;
+                line-height: 144px;
+                background-color: #4a90e2; /* Azul atractivo */
+                color: white;
+                text-decoration: none;
+                font-size: 18px;
+                text-align: center;
+                border-radius: 10px;
+                margin: 10px;
+                cursor: pointer;
+                transition: background-color 0.3s;
+            }
+
+                .menu a:hover {
+                    background-color: #3572b9; /* Cambio de color al pasar el cursor */
+                }
+
+        .selected {
+            background-color: #e35a4a; /* Rojo atractivo para el botón seleccionado */
+        }
+    </style>
+
+    <div class="menu">
+        <a asp-area="" class="nav-link" asp-controller="Nomina" asp-action="Select" class="selected">Nomina</a>
+        <a asp-area="" class="nav-link" asp-controller="Nomina" asp-action="Select1">Bono 14</a>
+        <a asp-area="" class="nav-link" asp-controller="Nomina" asp-action="Select2">Aguinaldo</a>
+        <a asp-area="" class="nav-link" asp-controller="Nomina" asp-action="Select3">Vacaciones</a>
+        <a asp-area="" class="nav-link" asp-controller="Nomina" asp-action="Select4">Indemnizacion</a>
+    </div>

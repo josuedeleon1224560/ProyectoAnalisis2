@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\ProyectoFinal.bundle.scp.css"
     },
     {
+      "Id": "E:\\ProyectoNET\\ProyectoFinal\\ProyectoFinal\\wwwroot\\css\\General.css",
+      "PackagePath": "staticwebassets\\css\\General.css"
+    },
+    {
       "Id": "E:\\ProyectoNET\\ProyectoFinal\\ProyectoFinal\\wwwroot\\css\\estilosGenerales.css",
       "PackagePath": "staticwebassets\\css\\estilosGenerales.css"
     },
@@ -17,6 +21,10 @@
       "PackagePath": "staticwebassets\\css\\style.css"
     },
     {
+      "Id": "E:\\ProyectoNET\\ProyectoFinal\\ProyectoFinal\\wwwroot\\css\\style3.css",
+      "PackagePath": "staticwebassets\\css\\style3.css"
+    },
+    {
       "Id": "E:\\ProyectoNET\\ProyectoFinal\\ProyectoFinal\\wwwroot\\css\\styles2.css",
       "PackagePath": "staticwebassets\\css\\styles2.css"
     },
@@ -25,12 +33,24 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "E:\\ProyectoNET\\ProyectoFinal\\ProyectoFinal\\wwwroot\\images\\admin-imagen-prortada.png",
+      "PackagePath": "staticwebassets\\images\\admin-imagen-prortada.png"
+    },
+    {
       "Id": "E:\\ProyectoNET\\ProyectoFinal\\ProyectoFinal\\wwwroot\\images\\favicon.png",
       "PackagePath": "staticwebassets\\images\\favicon.png"
     },
     {
+      "Id": "E:\\ProyectoNET\\ProyectoFinal\\ProyectoFinal\\wwwroot\\images\\imagen-de-portada.png",
+      "PackagePath": "staticwebassets\\images\\imagen-de-portada.png"
+    },
+    {
       "Id": "E:\\ProyectoNET\\ProyectoFinal\\ProyectoFinal\\wwwroot\\images\\peakpx.jpg",
       "PackagePath": "staticwebassets\\images\\peakpx.jpg"
+    },
+    {
+      "Id": "E:\\ProyectoNET\\ProyectoFinal\\ProyectoFinal\\wwwroot\\images\\profile-picture.jpg",
+      "PackagePath": "staticwebassets\\images\\profile-picture.jpg"
     },
     {
       "Id": "E:\\ProyectoNET\\ProyectoFinal\\ProyectoFinal\\wwwroot\\images\\tapiz.jpg",
@@ -65,16 +85,32 @@
       "PackagePath": "staticwebassets\\js\\CascadaDepartamentos.js"
     },
     {
-      "Id": "E:\\ProyectoNET\\ProyectoFinal\\ProyectoFinal\\wwwroot\\js\\CascadeDepartamentoEditar.js",
-      "PackagePath": "staticwebassets\\js\\CascadeDepartamentoEditar.js"
+      "Id": "E:\\ProyectoNET\\ProyectoFinal\\ProyectoFinal\\wwwroot\\js\\EditarPuesto.js",
+      "PackagePath": "staticwebassets\\js\\EditarPuesto.js"
+    },
+    {
+      "Id": "E:\\ProyectoNET\\ProyectoFinal\\ProyectoFinal\\wwwroot\\js\\JsFinal.js",
+      "PackagePath": "staticwebassets\\js\\JsFinal.js"
     },
     {
       "Id": "E:\\ProyectoNET\\ProyectoFinal\\ProyectoFinal\\wwwroot\\js\\Puesto.js",
       "PackagePath": "staticwebassets\\js\\Puesto.js"
     },
     {
+      "Id": "E:\\ProyectoNET\\ProyectoFinal\\ProyectoFinal\\wwwroot\\js\\Usuarios.js",
+      "PackagePath": "staticwebassets\\js\\Usuarios.js"
+    },
+    {
+      "Id": "E:\\ProyectoNET\\ProyectoFinal\\ProyectoFinal\\wwwroot\\js\\editardepartamento.js",
+      "PackagePath": "staticwebassets\\js\\editardepartamento.js"
+    },
+    {
       "Id": "E:\\ProyectoNET\\ProyectoFinal\\ProyectoFinal\\wwwroot\\js\\index.js",
       "PackagePath": "staticwebassets\\js\\index.js"
+    },
+    {
+      "Id": "E:\\ProyectoNET\\ProyectoFinal\\ProyectoFinal\\wwwroot\\js\\index2.js",
+      "PackagePath": "staticwebassets\\js\\index2.js"
     },
     {
       "Id": "E:\\ProyectoNET\\ProyectoFinal\\ProyectoFinal\\wwwroot\\js\\site.js",
@@ -299,14 +335,6 @@
     {
       "Id": "E:\\ProyectoNET\\ProyectoFinal\\ProyectoFinal\\wwwroot\\lib\\jquery\\dist\\jquery.js",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.js"
-    },
-    {
-      "Id": "E:\\ProyectoNET\\ProyectoFinal\\ProyectoFinal\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
-      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.js"
-    },
-    {
-      "Id": "E:\\ProyectoNET\\ProyectoFinal\\ProyectoFinal\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
-      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
     },
     {
       "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.ProyectoFinal.Microsoft.AspNetCore.StaticWebAssets.props",

@@ -8,6 +8,7 @@ using ProyectoFinal.ViewModels;
 
 namespace ProyectoFinal.Controllers
 {
+    [Authorize]
     public class MensajeController : Controller
     {
         private readonly UserManager<AppUser> _userManager;
@@ -46,7 +47,7 @@ namespace ProyectoFinal.Controllers
 
             return RedirectToAction("Confirmacion");
         }
-
+        [Authorize(Roles = "admin")]
         public IActionResult Confirmacion()
         {
             return View();
@@ -82,7 +83,7 @@ namespace ProyectoFinal.Controllers
             }
             return RedirectToAction("Index");
         }
-
+        [Authorize(Roles = "admin")]
         public IActionResult SeleccionarUsuario()
         {
             var usuariosDisponibles = _context.Users.ToList();
@@ -93,7 +94,7 @@ namespace ProyectoFinal.Controllers
             };
             return View(viewModel);
         }
-
+        [Authorize(Roles ="admin")]
         public IActionResult VerMensajesUsuario(string CUI)
         {
             var usuario = _context.Users.SingleOrDefault(u=>u.CUI == CUI);

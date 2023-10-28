@@ -12,7 +12,7 @@ using ProyectoFinal.ViewModels;
 
 namespace ProyectoFinal.Controllers
 {
-    [Authorize]
+    [Authorize(Roles ="admin")]
     public class UserController : Controller
     {
         private readonly IUserRepository _userRepository;
@@ -56,6 +56,7 @@ namespace ProyectoFinal.Controllers
     .ThenInclude(p => p.Departamento) // Incluye el departamento del puesto
     .SingleOrDefault(u => u.Id == user.Id);
                 //Se crea la variable del modelo vista del Usuario haciendo una creación del objeto del Modelo Vista del usuario
+
                 var userViewModel = new UserViewModel()
                 {
             //Se almacenan todos los datos de los usuarios con sus respectivos campos
@@ -180,18 +181,19 @@ namespace ProyectoFinal.Controllers
             {
                 return View("Error");
             }
-            var direccion = _aplicationDbContext.Users
-.Include(u => u.Direcciones) // Incluye las direcciones
-.ThenInclude(d => d.MunicipioGt) // Incluye los municipios
-.ThenInclude(m => m.DepartamentoGt) // Incluye los departamentos
-.SingleOrDefault(u => u.Id == id);
+                        var direccion = _aplicationDbContext.Users
+            .Include(u => u.Direcciones) // Incluye las direcciones
+            .ThenInclude(d => d.MunicipioGt) // Incluye los municipios
+            .ThenInclude(m => m.DepartamentoGt) // Incluye los departamentos
+            .SingleOrDefault(u => u.Id == user.Id);
+
 
 
 
             var puesto = _aplicationDbContext.Users
                 .Include(u => u.IdPuesto)
                 .ThenInclude(d => d.Departamento)
-                .SingleOrDefault(i => i.Id == id);
+                .SingleOrDefault(i => i.Id == user.Id);
 
             int idMunicipio = (int)direccion.Direcciones.MunicipioGt.Id;
             int departamento = (int)direccion.Direcciones.MunicipioGt.DepartamentoGt.Id;
@@ -210,6 +212,7 @@ namespace ProyectoFinal.Controllers
                 Date = user.Date,
                 Email = user.Email,
                 UserName = user.Email,
+                Genero = user.Genero,
                 UrlAntecedentesPoliciacos = user.AntecedentesPoliciacos,
                 UrlAntecedentesPenales = user.AntecedentesPenales,
                 UrlDiplomas = user.Diplomas,
@@ -224,14 +227,21 @@ namespace ProyectoFinal.Controllers
                 IdDepartamentoPuesto = puesto.IdPuesto.Departamento.Id,
                 DepartamentoPuesto = puesto.IdPuesto.Departamento.Nombre,
                 IdPuesto = puesto.IdPuesto.Id,
-                RolesList = roles.ToList(),
-                DepartamentoItems = _direccionRepository1.GetAllDepartamentoEditar()
+                RolesList = roles.ToList(),                
                 //DireccionName = direccion?.Name,
                 //Municipio = municipio?.Nombre,
                 //IdMunicipio = user.Direcciones.IdMunicipio,
                 //Departamento = departamento?.Nombre,
                 //IdDepartamento = user.Direcciones.MunicipioGt.DepartamentoId
             };
+            userEditViewModel.GeneroList = Enum.GetValues(typeof(Sexo))
+            .Cast<Sexo>()
+            .Select(s => new SelectListItem
+            {
+            Text = s.ToString(),
+            Value = s.ToString()
+            }).ToList();            
+
             //Retorna la vista con los datos actuales del usuario.
             return View(userEditViewModel);
         }
@@ -243,10 +253,51 @@ namespace ProyectoFinal.Controllers
         {
             //Se realiza una creación de una variable de usuario asincronica del repositorio del usuario que hace un llamado al id especifico del id de un usuario seleccionado
             var user = await _userRepository.GetUserById(id);
+
+            userEditViewModel.GeneroList = Enum.GetValues(typeof(Sexo))
+    .Cast<Sexo>()
+    .Select(s => new SelectListItem
+    {
+        Text = s.ToString(),
+        Value = s.ToString()
+    }).ToList();
             //Si el modelo obtenido es correcto a los estandares requeridos ignora la condición, caso contrario devuelve a la vista de editar.
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 ModelState.AddModelError("", "Error al editar el perfil");
+                ModelState.AddModelError("", "Error al editar el perfil");
+
+                // Reinitialize the 'GeneroList' in the userEditViewModel
+
+                var direccion = _aplicationDbContext.Users
+.Include(u => u.Direcciones) // Incluye las direcciones
+.ThenInclude(d => d.MunicipioGt) // Incluye los municipios
+.ThenInclude(m => m.DepartamentoGt) // Incluye los departamentos
+.SingleOrDefault(u => u.Id == user.Id);
+
+
+
+
+                var puesto = _aplicationDbContext.Users
+                    .Include(u => u.IdPuesto)
+                    .ThenInclude(d => d.Departamento)
+                    .SingleOrDefault(i => i.Id == user.Id);
+
+                int idMunicipio = (int)direccion.Direcciones.MunicipioGt.Id;
+                int departamento = (int)direccion.Direcciones.MunicipioGt.DepartamentoGt.Id;
+
+                userEditViewModel.GeneroList = Enum.GetValues(typeof(Sexo))
+                .Cast<Sexo>()
+                .Select(s => new SelectListItem
+                {
+                    Text = s.ToString(),
+                }).ToList();
+
+                userEditViewModel.IdDepartamento = departamento;
+                userEditViewModel.IdMunicipio = idMunicipio;
+                userEditViewModel.IdPuesto = puesto.IdPuesto.Id;
+                userEditViewModel.IdDepartamento = puesto.IdPuesto.Departamento.Id;
+
                 return View("Edit", userEditViewModel);
             }
             //Si el usuario no tiene campos nulos genera cambios
@@ -302,10 +353,10 @@ namespace ProyectoFinal.Controllers
                     .ThenInclude(m => m.DepartamentoGt) // Incluye los departamentos
                     .SingleOrDefault(u => u.Id == id);
 
-                var puesto = _aplicationDbContext.Users
-    .Include(u => u.IdPuesto)
-    .ThenInclude(d => d.Departamento)
-    .SingleOrDefault(i => i.Id == id);
+                    var puesto = _aplicationDbContext.Users
+                    .Include(u => u.IdPuesto)
+                    .ThenInclude(d => d.Departamento)
+                    .SingleOrDefault(i => i.Id == id);
 
 
                 //Se asignan los nuevos valores al usuario seleccionado.
@@ -315,6 +366,7 @@ namespace ProyectoFinal.Controllers
                 user.Telefono = userEditViewModel.Telefono;
                 user.Date = (DateTime)userEditViewModel.Date;
                 user.Email = userEditViewModel.Email;
+                user.Genero = userEditViewModel.Genero;
                 user.Direcciones.MunicipioGt.DepartamentoGt = _aplicationDbContext.Tabla_Departamentos.FirstOrDefault(m => m.Id == userEditViewModel.IdDepartamento);
                 user.Direcciones.MunicipioGt = _aplicationDbContext.Tabla_Municipios.FirstOrDefault(m=>m.Id == userEditViewModel.IdMunicipio);
                 user.IdPuesto = _aplicationDbContext.Puesto.FirstOrDefault(m => m.Id == userEditViewModel.IdPuesto);
@@ -381,6 +433,7 @@ namespace ProyectoFinal.Controllers
             //Si el usuario tiene valor nulo devuelve denuevo la vista de editar usuario.
             else
             {
+
                 return View(userEditViewModel);
             }
         }

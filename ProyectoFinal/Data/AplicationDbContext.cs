@@ -15,5 +15,16 @@ namespace ProyectoFinal.Data
         public DbSet<Departamento> Departamento { get; set; }
         public DbSet<Puesto> Puesto { get; set; }
         public DbSet<Mensaje> Mensajes { get; set; }
+        public DbSet<Ventas> Ventas { get; set; }
+        public DbSet<Producto> Producto { get; set; }
+        public DbSet<Nomina> Nomina { get; set; }
+        public DbSet<VentaProducto> VentaProducto { get; set; }
+        public DbSet<Bono14> Bono14 { get; set; }
+        public DbSet<Aguinaldo> Aguinaldo { get; set; }
+        public DbSet<Vacaciones> Vacaciones { get; set; }
+        public DbSet<CuotaPatronal> CuotaPatronal { get; set; }
+        public DbSet<Asistencia> Asistencias { get; set; }
+        public DbSet<Indemnizacion> Indemnizacion { get; set; }
+
     }
 }

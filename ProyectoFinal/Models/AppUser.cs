@@ -14,6 +14,7 @@ namespace ProyectoFinal.Models
         public string Nombres { get; set; }
         [Required]
         public string Apellidos { get; set; }
+        public string Genero { get; set; }
         public int? Telefono { get; set; }
         [Required]
         public DateTime Date { get; set; }
@@ -29,6 +30,7 @@ namespace ProyectoFinal.Models
         public DireccionGt? Direcciones { get; set; }
 
         public ICollection<Mensaje> Mensajes { get; set; }
+        public ICollection<Asistencia> Asistencias { get; set; }
 
         public string? AntecedentesPenales { get; set; }
         public string? AntecedentesPoliciacos { get; set; }

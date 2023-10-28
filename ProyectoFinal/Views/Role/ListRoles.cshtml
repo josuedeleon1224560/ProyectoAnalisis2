@@ -1,10 +1,24 @@
 ﻿@using System.Collections;
 @using Microsoft.AspNetCore.Identity;
 @model IEnumerable<IdentityRole>
-@{
-    ViewBag.Title= "Todos los roles";
-}
 
+@inject UserManager<AppUser> UserManager
+
+@{
+    var userName = User.Identity.Name;
+    var userId = "";
+    var userCUI = "";
+    if (!string.IsNullOrEmpty(userName))
+    {
+        var user = await UserManager.FindByNameAsync(userName);
+        if (user != null)
+        {
+            userId = user.Id;
+            userCUI = user.CUI;
+        }
+    }
+
+}
 @section Header
     {
     <div class="container">
@@ -22,53 +36,124 @@
                     </svg>
                 </button>
                 <ul class="nav-menu">
-                    <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Home" asp-action="Privacy">Privacy</a></li>
+                    <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Home" asp-action="Privacy">Home</a></li>
                     <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="User" asp-action="Index">Usuarios</a></li>
                     <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Role" asp-action="ListRoles">Roles</a></li>
-                    <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Account" asp-action="Register">Registrar Usuarios</a></li>
+                    <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Account" asp-action="Register">Registrar</a></li>
+                    <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Mensaje" asp-action="Index">Bandeja</a></li>
+                    <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Mensaje" asp-action="SeleccionarUsuario">Mensajes</a></li>
+                    <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Nomina" asp-action="Seleccionar">Nomina</a></li>
                     <li class="nav-item"> <a asp-area="" class="nav-link" asp-controller="Account" asp-action="Logout">Cerrar Sesion</a> </li>
                 </ul>
             </nav>
         </header>
     }
+@{
+    ViewData["Title"] = "Lista Roles";
+    string estilos = "~/css/General.css";
+}
+
+@section Estilos
+    {
+    <link rel="stylesheet" type="text/css" href="@estilos" />
+}
+
+<style>
+    .sub-body {
+        background-color: #f8f8f8;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin: 20px;
+    }
+
+    h1 {
+        font-size: 24px;
+        color: #333;
+    }
+
+    .add-button, .create-button {
+        background-color: #007bff;
+        color: #fff;
+        padding: 10px 20px;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: bold;
+    }
+
+        .add-button:hover, .create-button:hover {
+            background-color: #0056b3;
+        }
+
+    .role-item {
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin: 10px 0;
+        background-color: #fff;
+    }
+
+    .role-info {
+        float: left;
+        width: 70%;
+    }
+
+    .role-actions {
+        float: right;
+        width: 30%;
+        text-align: right;
+    }
+
+    .edit-link, .delete-link {
+        margin-right: 10px;
+        text-decoration: none;
+        color: #007bff;
+    }
+
+        .edit-link:hover, .delete-link:hover {
+            text-decoration: underline;
+            color: #0056b3;
+        }
+
+    .no-roles {
+        background-color: #fff;
+        padding: 20px;
+        border: 1px solid #ccc;
+        text-align: center;
+    }
+
+        .no-roles h5 {
+            font-weight: bold;
+        }
+
+</style>
+
 
     <div class="sub-body">
-<h1>Lista de Roles</h1>
+        <h1>Lista de Roles</h1>
 
-@if(Model.Any())
-{
-            <a asp-action="CreateRole" asp-controller="Role">Añadir nuevo Role</a>
-            foreach(var role in Model)
-            {
-            <div>
-                <div>
-                    Role Id : @role.Id
+    @if (Model.Any())
+    {
+            <a asp-action="CreateRole" asp-controller="Role" class="add-button">Añadir nuevo Role</a>
+        @foreach (var role in Model)
+        {
+                <div class="role-item">
+                    <div class="role-info">
+                        <div>Role Id: @role.Id</div>
+                        <h5>@role.Name</h5>
+                    </div>
+                    <div class="role-actions">
+                        <a asp-action="EditRole" asp-controller="Role" asp-route-id="@role.Id" class="edit-link">Editar</a>
+                        <a class="delete-link">Eliminar</a>
+                    </div>
                 </div>
+        }
+    }
+    else
+    {
+            <div class="no-roles">
+                <div>Ningún Rol creado</div>
+                <h5>Crear Roles</h5>
+                <a asp-controller="Role" asp-action="CreateRole" class="create-button">Crear Roles</a>
             </div>
-
-            <div>
-                <h5>@role.Name</h5>
-                <div>
-                    <a asp-action="EditRole" asp-controller="Role" asp-route-id="@role.Id">Editar</a>
-                    <a>Eliminar</a>
-                </div>
-            </div>
-            }
-            }
-            else
-            {
-            <div>
-                <div>
-                    Ningún Rol creado
-                </div>
-            </div>
-            <div>
-                <h5>
-                    Crear Roles
-                </h5>
-                <a asp-controller="Role" asp-action="CreateRole">Crear Roles</a>
-            </div>
-            }
-
-            </div>
-        </div>
+    }
+    </div>

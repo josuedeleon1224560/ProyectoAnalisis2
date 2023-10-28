@@ -28,6 +28,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[E:/ProyectoNET/ProyectoFinal/ProyectoFinal/Views/Asistencia/RegistrarHora.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXNpc3RlbmNpYVxSZWdpc3RyYXJIb3JhLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [E:/ProyectoNET/ProyectoFinal/ProyectoFinal/Views/Home/CascadeList.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDYXNjYWRlTGlzdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -60,6 +64,26 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVuc2FqZVxWZXJNZW5zYWplc1VzdWFyaW8uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[E:/ProyectoNET/ProyectoFinal/ProyectoFinal/Views/Nomina/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTm9taW5hXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/ProyectoNET/ProyectoFinal/ProyectoFinal/Views/Nomina/Create2.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTm9taW5hXENyZWF0ZTIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/ProyectoNET/ProyectoFinal/ProyectoFinal/Views/Nomina/Usuarios.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTm9taW5hXFVzdWFyaW9zLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/ProyectoNET/ProyectoFinal/ProyectoFinal/Views/Nomina/Vacaciones.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTm9taW5hXFZhY2FjaW9uZXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/ProyectoNET/ProyectoFinal/ProyectoFinal/Views/Nomina/VerNominas.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTm9taW5hXFZlck5vbWluYXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [E:/ProyectoNET/ProyectoFinal/ProyectoFinal/Views/Role/CreateRole.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm9sZVxDcmVhdGVSb2xlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -88,6 +112,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[E:/ProyectoNET/ProyectoFinal/ProyectoFinal/Views/Tienda/CrearVenta.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGllbmRhXENyZWFyVmVudGEuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/ProyectoNET/ProyectoFinal/ProyectoFinal/Views/Tienda/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGllbmRhXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [E:/ProyectoNET/ProyectoFinal/ProyectoFinal/Views/User/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -106,6 +138,22 @@ build_metadata.AdditionalFiles.CssScope =
 
 [E:/ProyectoNET/ProyectoFinal/ProyectoFinal/Views/User/Mensajeria.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxNZW5zYWplcmlhLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/ProyectoNET/ProyectoFinal/ProyectoFinal/Views/Usuario/Crear.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb1xDcmVhci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/ProyectoNET/ProyectoFinal/ProyectoFinal/Views/Usuario/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb1xEZXRhaWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/ProyectoNET/ProyectoFinal/ProyectoFinal/Views/Usuario/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/ProyectoNET/ProyectoFinal/ProyectoFinal/Views/Usuario/Mensajeria.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb1xNZW5zYWplcmlhLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [E:/ProyectoNET/ProyectoFinal/ProyectoFinal/Views/_ViewImports.cshtml]

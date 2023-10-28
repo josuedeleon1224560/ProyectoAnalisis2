@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "a+yjEC8xY0nXlWCB8eLr8M1tLCAR1LmrXQbDy3Qjvl0=",
+  "Hash": "fpysGX/jzJzlgJCUX8Yh6qVzhA1oDGMKRKi2XNKz0J8=",
   "Source": "ProyectoFinal",
   "BasePath": "_content/ProyectoFinal",
   "Mode": "Default",
@@ -1088,6 +1088,23 @@
       "OriginalItemSpec": "wwwroot\\css\\estilosGenerales.css"
     },
     {
+      "Identity": "E:\\ProyectoNET\\ProyectoFinal\\ProyectoFinal\\wwwroot\\css\\General.css",
+      "SourceId": "ProyectoFinal",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\ProyectoNET\\ProyectoFinal\\ProyectoFinal\\wwwroot\\",
+      "BasePath": "_content/ProyectoFinal",
+      "RelativePath": "css/General.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\General.css"
+    },
+    {
       "Identity": "E:\\ProyectoNET\\ProyectoFinal\\ProyectoFinal\\wwwroot\\css\\site.css",
       "SourceId": "ProyectoFinal",
       "SourceType": "Discovered",
@@ -1122,6 +1139,23 @@
       "OriginalItemSpec": "wwwroot\\css\\style.css"
     },
     {
+      "Identity": "E:\\ProyectoNET\\ProyectoFinal\\ProyectoFinal\\wwwroot\\css\\style3.css",
+      "SourceId": "ProyectoFinal",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\ProyectoNET\\ProyectoFinal\\ProyectoFinal\\wwwroot\\",
+      "BasePath": "_content/ProyectoFinal",
+      "RelativePath": "css/style3.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\style3.css"
+    },
+    {
       "Identity": "E:\\ProyectoNET\\ProyectoFinal\\ProyectoFinal\\wwwroot\\css\\styles2.css",
       "SourceId": "ProyectoFinal",
       "SourceType": "Discovered",
@@ -1154,6 +1188,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "E:\\ProyectoNET\\ProyectoFinal\\ProyectoFinal\\wwwroot\\images\\admin-imagen-prortada.png",
+      "SourceId": "ProyectoFinal",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\ProyectoNET\\ProyectoFinal\\ProyectoFinal\\wwwroot\\",
+      "BasePath": "_content/ProyectoFinal",
+      "RelativePath": "images/admin-imagen-prortada.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\admin-imagen-prortada.png"
     },
     {
       "Identity": "E:\\ProyectoNET\\ProyectoFinal\\ProyectoFinal\\wwwroot\\images\\favicon.png",
@@ -1411,6 +1462,40 @@
       "OriginalItemSpec": "wwwroot\\js\\index.js"
     },
     {
+      "Identity": "E:\\ProyectoNET\\ProyectoFinal\\ProyectoFinal\\wwwroot\\js\\index2.js",
+      "SourceId": "ProyectoFinal",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\ProyectoNET\\ProyectoFinal\\ProyectoFinal\\wwwroot\\",
+      "BasePath": "_content/ProyectoFinal",
+      "RelativePath": "js/index2.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\index2.js"
+    },
+    {
+      "Identity": "E:\\ProyectoNET\\ProyectoFinal\\ProyectoFinal\\wwwroot\\js\\JsFinal.js",
+      "SourceId": "ProyectoFinal",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\ProyectoNET\\ProyectoFinal\\ProyectoFinal\\wwwroot\\",
+      "BasePath": "_content/ProyectoFinal",
+      "RelativePath": "js/JsFinal.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\JsFinal.js"
+    },
+    {
       "Identity": "E:\\ProyectoNET\\ProyectoFinal\\ProyectoFinal\\wwwroot\\js\\Puesto.js",
       "SourceId": "ProyectoFinal",
       "SourceType": "Discovered",
@@ -1443,6 +1528,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\site.js"
+    },
+    {
+      "Identity": "E:\\ProyectoNET\\ProyectoFinal\\ProyectoFinal\\wwwroot\\js\\Usuarios.js",
+      "SourceId": "ProyectoFinal",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\ProyectoNET\\ProyectoFinal\\ProyectoFinal\\wwwroot\\",
+      "BasePath": "_content/ProyectoFinal",
+      "RelativePath": "js/Usuarios.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\Usuarios.js"
     },
     {
       "Identity": "E:\\ProyectoNET\\ProyectoFinal\\ProyectoFinal\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",

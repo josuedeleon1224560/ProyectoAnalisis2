@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using ProyectoFinal.Data;
 using ProyectoFinal.Models;
 using System.ComponentModel.DataAnnotations;
+using static ProyectoFinal.Controllers.AccountController;
+
 namespace ProyectoFinal.ViewModels
 {
     public class RegisterViewModel
@@ -33,8 +35,10 @@ namespace ProyectoFinal.ViewModels
             [Display(Name = "Email address")]
             [Required(ErrorMessage = "Email address is required")]
             public string EmailAddress { get; set; }
-            [Required(ErrorMessage ="Escriba una contraseña con una mayuscula y un digito")]
-            [DataType(DataType.Password)]
+        [Display(Name = "Contraseña")]
+        [Required(ErrorMessage = "La contraseña es obligatoria.")]
+        [StrongPassword(ErrorMessage = "La contraseña no cumple con los criterios requeridos.")]
+        [DataType(DataType.Password)]
             public string Password { get; set; }
             //[Display(Name = "Confirm password")]
             //[Required(ErrorMessage = "Confirm password is required")]

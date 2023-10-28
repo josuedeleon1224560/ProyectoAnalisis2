@@ -1,9 +1,35 @@
-﻿@using ProyectoFinal.ViewModels;
+﻿@using Microsoft.AspNetCore.Identity;
+@using ProyectoFinal.ViewModels;
 @model CreateRoleViewModel
 
+@inject UserManager<AppUser> UserManager
+
 @{
-    ViewBag.Title = "Create Rol";
+    var userName = User.Identity.Name;
+    var userId = "";
+    var userCUI = "";
+    if (!string.IsNullOrEmpty(userName))
+    {
+        var user = await UserManager.FindByNameAsync(userName);
+        if (user != null)
+        {
+            userId = user.Id;
+            userCUI = user.CUI;
+        }
+    }
+
 }
+@{
+    ViewData["Title"] = "Crear Role";
+    string estilos = "~/css/General.css";
+}
+
+
+@section Estilos
+    {
+    <link rel="stylesheet" type="text/css" href="@estilos" />
+}
+
 @section Header
     {
     <div class="container">
@@ -21,32 +47,89 @@
                     </svg>
                 </button>
                 <ul class="nav-menu">
-                    <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Home" asp-action="Privacy">Privacy</a></li>
+                    <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Home" asp-action="Privacy">Home</a></li>
                     <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="User" asp-action="Index">Usuarios</a></li>
                     <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Role" asp-action="ListRoles">Roles</a></li>
-                    <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Account" asp-action="Register">Registrar Usuarios</a></li>
+                    <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Account" asp-action="Register">Registrar</a></li>
+                    <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Mensaje" asp-action="Index">Bandeja</a></li>
+                    <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Mensaje" asp-action="SeleccionarUsuario">Mensajes</a></li>
+                    <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Nomina" asp-action="Seleccionar">Nomina</a></li>
                     <li class="nav-item"> <a asp-area="" class="nav-link" asp-controller="Account" asp-action="Logout">Cerrar Sesion</a> </li>
                 </ul>
             </nav>
         </header>
     }
+    <style>
+    .container {
+        background-color: #f8f8f8;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin: 20px;
+    }
 
-<div class="container">
-    <div class="sub-body">
-<h1>Create Role</h1>
+    h1 {
+        font-size: 24px;
+        color: #333;
+    }
 
-<div>
-    <div>
-        <form method="POST">
-            <div asp-validation-summary="All"></div>
-            <div>
-                <label asp-for="Nombre"></label>
-                <input asp-for="Nombre" />
-                <span asp-validation-for="Nombre"></span>
+    .form-container {
+        background-color: #fff;
+        border: 1px solid #ccc;
+        padding: 20px;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    label {
+        font-weight: bold;
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    .text-danger {
+        color: #e74c3c; /* Color rojo para mensajes de validación */
+    }
+
+    .create-button {
+        background-color: #007bff;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+        .create-button:hover {
+            background-color: #0056b3;
+        }
+
+</style>
+
+
+    <div class="container">
+        <div class="sub-body">
+            <h1>Create Role</h1>
+            <div class="form-container">
+                <form method="POST">
+                    <div asp-validation-summary="All"></div>
+                    <div class="form-group">
+                        <label asp-for="Nombre">Nombre del Rol</label>
+                        <input asp-for="Nombre" class="form-control" />
+                        <span asp-validation-for="Nombre" class="text-danger"></span>
+                    </div>
+                    <button type="submit" class="create-button">Create</button>
+                </form>
             </div>
-            <button type="submit">Create</button>
-        </form>
-    </div>
-</div>
         </div>
     </div>
