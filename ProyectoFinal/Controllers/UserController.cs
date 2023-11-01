@@ -265,7 +265,6 @@ namespace ProyectoFinal.Controllers
             if (!ModelState.IsValid)
             {
                 ModelState.AddModelError("", "Error al editar el perfil");
-                ModelState.AddModelError("", "Error al editar el perfil");
 
                 // Reinitialize the 'GeneroList' in the userEditViewModel
 
@@ -291,13 +290,22 @@ namespace ProyectoFinal.Controllers
                 .Select(s => new SelectListItem
                 {
                     Text = s.ToString(),
+                    Value = s.ToString()
                 }).ToList();
 
                 userEditViewModel.IdDepartamento = departamento;
+                userEditViewModel.Departamento = direccion.Direcciones.MunicipioGt.DepartamentoGt.Nombre;
+                userEditViewModel.Municipio = direccion.Direcciones.MunicipioGt.Nombre;
                 userEditViewModel.IdMunicipio = idMunicipio;
                 userEditViewModel.IdPuesto = puesto.IdPuesto.Id;
-                userEditViewModel.IdDepartamento = puesto.IdPuesto.Departamento.Id;
-
+                userEditViewModel.Puesto = puesto.IdPuesto.Nombre;
+                userEditViewModel.IdDepartamentoPuesto = puesto.IdPuesto.Departamento.Id;
+                userEditViewModel.DepartamentoPuesto = puesto.IdPuesto.Departamento.Nombre;
+                userEditViewModel.UrlAntecedentesPenales = user.AntecedentesPenales;
+                userEditViewModel.UrlAntecedentesPoliciacos = user.AntecedentesPoliciacos;
+                userEditViewModel.UrlDiplomas = user.Diplomas;
+                userEditViewModel.UrlFotografia = user.Fotografia;
+                userEditViewModel.UrlTitulos = user.Titulos;
                 return View("Edit", userEditViewModel);
             }
             //Si el usuario no tiene campos nulos genera cambios

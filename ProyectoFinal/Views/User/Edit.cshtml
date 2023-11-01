@@ -53,6 +53,7 @@
                     <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Mensaje" asp-action="Index">Bandeja</a></li>
                     <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Mensaje" asp-action="SeleccionarUsuario">Mensajes</a></li>
                     <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Nomina" asp-action="Seleccionar">Nomina</a></li>
+                    <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Nomina" asp-action="Usuarios">Detalles</a></li>
                     <li class="nav-item"> <a asp-area="" class="nav-link" asp-controller="Account" asp-action="Logout">Cerrar Sesion</a> </li>
                 </ul>
             </nav>
@@ -72,7 +73,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="body-personal-data">
                 <div class="title">
-                    <h2>Registro de Usuarios</h2>
+                    <h2>Edición de Usuarios</h2>
                 </div>
                 <div class="sub-body-registro">
                     <div class="min-cont">
@@ -233,7 +234,8 @@
                 </div>
                 <div>
                 <div class="button-section">
-    <button type="submit">Submit</button>
+                <input type="submit" class="Rbutton" value="Editar" />
+                <input type="reset"  class="vbutton" value="Vaciar Formulario" />
                 </div>
 </form>
 

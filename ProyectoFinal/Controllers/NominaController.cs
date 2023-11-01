@@ -1271,16 +1271,15 @@ namespace ProyectoFinal.Controllers
 
         [HttpPost]
         public async Task<IActionResult> Nomina(CreateNominaViewModel nomina)
-        {
-
+        {            
             if (!ModelState.IsValid)
             {
                 ModelState.AddModelError("", "Error");
                 TempData["ErrorMessage"] = "Hubo un error al procesar la solicitud.";
                 return RedirectToAction("Select", "Nomina");
             }
-            var cuotaPatro = new CreateNominaCuotaPatronalViewModel();
-            var Nomina = new Nomina
+            
+            var nominas = new Nomina
             {
                 Nombres = nomina.Nombres,
                 AppUserId = nomina.AppUserId,
@@ -1315,15 +1314,15 @@ namespace ProyectoFinal.Controllers
 
             };
 
-            _context.Nomina.Add(Nomina);
-            var result = await _context.SaveChangesAsync();
+            _context.Nomina.Add(nominas);
+           await _context.SaveChangesAsync();
 
-            return RedirectToAction("Login", "Account");
+            return RedirectToAction("Confirmacion", "Nomina");
 
         }
 
         [HttpPost]
-        public IActionResult Bono14(CreateNominaBono14ViewModel nomina)
+        public async Task<IActionResult> Bono14Async(CreateNominaBono14ViewModel nomina)
         {
             if (!ModelState.IsValid)
             {
@@ -1345,13 +1344,12 @@ namespace ProyectoFinal.Controllers
             };
 
             _context.Bono14.Add(PagarBono14);
-            var result = _context.SaveChangesAsync();
-
-            return RedirectToAction("Login", "Account");
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Confirmacion", "Nomina");
         }
 
         [HttpPost]
-        public IActionResult Indemnizacion(CreateNominaViewModel nomina)
+        public async Task<IActionResult> Indemnizacion (CreateNominaIndemnizacionViewModel nomina)
         {
             if (!ModelState.IsValid)
             {
@@ -1359,19 +1357,34 @@ namespace ProyectoFinal.Controllers
                 TempData["ErrorMessage"] = "Hubo un error al procesar la solicitud.";
                 return RedirectToAction("Select4", "Nomina");
             }
-            return RedirectToAction("Login", "Account");
+            var despido = new Indemnizacion
+            {
+                PromedioSalarios = nomina.PromedioSalario,
+                Comisiones = nomina.Comisiones,
+                HorasExtras = nomina.HorasExtras,
+                SubTotal = nomina.SubTotal,
+                Promedio = nomina.Promedio,
+                Total = nomina.SubTotal,
+                CUI = nomina.CUI,
+                Fecha = DateTime.Now
+            };
+            _context.Indemnizacion.Add(despido);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Confirmacion", "Nomina");
+
+
         }
 
         [HttpPost]
-        public IActionResult Aguinaldo(CreateNominaAguinaldoViewModel aguinaldo)
+        public async Task<IActionResult> Aguinaldo(CreateNominaAguinaldoViewModel aguinaldo)
         {
             if (!ModelState.IsValid)
             {
                 ModelState.AddModelError("", "Error");
                 TempData["ErrorMessage"] = "Hubo un error al procesar la solicitud.";
                 return RedirectToAction("Select2", "Nomina");
-            }           
-            var PagarAguinaldo = new Aguinaldo
+            }
+            var AguinaldUsuario = new Aguinaldo
             {
                 DiasLaborados = aguinaldo.DiasLaborados,
                 PromedioSalario = aguinaldo.PromedioSalario,
@@ -1379,26 +1392,17 @@ namespace ProyectoFinal.Controllers
                 CUI = aguinaldo.CUI,
                 Fecha = DateTime.Now
             };
-
-            _context.Aguinaldo.Add(PagarAguinaldo);
-            var result = _context.SaveChangesAsync();
-
-            return RedirectToAction("Login", "Account");
+            _context.Aguinaldo.Add(AguinaldUsuario);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Confirmacion", "Nomina");
         }
 
 
         [HttpPost]
-        public IActionResult Vacaciones(CreateNominaVacacionesViewModel vacaciones)
+        public async Task<IActionResult> Vacaciones(CreateNominaVacacionesViewModel vacaciones)
         {
-            var nomina = new CreateNominaViewModel();
             if (!ModelState.IsValid)
-            {
-                var otroSueldo = vacaciones.Sueldos;
-                var vacasueldos = vacaciones.Sueldos;
-                var vacacomi = vacaciones.Comisiones;
-                var vacahoras = vacaciones.HorasExtras;
-                var vacaresult = vacaciones.Resultado;
-
+            {                
                 ModelState.AddModelError("", "Error");
                 TempData["ErrorMessage"] = "Hubo un error al procesar la solicitud.";
                 return RedirectToAction("Select3", "Nomina");
@@ -1415,9 +1419,9 @@ namespace ProyectoFinal.Controllers
             };
 
             _context.Vacaciones.Add(pagarVaca);
-            var result = _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
 
-            return RedirectToAction("Login", "Account");
+            return RedirectToAction("Confirmacion", "Nomina");
         } 
 
         public async Task<IActionResult> Usuarios()
@@ -1470,33 +1474,131 @@ namespace ProyectoFinal.Controllers
             var cuotaPatronal = _context.Nomina
                 .Include(u => u.CuotaPAtronal)
                 .Where(i=>i.CUI == user.CUI)
-                .FirstOrDefault(u => u.CUI == user.CUI);
-
-            if (user == null || cuotaPatronal == null)
+                .ToList();
+            if (cuotaPatronal.Count == 0)
             {
                 return RedirectToAction("Usuarios", "Nomina");
             }
-
-            var DatosNominaViewModel = new DatosNominasVerViewModel()
+            var DatosNominaViewModelList = cuotaPatronal
+                .Select(cuotaPatronal => new DatosNominasVerViewModel()
+                {
+                    CUI = cuotaPatronal.CUI,
+                    Nombres = cuotaPatronal.Nombres,
+                    HorasLaboradas = cuotaPatronal.HorasLaboradas,
+                    Salario = cuotaPatronal.Salario,
+                    HorasExtras = cuotaPatronal.HorasExtras,
+                    Fecha = cuotaPatronal.FechaNomina,
+                    ISR = cuotaPatronal.ISR,
+                    Anticipo = cuotaPatronal.Anticipo,
+                    Prestamo = cuotaPatronal.Prestamo,
+                    TotalDescuentos = cuotaPatronal.TotalDescuentos,
+                    TotalLiquido = cuotaPatronal.TotalLiquido,
+                    SueldoPatronal = cuotaPatronal.CuotaPAtronal.Sueldo,
+                    IGSSPatronal = cuotaPatronal.CuotaPAtronal.IGSS,
+                    IRTRAPatronal = cuotaPatronal.CuotaPAtronal.IRTRA
+                }).ToList();
+            return View(DatosNominaViewModelList);
+        }
+        public async Task<IActionResult> VerBono14(string id)
+        {
+            var user = await _userRepository.GetUserById(id);
+            var bono14 = _context.Bono14
+                .Where(i => i.CUI == user.CUI)
+                .ToList();
+            if (bono14.Count == 0)
             {
-                CUI = cuotaPatronal.CUI,
-                Nombres = cuotaPatronal.Nombres,
-                HorasLaboradas = cuotaPatronal.HorasLaboradas,
-                Salario = cuotaPatronal.Salario,
-                HorasExtras = cuotaPatronal.HorasExtras,
-                Fecha = cuotaPatronal.FechaNomina,
-                ISR = cuotaPatronal.ISR,
-                Anticipo = cuotaPatronal.Anticipo,
-                Prestamo = cuotaPatronal.Prestamo,
-                TotalDescuentos = cuotaPatronal.TotalDescuentos,
-                TotalLiquido = cuotaPatronal.TotalLiquido,
-                SueldoPatronal = cuotaPatronal.CuotaPAtronal.Sueldo,
-                IGSSPatronal = cuotaPatronal.CuotaPAtronal.IGSS,
-                IRTRAPatronal = cuotaPatronal.CuotaPAtronal.IRTRA
-            };
+                return RedirectToAction("Usuarios", "Nomina");
+            }
+            var DatosNominaViewModelList = bono14
+                .Select(bono14 => new VerBono14ViewModel()
+                {
+                    CUI = bono14.CUI,
+                    TotalComisiones = bono14.TotalComisiones,
+                    TotalSalarios = bono14.TotalSalarios,
+                    Bono14Total = bono14.Bono14Total,
+                    DiasLaborados = bono14.DiasLaborados,
+                    PromedioComisiones = bono14.PromedioComisiones,
+                    PromedioSalario = bono14.PromedioSalario,
+                    SalarioAdicionalComisiones = bono14.SalarioAdicionalComisiones,
+                    Fecha = bono14.Fecha,
+                    Id = bono14.Id
+                }).ToList();
+            return View(DatosNominaViewModelList);
+        }
+        public async Task<IActionResult> VerVacaciones(string id)
+        {
+            var user = await _userRepository.GetUserById(id);
+            var vacaciones = _context.Vacaciones
+                .Where(i => i.CUI == user.CUI)
+                .ToList();
+            if (vacaciones.Count == 0)
+            {
+                return RedirectToAction("Usuarios", "Nomina");
+            }
+            var DatosNominaViewModelList = vacaciones
+                .Select(vacaciones => new VerVacacionesViewModel()
+                {
+                    CUI = vacaciones.CUI,
+                    Id= vacaciones.Id,
+                    Sueldos = vacaciones.Sueldos,
+                    Comisiones = vacaciones.Comisiones,
+                    HorasExtras = vacaciones.HorasExtras,
+                    Resultado = vacaciones.Resultado,
+                    Fecha = vacaciones.Fecha
+                }).ToList();
+            return View(DatosNominaViewModelList);
+        }
+        public async Task<IActionResult> VerAguinaldo(string id)
+        {
+            var user = await _userRepository.GetUserById(id);
+            var aguinaldo = _context.Aguinaldo
+                .Where(i => i.CUI == user.CUI)
+                .ToList();
+            if (aguinaldo.Count == 0)
+            {
+                return RedirectToAction("Usuarios", "Nomina");
+            }
+            var DatosNominaViewModelList = aguinaldo
+                .Select(aguinaldo => new VerAguinaldoViewModel()
+                {
+                CUI = aguinaldo.CUI,
+                Id = aguinaldo.Id,
+                DiasLaborados = aguinaldo.DiasLaborados,
+                PromedioSalario = aguinaldo.PromedioSalario,
+                TotalAguinaldo = aguinaldo.PromedioSalario,
+                Fecha = aguinaldo.Fecha                
+                }).ToList();
+            return View(DatosNominaViewModelList);
+        }
+        public async Task<IActionResult> VerIndemnizacion(string id)
+        {
+            var user = await _userRepository.GetUserById(id);
+            var inde = _context.Indemnizacion
+                .Where(i => i.CUI == user.CUI)
+                .ToList();
+            if (inde.Count == 0)
+            {
+                return RedirectToAction("Usuarios", "Nomina");
+            }
+            var DatosNominaViewModelList = inde
+                .Select(inde => new VerIndemnizacionViewModel()
+                {
+                    Id = inde.Id,
+                    Promedio = inde.Promedio,
+                    PromedioSalarios = inde.PromedioSalarios,
+                    Comisiones = inde.Comisiones,
+                    HorasExtras = inde.HorasExtras,
+                    SubTotal = inde.SubTotal,
+                    Total = inde.Total,
+                    CUI = inde.CUI,
+                    Fecha = inde.Fecha
+                }).ToList();
+            return View(DatosNominaViewModelList);
+        }
 
-            return View(DatosNominaViewModel);
-
+        public IActionResult Confirmacion()
+        {
+            return View();
         }
     }
 }

@@ -205,7 +205,7 @@ function calcularNomina() {
     var valorLabel28 = document.getElementById("hours-extras").textContent;
     var valorLabel29 = document.getElementById("total-vacations-money").textContent;
 
-
+ 
     document.getElementById("HorasExtras").value = valorLabel;
     document.getElementById("PrecioHoraExtra").value = valorLabel1;
     document.getElementById("Ventas").value = valorLabel2;

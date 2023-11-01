@@ -25,6 +25,7 @@
                     <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Mensaje" asp-action="Index">Bandeja</a></li>
                     <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Mensaje" asp-action="SeleccionarUsuario">Mensajes</a></li>
                     <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Nomina" asp-action="Seleccionar">Nomina</a></li>
+                    <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Nomina" asp-action="Usuarios">Detalles</a></li>
                     <li class="nav-item"> <a asp-area="" class="nav-link" asp-controller="Account" asp-action="Logout">Cerrar Sesion</a> </li>
                 </ul>
             </nav>
@@ -55,15 +56,53 @@
     {
     <link rel="stylesheet" type="text/css" href="@estilos" />
 }
+    <style>
+        /* Estilo para el fondo de la página */
+        body {
+            background-color: #f0f0f0; /* Color de fondo gris claro */
+            font-family: Arial, sans-serif; /* Tipo de fuente */
+        }
+
+        /* Estilo para el contenedor principal */
+        .central {
+            background-color: #ffffff; /* Color de fondo blanco */
+            border: 1px solid #c0c0c0; /* Borde del contenedor */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra */
+            margin: 50px auto; /* Margen para centrar en la página */
+            padding: 20px; /* Espaciado interno */
+            max-width: 400px; /* Ancho máximo del contenedor */
+            border-radius: 5px; /* Bordes redondeados */
+        }
+
+        /* Estilo para el encabezado */
+        .sub-body h2 {
+            color: #007f00; /* Color de texto verde */
+        }
+
+        /* Estilo para el mensaje de éxito */
+        .sub-body p {
+            color: #333; /* Color de texto gris oscuro */
+        }
+
+        /* Estilo para el botón "Aceptar" */
+        .btn-success {
+            background-color: #007f00; /* Color de fondo verde */
+            color: #fff; /* Color de texto blanco */
+            padding: 10px 20px; /* Espaciado interno */
+            text-decoration: none; /* Eliminar subrayado de enlace */
+            border-radius: 5px; /* Bordes redondeados */
+        }
+    </style>
 
 
-<div class="container">
-    <div class="sub-body">
-<div class="text-center">
-    <h2>Mensaje Enviado con Éxito</h2>
-    <p>Gracias por enviar tu mensaje. El administrador lo revisará pronto.</p>
+    <div class="central">
+        <div class="sub-body">
+            <div class="text-center">
+                <h2>Mensaje Enviado con Éxito</h2>
+                <p>Gracias por enviar tu mensaje. El administrador lo revisará pronto.</p>
 
-    <a asp-controller="Home" asp-action="Index" class="btn btn-success">Aceptar</a>
-</div>
-</div>
-</div>
+                
+            </div>
+            <a asp-controller="Home" asp-action="Index" class="btn btn-success">Aceptar</a>
+        </div>
+    </div>

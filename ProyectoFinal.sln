@@ -8,16 +8,18 @@ EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		PRUEBAMEJORADA|Any CPU = PRUEBAMEJORADA|Any CPU
 		pruebas|Any CPU = pruebas|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{22E8EC53-2DAD-4F12-9AEA-8F9E6DD88967}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{22E8EC53-2DAD-4F12-9AEA-8F9E6DD88967}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{22E8EC53-2DAD-4F12-9AEA-8F9E6DD88967}.pruebas|Any CPU.ActiveCfg = pruebas|Any CPU
-		{22E8EC53-2DAD-4F12-9AEA-8F9E6DD88967}.pruebas|Any CPU.Build.0 = pruebas|Any CPU
-		{22E8EC53-2DAD-4F12-9AEA-8F9E6DD88967}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{22E8EC53-2DAD-4F12-9AEA-8F9E6DD88967}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22E8EC53-2DAD-4F12-9AEA-8F9E6DD88967}.PRUEBAMEJORADA|Any CPU.ActiveCfg = PRUEBAMEJORADA|Any CPU
+		{22E8EC53-2DAD-4F12-9AEA-8F9E6DD88967}.PRUEBAMEJORADA|Any CPU.Build.0 = PRUEBAMEJORADA|Any CPU
+		{22E8EC53-2DAD-4F12-9AEA-8F9E6DD88967}.pruebas|Any CPU.ActiveCfg = Release|Any CPU
+		{22E8EC53-2DAD-4F12-9AEA-8F9E6DD88967}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{22E8EC53-2DAD-4F12-9AEA-8F9E6DD88967}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

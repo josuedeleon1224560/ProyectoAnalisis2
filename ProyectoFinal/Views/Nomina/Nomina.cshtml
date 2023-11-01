@@ -45,12 +45,12 @@
                     <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Mensaje" asp-action="Index">Bandeja</a></li>
                     <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Mensaje" asp-action="SeleccionarUsuario">Mensajes</a></li>
                     <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Nomina" asp-action="Seleccionar">Nomina</a></li>
+                    <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Nomina" asp-action="Usuarios">Detalles</a></li>
                     <li class="nav-item"> <a asp-area="" class="nav-link" asp-controller="Account" asp-action="Logout">Cerrar Sesion</a> </li>
                 </ul>
             </nav>
         </header>
     }
-
 @{
     var errorMessage = TempData["ErrorMessage"] as string;
 }
@@ -221,12 +221,12 @@
                         <tbody>
                             <tr>
                                 <td><label id="salary-employer-table"></label></td>
-                                <input hidden asp-for="CuotaPatronal.Sueldo" type="text" name="CuotaPatronal.Sueldo" id="CuotaPatronalSueldo" />
+                                    <input hidden asp-for="CuotaPatronal.Sueldo" type="text" name="CuotaPatronal.Sueldo" id="CuotaPatronalSueldo" />
                                 <td><label id="price-for-hour"></label></td>
                                 <td><label id="iggs-employer-share"></label></td>
-                                <input hidden asp-for="CuotaPatronal.IGSS" type="text" name="CuotaPatronal.IGSS" id="CuotaPatronalIGSS" />
+                                    <input hidden asp-for="CuotaPatronal.IGSS" type="text" name="CuotaPatronal.IGSS" id="CuotaPatronalIGSS" />
                                 <td><label id="irtra-employer-share"></label></td>
-                                <input hidden asp-for="CuotaPatronal.IRTRA" type="text" name="CuotaPatronal.IRTRA" id="CuotaPatronalIRTRA" />
+                                    <input hidden asp-for="CuotaPatronal.IRTRA" type="text" name="CuotaPatronal.IRTRA" id="CuotaPatronalIRTRA" />
                             </tr>
                         </tbody>
                     </table>

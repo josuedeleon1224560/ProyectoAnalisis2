@@ -45,6 +45,7 @@
                     <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Mensaje" asp-action="Index">Bandeja</a></li>
                     <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Mensaje" asp-action="SeleccionarUsuario">Mensajes</a></li>
                     <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Nomina" asp-action="Seleccionar">Nomina</a></li>
+                    <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Nomina" asp-action="Usuarios">Detalles</a></li>
                     <li class="nav-item"> <a asp-area="" class="nav-link" asp-controller="Account" asp-action="Logout">Cerrar Sesion</a> </li>
                 </ul>
             </nav>
@@ -81,6 +82,7 @@
     </div>
 
     <form asp-action="Bono14" asp-controller="Nomina" method="post">
+        <input type="text" asp-for="CUI" name="CUI" value="@Model.CUI" hidden/>
         <div class="bono-14">
             <table class="bono-14-table">
                 <caption>Bono 14</caption>
@@ -89,7 +91,7 @@
                         <th>Total de salarios</th>
                         <th>Promedio de salarios</th>
                         <th>Total de comisiones</th>
-                        <th>Promedio de comisiones</th>
+                        <th>Promedio de comisiones</th>hidden 
                         <th>Salario mas comisiones</th>
                         <th>Dias laborados</th>
                         <th>Bono 14</th>
@@ -98,19 +100,19 @@
                 <tbody>
                     <tr>
                         <td><label id="total-salarios-anuales"></label></td>
-                        <input hidden asp-for="TotalSalarios" type="text" name="Bono14.TotalSalarios" id="Bono14Salarios" />
+                            <input hidden asp-for="TotalSalarios" type="text" name="TotalSalarios" id="Bono14Salarios" />
                         <td><label id="promedio-salarios-anuales"></label></td>
-                        <input hidden asp-for="PromedioSalario" type="text" name="Bono14.PromedioSalario" id="Bono14PromedioSalarios" />
+                            <input hidden asp-for="PromedioSalario" type="text" name="PromedioSalario" id="Bono14PromedioSalarios" />
                         <td><label id="total-comisiones-anuales"></label></td>
-                        <input hidden asp-for="TotalComisiones" type="text" name="Bono14.TotalComisiones" id="Bono14TotalComisiones" />
+                            <input hidden asp-for="TotalComisiones" type="text" name="TotalComisiones" id="Bono14TotalComisiones" />
                         <td><label id="promedio-comisiones-anuales"></label></td>
-                        <input hidden asp-for="PromedioComisiones" type="text" name="Bono14.PromedioComisiones" id="Bono14PromedioComisiones" />
+                            <input hidden asp-for="PromedioComisiones" type="text" name="PromedioComisiones" id="Bono14PromedioComisiones" />
                         <td><label id="salario-con-comisiones"></label></td>
-                        <input hidden asp-for="SalarioMasComisiones" type="text" name="Bono14.SalarioMasComisiones" id="Bono14SalarioMasComisiones" />
+                            <input hidden asp-for="SalarioMasComisiones" type="text" name="SalarioMasComisiones" id="Bono14SalarioMasComisiones" />
                         <td><label id="total-dias-trabajados-anuales"></label></td>
-                        <input hidden asp-for="DiasLaborados" type="text" name="Bono14.DiasLaborados" id="Bono14DiasLaborados" />
+                            <input hidden asp-for="DiasLaborados" type="text" name="DiasLaborados" id="Bono14DiasLaborados" />
                         <td><label id="total-bono-14"></label></td>
-                        <input hidden asp-for="Bono14Total" type="text" name="Bono14.Bono14Total" id="Bono14Total" />
+                            <input hidden asp-for="Bono14Total" type="text" name="Bono14Total" id="Bono14Total" />
 
                     </tr>
                 </tbody>
@@ -265,7 +267,7 @@
     }
 </script>
 
-
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/jquery/dist/jquery.js"></script>
 <script src="~/js/usuarios.js"></script>
+<script src="~/js/bono14.js"></script>

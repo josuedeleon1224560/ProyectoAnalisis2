@@ -1,6 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Identity;
 @using ProyectoFinal.ViewModels
-@model DatosNominasVerViewModel
+@model List<DatosNominasVerViewModel>
 
 
 @inject UserManager<AppUser> UserManager
@@ -54,12 +54,12 @@
                     <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Mensaje" asp-action="Index">Bandeja</a></li>
                     <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Mensaje" asp-action="SeleccionarUsuario">Mensajes</a></li>
                     <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Nomina" asp-action="Seleccionar">Nomina</a></li>
+                    <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Nomina" asp-action="Usuarios">Detalles</a></li>
                     <li class="nav-item"> <a asp-area="" class="nav-link" asp-controller="Account" asp-action="Logout">Cerrar Sesion</a> </li>
                 </ul>
             </nav>
         </header>
     }
-
 @if (TempData["Error"] != null)
 {
         <div class="col-md-12 alert alert-danger">
@@ -67,15 +67,15 @@
         </div>
 }
 
-    <div class="sub-container-consult">
-        <div class="sub-body-container-consult">
-            <div class="consult-tittle">
-                <h2>Usuarios</h2>
-            </div>
-            <div class="user-list">
-                <table class="user-table">
-                    <thead>
-                        <tr>
+<div class="sub-container-consult">
+    <div class="sub-body-container-consult">
+        <div class="consult-tittle">
+            <h2>Usuarios</h2>
+        </div>
+        <div class="user-list">
+            <table class="user-table">
+                <thead>
+                    <tr>
                             <th>CUI</th>
                             <th>Nombres</th>
                             <th>HorasLaboradas</th>
@@ -93,30 +93,32 @@
                             <th>IGSSPatronal</th>
                             <th>IRTRAPatronal</th>                          
 
-                        </tr>
-                    </thead>
-                    <tbody class="user-table-body">
+                    </tr>
+                </thead>
+                <tbody class="user-table-body">
+                        @foreach (var item in Model)
+                        {
                             <tr>
-                                <td>@Model.CUI</td>
-                            <td>@Model.Nombres</td>
-                            <td>@Model.HorasLaboradas</td>
-                                <td>@Model.Salario</td>
-                            <td>@Model.HorasExtras</td>
-
-                            <td>@Model.Fecha</td>
-                            <td>@Model.ISR</td>
-                            <td>@Model.Anticipo</td>
-                            <td>@Model.Prestamo</td>
-                            <td>@Model.TotalDescuentos</td>
-
-                            <td>@Model.TotalLiquido</td>
-                            <td>@Model.SueldoPatronal</td>
-                            <td>@Model.IGSSPatronal</td>
-                            <td>@Model.IRTRAPatronal</td>
+                                <td>@item.CUI</td>
+                                <td>@item.Nombres</td>
+                                <td>@item.HorasLaboradas</td>
+                                <td>@item.Salario</td>
+                                <td>@item.HorasExtras</td>
+                                <td>@item.Fecha</td>
+                                <td>@item.ISR</td>
+                                <td>@item.Anticipo</td>
+                                <td>@item.Prestamo</td>
+                                <td>@item.TotalDescuentos</td>
+                                <td>@item.TotalLiquido</td>
+                                <td>@item.SueldoPatronal</td>
+                                <td>@item.IGSSPatronal</td>
+                                <td>@item.IRTRAPatronal</td>
                             </tr>
-                    </tbody>
-                </table>
-            </div>
+                        }
+                  </tbody>
+            </table>
         </div>
     </div>
+</div>
+
 

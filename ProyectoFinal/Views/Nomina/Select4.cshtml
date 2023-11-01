@@ -37,19 +37,18 @@
                     <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Mensaje" asp-action="Index">Bandeja</a></li>
                     <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Mensaje" asp-action="SeleccionarUsuario">Mensajes</a></li>
                     <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Nomina" asp-action="Seleccionar">Nomina</a></li>
+                    <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Nomina" asp-action="Usuarios">Detalles</a></li>
                     <li class="nav-item"> <a asp-area="" class="nav-link" asp-controller="Account" asp-action="Logout">Cerrar Sesion</a> </li>
                 </ul>
             </nav>
         </header>
     }
-
     <div class="nomina-sub-body">
 
         <div class="select-employee">
             <form asp-controller="Nomina" asp-action="Create6" method="post" enctype="multipart/form-data">
                 <label>Seleccione un empleado</label>
                 <select asp-for="CUI" id="GetUsuarios">
-                    <option value="">Seleccionar Usuario</option>
                 @foreach (var usuario in Model.UsuariosDisponibles)
                 {
                         <option value="@usuario.CUI">@usuario.Nombres</option>

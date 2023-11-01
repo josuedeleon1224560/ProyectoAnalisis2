@@ -40,6 +40,7 @@
                         <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Mensaje" asp-action="Index">Bandeja</a></li>
                         <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Mensaje" asp-action="SeleccionarUsuario">Mensajes</a></li>
                         <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Nomina" asp-action="Seleccionar">Nomina</a></li>
+                        <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Nomina" asp-action="Usuarios">Detalles</a></li>
                         <li class="nav-item"> <a asp-area="" class="nav-link" asp-controller="Account" asp-action="Logout">Cerrar Sesion</a> </li>
                     </ul>
                 </nav>
@@ -78,9 +79,10 @@
     </div>
 
 
-    <form asp-action="Aguinaldo" asp-asp-controller="Nomina" method="POST">
+    <form asp-action="Aguinaldo" asp-controller="Nomina" method="post" enctype="multipart/form-data">
         <div class="aguinaldo">
             <table class="aguinaldo-table">
+                    <input hidden asp-for="CUI" type="text" hidden value="@Model.CUI" name="CUI" />
                 <caption>Aguinaldo</caption>
                 <thead>
                     <tr>
@@ -92,11 +94,11 @@
                 <tbody>
                     <tr>
                         <td><label id="total-de-dias-trabajados"></label></td>
-                        <input hidden asp-for="DiasLaborados" type="text" name="Aguinaldo.DiasLaborados" id="AguinaldoDias" />
+                            <input hidden asp-for="DiasLaborados" type="text" name="DiasLaborados" id="AguinaldoDias" />
                         <td><label id="promedio-de-sueldos"></label></td>
-                        <input hidden asp-for="PromedioSalario" type="text" name="Aguinaldo.PromedioSalario" id="AguinaldoPromedio" />
+                            <input hidden asp-for="PromedioSalario" type="text" name="PromedioSalario" id="AguinaldoPromedio" />
                         <td><label id="total-aguinaldo"></label></td>
-                        <input hidden asp-for="TotalAguinaldo" type="text" name="Aguinaldo.TotalAguinaldo" id="AguinaldoTotal" />
+                        <input hidden asp-for="TotalAguinaldo" type="text" name="TotalAguinaldo" id="AguinaldoTotal" />
                     </tr>
                 </tbody>
             </table>
@@ -254,3 +256,4 @@
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/jquery/dist/jquery.js"></script>
 <script src="~/js/usuarios.js"></script>
+<script src="~/js/aguinaldo.js"></script>

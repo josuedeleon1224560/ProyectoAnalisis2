@@ -44,6 +44,7 @@
                     <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Mensaje" asp-action="Index">Bandeja</a></li>
                     <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Mensaje" asp-action="SeleccionarUsuario">Mensajes</a></li>
                     <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Nomina" asp-action="Seleccionar">Nomina</a></li>
+                    <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Nomina" asp-action="Usuarios">Detalles</a></li>
                     <li class="nav-item"> <a asp-area="" class="nav-link" asp-controller="Account" asp-action="Logout">Cerrar Sesion</a> </li>
                 </ul>
             </nav>
@@ -79,6 +80,7 @@
         </div>
 
 <form asp-action="Indemnizacion" method="POST">
+            <input type="text" asp-for="CUI" name="CUI" value="@Model.CUI" hidden />
     <div class="indemnizacion">
         <table class="indemnizacion-tabla">
             <caption>Indemnizacion</caption>
@@ -95,17 +97,17 @@
             <tbody>
                 <tr>
                     <td><label id="indemnizacion-total-sueldos"></label></td>
-                    <input hidden asp-for="PromedioSalario" type="text" name="Bono14.Bono14Total" id="Bono14Total" />
+                            <input hidden asp-for="PromedioSalario" type="text" name="PromedioSalario" id="promedioSalario" />
                     <td><label id="indemnizacion-total-comisiones"></label></td>
-                    <input hidden asp-for="Comisiones" type="text" name="Bono14.Bono14Total" id="Bono14Total" />
+                            <input hidden asp-for="Comisiones" type="text" name="Comisiones" id="Comisiones" />
                     <td><label id="indemnizacion-total-horas-extra"></label></td>
-                    <input hidden asp-for="HorasExtras" type="text" name="Bono14.Bono14Total" id="Bono14Total" />
+                            <input hidden asp-for="HorasExtras" type="text" name="HorasExtras" id="HorasE" />
                     <td><label id="indemnizacion-sub-total"></label></td>
-                    <input hidden asp-for="SubTotal" type="text" name="Bono14.Bono14Total" id="Bono14Total" />
+                            <input hidden asp-for="SubTotal" type="text" name="SubTotal" id="Subtotal" />
                     <td><label id="indemnizacion-promedio"></label></td>
-                    <input hidden asp-for="Promedio" type="text" name="Bono14.Bono14Total" id="Bono14Total" />
+                            <input hidden asp-for="Promedio" type="text" name="Promedio" id="Promedio" />
                     <td><label id="indemnizacion-a-recibir"></label></td>
-                    <input hidden asp-for="Indemnizacion" type="text" name="Bono14.Bono14Total" id="Bono14Total" />
+                            <input hidden asp-for="Indemnizacion" type="text" name="Indemnizacion" id="Indemnizacion" />
                 </tr>
             </tbody>
         </table>
@@ -259,3 +261,4 @@
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/jquery/dist/jquery.js"></script>
 <script src="~/js/usuarios.js"></script>
+<script src="~/js/indemnizacion.js"></script>

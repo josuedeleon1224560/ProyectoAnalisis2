@@ -32,6 +32,60 @@
     @{
         var roleId = ViewBag.roleId;
     }
+    <style>
+    .rol-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f7f7f7;
+    }
+
+    /* Estilo para el sub-contenedor del formulario */
+    .rol-sub-body {
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 20px;
+        width: 400px;
+        text-align: center;
+    }
+
+    /* Estilo para el encabezado del formulario */
+    .rol-header {
+        margin-bottom: 20px;
+    }
+
+        .rol-header h2 {
+            font-size: 24px;
+        }
+
+    /* Estilo para la lista de usuarios */
+    .rol-user-list .rol-user-item {
+        margin-bottom: 10px;
+    }
+
+    /* Estilo para los botones */
+    .rol-buttons {
+        margin-top: 20px;
+    }
+
+        .rol-buttons .rol-btn {
+            margin-right: 10px;
+        }
+
+    /* Estilo para el botón primario */
+    .rol-btn-primary {
+        background-color: #007bff;
+        color: #fff;
+    }
+
+    /* Estilo para el botón secundario */
+    .rol-btn-secondary {
+        background-color: #6c757d;
+        color: #fff;
+    }
+    </style>
 @section Header
     {
     <div class="container">
@@ -56,36 +110,34 @@
                     <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Mensaje" asp-action="Index">Bandeja</a></li>
                     <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Mensaje" asp-action="SeleccionarUsuario">Mensajes</a></li>
                     <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Nomina" asp-action="Seleccionar">Nomina</a></li>
+                    <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Nomina" asp-action="Usuarios">Detalles</a></li>
                     <li class="nav-item"> <a asp-area="" class="nav-link" asp-controller="Account" asp-action="Logout">Cerrar Sesion</a> </li>
                 </ul>
             </nav>
         </header>
     }
-<div class="container">
-    <div class="sub-body">
-    <form method="post">
-        <div>
-            <div>
-                <h2>Añadir o remover usuarios de este Rol</h2>
-            </div>
-        <div>
-            @for(int i=0;i<Model.Count;i++)
-            {
-            <div>
-                <input type="hidden" asp-for="@Model[i].UserId"/>
-                <input asp-for="@Model[i].IsSelected"/> 
-                <label asp-for="@Model[i].IsSelected">
-                    @Model[i].UserName
-                </label>
-            </div>
-        }
+    <div class="rol-container">
+        <div class="rol-sub-body">
+            <form method="post">
+                <div class="rol-form-container">
+                    <div class="rol-header">
+                        <h2>Añadir o remover usuarios de este Rol</h2>
+                    </div>
+                    <div class="rol-user-list">
+                    @for (int i = 0; i < Model.Count; i++)
+                    {
+                            <div class="rol-user-item">
+                                <input type="hidden" asp-for="@Model[i].UserId" />
+                                <input asp-for="@Model[i].IsSelected" />
+                                <label asp-for="@Model[i].IsSelected">@Model[i].UserName</label>
+                            </div>
+                    }
+                    </div>
+                    <div class="rol-buttons">
+                        <input type="submit" value="Actualizar" class="rol-btn rol-btn-primary" />
+                        <a asp-action="EditRole" asp-route-id="@roleId" class="rol-btn rol-btn-secondary">Cancelar</a>
+                    </div>
+                </div>
+            </form>
         </div>
-        <div>
-            <input type="submit" value="Update"/>
-            <a asp-action="EditRole" asp-route-id="@roleId">Cancelar</a>
-        </div>
-        </div>
-    </form>
-
     </div>
-</div>

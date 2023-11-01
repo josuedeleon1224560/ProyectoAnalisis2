@@ -74,7 +74,6 @@ namespace ProyectoFinal.ViewModels
 
 
     }
-
     public class CreateNominaBono14ViewModel
     {
         public List<AppUser>? UsuariosDisponibles { get; set; }

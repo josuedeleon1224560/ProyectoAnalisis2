@@ -1,22 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Identity;
-@using ProyectoFinal.ViewModels
-@model CreateNominaViewModel
-@inject UserManager<AppUser> UserManager
+@model ProyectoFinal.ViewModels.CreateNominaViewModel
 
-@{
-    var userName = User.Identity.Name;
-    var userId = "";
-    var userCUI = "";
-    if (!string.IsNullOrEmpty(userName))
-    {
-        var user = await UserManager.FindByNameAsync(userName);
-        if (user != null)
-        {
-            userId = user.Id;
-            userCUI = user.CUI;
-        }
-    }
-}
 @section Header
     {
     <div class="container">
@@ -41,6 +25,7 @@
                     <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Mensaje" asp-action="Index">Bandeja</a></li>
                     <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Mensaje" asp-action="SeleccionarUsuario">Mensajes</a></li>
                     <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Nomina" asp-action="Seleccionar">Nomina</a></li>
+                    <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Nomina" asp-action="Usuarios">Detalles</a></li>
                     <li class="nav-item"> <a asp-area="" class="nav-link" asp-controller="Account" asp-action="Logout">Cerrar Sesion</a> </li>
                 </ul>
             </nav>
@@ -69,14 +54,13 @@
                  <option value="">@Model.Nombres</option>
             </select>
             <label>Rango de fecha</label>
-        <input type="date" readonly class="select-date" value="@Model.INICIO.ToString("yyyy-MM-dd")"  id="fecha-inicio">
-        <input type="date" readonly class="select-date" value="@Model.FINAL.ToString("yyyy-MM-dd")"  id="fecha-fin">
+        <input type="date"  class="select-date" value="@Model.INICIO.ToString("yyyy-MM-dd")"  id="fecha-inicio">
+        <input type="date"  class="select-date" value="@Model.FINAL.ToString("yyyy-MM-dd")"  id="fecha-fin">
         <button>  <a asp-controller="Nomina" asp-action="Select" class="btn btn-primary">Seleccionar Otro Usuario</a> </button>
 
     </div>
-
-    <div class="payroll-user-content" id="userInfo">
-          <form asp-controller="Nomina" asp-action="Nomina" method="POST" enctype="multipart/form-data">
+        <form asp-action="Nomina" method="post" enctype="multipart/form-data">
+    <div class="payroll-user-content" id="userInfo">          
         <div class="payroll-content-section-1">
               <table class="user-data-payroll-table">
                         <thead>
@@ -106,7 +90,7 @@
                         <input value="@Model.Departamento" asp-for="Departamento" name="Departamento" hidden />
                         <td><label class="" for="" id="salario-base">@Model.Salario</label></td>               
                         <input value="@Model.Salario" asp-for="Salario" name="Salario" hidden />
-                            <td><input asp-for="HorasLaboradas" name="HorasLaboradas" type="number" class="input-hours-work" id="input-hours-calc"></td>
+                            <td><input min="0" asp-for="HorasLaboradas" name="HorasLaboradas" type="number" class="input-hours-work" id="input-hours-calc"></td>
                             <td><label id="result-price-hours-work"></label></td>                               
                             <td><label id="salary-to-receive"></label></td>
                         </tr>
@@ -145,19 +129,19 @@
                         <td><label class="" id="salary"></label></td>
                         <td><label id="hours-ordinary-price">0</label></td>
                         <td><label id="number-hours-extra">@Model.HorasExtras</label></td>
-                            <input asp-for="HorasExtras" hidden type="text" name="HorasExtras"  id="HorasExtras" />
+                            <input hidden asp-for="HorasExtras" hidden type="text" name="HorasExtras"  id="HorasExtras" />
                         <td><label id="hour-extra-price">0</label></td>
-                            <input asp-for="PrecioHoraExtra" hidden type="text" name="PrecioHoraExtra" id="PrecioHoraExtra" />
+                            <input hidden asp-for="PrecioHoraExtra" hidden type="text" name="PrecioHoraExtra" id="PrecioHoraExtra" />
                         <td><label id="sells-monts">0</label></td>
-                            <input asp-for="Ventas" hidden type="text" name="Ventas" id="Ventas" />
+                            <input hidden asp-for="Ventas" hidden type="text" name="Ventas" id="Ventas" />
                         <td><label id="producrion-monts">0</label></td>
-                            <input asp-for="Produccion" hidden type="text" name="Produccion" id="Produccion" />
+                            <input hidden asp-for="Produccion" hidden type="text" name="Produccion" id="Produccion" />
                         <td><label id="benefits-monts">0</label></td>
-                            <input asp-for="Comisiones" hidden type="text" name="Comisiones" id="Comisiones" />
+                            <input hidden asp-for="Comisiones" hidden type="text" name="Comisiones" id="Comisiones" />
                         <td><label id="law-bonus">250</label></td>
-                            <input asp-for="Bonificaciones" hidden type="text" name="Bonificaciones" id="Bonificaciones" />
+                                <input hidden asp-for="Bonificaciones" hidden type="text" name="Bonificaciones" id="Bonificaciones" />
                         <td><label id="sub-total-salary">0</label></td>
-                            <input asp-for="TotalDevengado" hidden type="text" name="TotalDevengado" id="TotalDevengado" />
+                            <input hidden asp-for="TotalDevengado" hidden type="text" name="TotalDevengado" id="TotalDevengado" />
 
                     </tr>
                 </tbody>
@@ -214,12 +198,12 @@
                     <tbody>
                         <tr>
                             <td><label id="salary-employer-table"></label></td>
-                        <input hidden asp-for="CuotaPatronal.Sueldo" type="text" name="CuotaPatronal.Sueldo" id="CuotaPatronalSueldo" />
+                                    <input hidden asp-for="CuotaPatronal.Sueldo" type="text" name="CuotaPatronal.Sueldo" id="CuotaPatronalSueldo" />
                             <td><label id="price-for-hour"></label></td>                        
                             <td><label id="iggs-employer-share"></label></td>
-                        <input hidden asp-for="CuotaPatronal.IGSS" type="text" name="CuotaPatronal.IGSS" id="CuotaPatronalIGSS" />
+                                    <input hidden asp-for="CuotaPatronal.IGSS" type="text" name="CuotaPatronal.IGSS" id="CuotaPatronalIGSS" />
                             <td><label id="irtra-employer-share"></label></td>
-                        <input hidden asp-for="CuotaPatronal.IRTRA"  type="text" name="CuotaPatronal.IRTRA" id="CuotaPatronalIRTRA" />
+                                    <input hidden asp-for="CuotaPatronal.IRTRA" type="text" name="CuotaPatronal.IRTRA" id="CuotaPatronalIRTRA" />
                         </tr>
                     </tbody>
                 </table>
@@ -227,8 +211,10 @@
                         <button class="submit-buttons" type="submit">Submit</button>
                     </div>
                 </div>
+                </div>
+            </div>
         </form>
-    </div>
+
 
 
     <div class="pays-data">
@@ -371,3 +357,4 @@
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/jquery/dist/jquery.js"></script>
 <script src="~/js/usuarios.js"></script>
+<script src="~/js/nomina.js"></script>

@@ -2,6 +2,7 @@ E:\ProyectoNET\ProyectoFinal\ProyectoFinal\obj\PRUEBAMEJORADA\net6.0\PubTmp\Out\
 E:\ProyectoNET\ProyectoFinal\ProyectoFinal\obj\PRUEBAMEJORADA\net6.0\PubTmp\Out\appsettings.Development.json
 E:\ProyectoNET\ProyectoFinal\ProyectoFinal\obj\PRUEBAMEJORADA\net6.0\PubTmp\Out\appsettings.json
 E:\ProyectoNET\ProyectoFinal\ProyectoFinal\obj\PRUEBAMEJORADA\net6.0\PubTmp\Out\libman.json
+E:\ProyectoNET\ProyectoFinal\ProyectoFinal\obj\PRUEBAMEJORADA\net6.0\PubTmp\Out\wwwroot\js\Nomina.js
 E:\ProyectoNET\ProyectoFinal\ProyectoFinal\obj\PRUEBAMEJORADA\net6.0\PubTmp\Out\ProyectoFinal.dll
 E:\ProyectoNET\ProyectoFinal\ProyectoFinal\obj\PRUEBAMEJORADA\net6.0\PubTmp\Out\ProyectoFinal.runtimeconfig.json
 E:\ProyectoNET\ProyectoFinal\ProyectoFinal\obj\PRUEBAMEJORADA\net6.0\PubTmp\Out\ProyectoFinal.pdb

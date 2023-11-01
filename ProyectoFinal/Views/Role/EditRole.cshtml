@@ -23,6 +23,100 @@
     ViewData["Title"] = "Editar Role";
     string estilos = "~/css/General.css";
 }
+<style>
+    /* Estilo para el contenedor principal */
+    .reliquia-misteriosa {
+        background-color: #f7f7f7;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    /* Estilo para el sub-contenedor del formulario */
+    .efervescencia-organica {
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 20px;
+        width: 400px;
+        text-align: center;
+    }
+
+    /* Estilo para el título del formulario */
+    .quimera-elegante {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    /* Estilo para los campos del formulario */
+    .abstraccion-luminosa {
+        text-align: left;
+    }
+
+        .abstraccion-luminosa label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .abstraccion-luminosa input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+    .paradoja-iridiscente {
+        color: #f00;
+        font-size: 14px;
+    }
+
+    /* Estilo para el botón y el enlace */
+    .btn {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        cursor: pointer;
+        margin-right: 10px;
+    }
+
+        .btn.btn-primary {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .btn.btn-secondary {
+            background-color: #6c757d;
+            color: #fff;
+        }
+
+    /* Estilo para la sección de usuarios en el rol */
+    .serenata-sideral {
+        margin-top: 20px;
+    }
+
+        .serenata-sideral h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+    .excentricidad-eterea h5 {
+        font-size: 16px;
+        margin-bottom: 5px;
+    }
+
+    .quanticamente-extraño .btn-primary {
+        background-color: #007bff;
+        color: #fff;
+        text-decoration: none;
+    }
+</style>
 
 @section Estilos
     {
@@ -53,61 +147,56 @@
                     <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Mensaje" asp-action="Index">Bandeja</a></li>
                     <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Mensaje" asp-action="SeleccionarUsuario">Mensajes</a></li>
                     <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Nomina" asp-action="Seleccionar">Nomina</a></li>
+                    <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Nomina" asp-action="Usuarios">Detalles</a></li>
                     <li class="nav-item"> <a asp-area="" class="nav-link" asp-controller="Account" asp-action="Logout">Cerrar Sesion</a> </li>
                 </ul>
             </nav>
         </header>
     }
-
-<div class="container">
-    <div class="sub-body">
-<h1>Editar Role</h1>
-
-<form method="POST">
-    <div>
-        <label asp-for="Id"></label>
-        <div>
-            <input asp-for="Id" disabled/>
-        </div>
-    </div>
-    <div>
-        <label asp-for="RoleName"></label>
-        <div>
-            <input asp-for="RoleName"/>
-            <span asp-validation-for="RoleName"></span>
-        </div>
-    </div>
-
-    <div asp-validation-summary="All"></div>
-    <div>
-        <div>
-            <button type="submit">Actualizar</button>
-            <a asp-action="ListRoles">Cancelar</a>
-        </div>
-    </div>
-
-    <div>
-        <div>
-            <h3>Usuarios en este Rol</h3>
-        </div>
-        <div>
-            @if(Model.Users.Any())
-            {
-                foreach(var user in Model.Users)
-                {
-                    <h5>@user</h5>
-                }
-            }
-            else
-            {
-                <h5>Ningun Usuario en este momento</h5>
-            }
-        </div>
-        <div>
-            <a asp-action="EditUsersInRole" asp-controller="Role" asp-route-roleId="@Model.Id">Agregar o eliminar usuarios</a>
-        </div>
-    </div>
-</form>
-
+    <div class="reliquia-misteriosa">
+        <div class="efervescencia-organica">
+            <h1 class="quimera-elegante">Editar Role</h1>
+            <form method="POST">
+                <div class="efecto-hipnotico">
+                    <label for="Id">ID de Rol</label>
+                    <div>
+                        <input type="text" id="Id" name="Id" value="@Model.Id" disabled />
+                    </div>
+                </div>
+                <div class="abstraccion-luminosa">
+                    <label for="RoleName">Nombre de Rol</label>
+                    <div>
+                        <input type="text" id="RoleName" name="RoleName" value="@Model.RoleName" />
+                        <span class="paradoja-iridiscente">@Html.ValidationMessageFor(m => m.RoleName)</span>
+                    </div>
+                </div>
+                <div class="lenguaje-lunar">
+                    <div class="efecto-unicornio">
+                        <button type="submit" class="btn btn-primary">Actualizar</button>
+                        <a asp-action="ListRoles" class="btn btn-secondary">Cancelar</a>
+                    </div>
+                </div>
+                <div class="serenata-sideral">
+                    <div class="efervescencia-psicodelica">
+                        <h3>Usuarios en este Rol</h3>
+                    </div>
+                    <div class="excentricidad-eterea">
+                    @if (Model.Users.Any())
+                    {
+                        foreach (var user in Model.Users)
+                        {
+                                <h5>@user</h5>
+                        }
+                    }
+                    else
+                    {
+                            <h5>Ningún Usuario en este momento</h5>
+                    }
+                    </div>
+                    <div class="quanticamente-extraño">
+                        <a asp-action="EditUsersInRole" asp-controller="Role" asp-route-roleId="@Model.Id" class="btn btn-primary">Agregar o eliminar usuarios</a>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>

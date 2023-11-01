@@ -64,6 +64,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVuc2FqZVxWZXJNZW5zYWplc1VzdWFyaW8uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[E:/ProyectoNET/ProyectoFinal/ProyectoFinal/Views/Nomina/Confirmacion.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTm9taW5hXENvbmZpcm1hY2lvbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [E:/ProyectoNET/ProyectoFinal/ProyectoFinal/Views/Nomina/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTm9taW5hXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -120,8 +124,24 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTm9taW5hXFVzdWFyaW9zLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[E:/ProyectoNET/ProyectoFinal/ProyectoFinal/Views/Nomina/VerAguinaldo.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTm9taW5hXFZlckFndWluYWxkby5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/ProyectoNET/ProyectoFinal/ProyectoFinal/Views/Nomina/VerBono14.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTm9taW5hXFZlckJvbm8xNC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/ProyectoNET/ProyectoFinal/ProyectoFinal/Views/Nomina/VerIndemnizacion.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTm9taW5hXFZlckluZGVtbml6YWNpb24uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [E:/ProyectoNET/ProyectoFinal/ProyectoFinal/Views/Nomina/VerNominas.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTm9taW5hXFZlck5vbWluYXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/ProyectoNET/ProyectoFinal/ProyectoFinal/Views/Nomina/VerVacaciones.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTm9taW5hXFZlclZhY2FjaW9uZXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [E:/ProyectoNET/ProyectoFinal/ProyectoFinal/Views/Role/CreateRole.cshtml]

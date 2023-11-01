@@ -101,8 +101,20 @@
       "PackagePath": "staticwebassets\\js\\Usuarios.js"
     },
     {
+      "Id": "E:\\ProyectoNET\\ProyectoFinal\\ProyectoFinal\\wwwroot\\js\\aguinaldo.js",
+      "PackagePath": "staticwebassets\\js\\aguinaldo.js"
+    },
+    {
+      "Id": "E:\\ProyectoNET\\ProyectoFinal\\ProyectoFinal\\wwwroot\\js\\bono14.js",
+      "PackagePath": "staticwebassets\\js\\bono14.js"
+    },
+    {
       "Id": "E:\\ProyectoNET\\ProyectoFinal\\ProyectoFinal\\wwwroot\\js\\editardepartamento.js",
       "PackagePath": "staticwebassets\\js\\editardepartamento.js"
+    },
+    {
+      "Id": "E:\\ProyectoNET\\ProyectoFinal\\ProyectoFinal\\wwwroot\\js\\indemnizacion.js",
+      "PackagePath": "staticwebassets\\js\\indemnizacion.js"
     },
     {
       "Id": "E:\\ProyectoNET\\ProyectoFinal\\ProyectoFinal\\wwwroot\\js\\index.js",
@@ -115,6 +127,10 @@
     {
       "Id": "E:\\ProyectoNET\\ProyectoFinal\\ProyectoFinal\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
+    },
+    {
+      "Id": "E:\\ProyectoNET\\ProyectoFinal\\ProyectoFinal\\wwwroot\\js\\vacaciones.js",
+      "PackagePath": "staticwebassets\\js\\vacaciones.js"
     },
     {
       "Id": "E:\\ProyectoNET\\ProyectoFinal\\ProyectoFinal\\wwwroot\\lib\\bootstrap\\LICENSE",

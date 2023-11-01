@@ -45,6 +45,7 @@
                     <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Mensaje" asp-action="Index">Bandeja</a></li>
                     <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Mensaje" asp-action="SeleccionarUsuario">Mensajes</a></li>
                     <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Nomina" asp-action="Seleccionar">Nomina</a></li>
+                    <li class="nav-item"><a asp-area="" class="nav-link" asp-controller="Nomina" asp-action="Usuarios">Detalles</a></li>
                     <li class="nav-item"> <a asp-area="" class="nav-link" asp-controller="Account" asp-action="Logout">Cerrar Sesion</a> </li>
                 </ul>
             </nav>
@@ -79,6 +80,7 @@
 
 
     <form asp-action="Vacaciones" method="POST">
+            <input type="text" asp-for="CUI" name="CUI" value="@Model.CUI" hidden />
         <div class="tables-vacations-indemnizacion">
             <div class="vacations">
                 <table class="vacations-table">
@@ -94,13 +96,13 @@
                     <tbody>
                         <tr>
                             <td><label id="total-ordinary-salary"></label></td>
-                            <input hidden type="text" name="Vacaciones.Sueldos" id="VacaSueldos" />
+                            <input asp-for="Sueldos" type="text" name="Sueldos" id="VacaSueldos" />
                             <td><label id="total-comisions-calc"></label></td>
-                            <input hidden type="text" name="Vacaciones.Comisiones" id="VacaComi" />
+                            <input asp-for="Comisiones" type="text" name="Comisiones" id="VacaComi" />
                             <td><label id="hours-extras"></label></td>
-                            <input hidden type="text" name="Vacaciones.HorasExtras" id="VacaHoras" />
+                            <input asp-for="HorasExtras" type="text" name="HorasExtras" id="VacaHoras" />
                             <td><label id="total-vacations-money"></label></td>
-                            <input hidden type="text" name="Vacaciones.Resultado" id="VacaResultado" />
+                            <input asp-for="Resultado" type="text" name="Resultado" id="VacaResultado" />
                         </tr>
 
                     </tbody>
@@ -108,9 +110,7 @@
                 <div class="button-1">
                     <button class="submit-buttons" type="submit">Pagar Vacaciones</button>
                 </div>
-
             </div>
-
     </form>
 
 </div>
@@ -257,3 +257,4 @@
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/jquery/dist/jquery.js"></script>
 <script src="~/js/usuarios.js"></script>
+<script src="~/js/vacaciones.js"></script>

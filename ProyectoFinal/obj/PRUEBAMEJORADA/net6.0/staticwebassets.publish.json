@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "J2mutW5peNQmMGLd1LL4Isk9MR4d1/2csZQj4kxhp9Q=",
+  "Hash": "woqfSLDwTcDJqvNume4Fsybd6GrHEQ2vgubgclP02Ks=",
   "Source": "ProyectoFinal",
   "BasePath": "_content/ProyectoFinal",
   "Mode": "Default",
@@ -1394,6 +1394,40 @@
       "OriginalItemSpec": "wwwroot\\images\\wallpaper2.jpg"
     },
     {
+      "Identity": "E:\\ProyectoNET\\ProyectoFinal\\ProyectoFinal\\wwwroot\\js\\aguinaldo.js",
+      "SourceId": "ProyectoFinal",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\ProyectoNET\\ProyectoFinal\\ProyectoFinal\\wwwroot\\",
+      "BasePath": "_content/ProyectoFinal",
+      "RelativePath": "js/aguinaldo.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\aguinaldo.js"
+    },
+    {
+      "Identity": "E:\\ProyectoNET\\ProyectoFinal\\ProyectoFinal\\wwwroot\\js\\bono14.js",
+      "SourceId": "ProyectoFinal",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\ProyectoNET\\ProyectoFinal\\ProyectoFinal\\wwwroot\\",
+      "BasePath": "_content/ProyectoFinal",
+      "RelativePath": "js/bono14.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\bono14.js"
+    },
+    {
       "Identity": "E:\\ProyectoNET\\ProyectoFinal\\ProyectoFinal\\wwwroot\\js\\CascadaDepartamentos.js",
       "SourceId": "ProyectoFinal",
       "SourceType": "Discovered",
@@ -1443,6 +1477,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\EditarPuesto.js"
+    },
+    {
+      "Identity": "E:\\ProyectoNET\\ProyectoFinal\\ProyectoFinal\\wwwroot\\js\\indemnizacion.js",
+      "SourceId": "ProyectoFinal",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\ProyectoNET\\ProyectoFinal\\ProyectoFinal\\wwwroot\\",
+      "BasePath": "_content/ProyectoFinal",
+      "RelativePath": "js/indemnizacion.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\indemnizacion.js"
     },
     {
       "Identity": "E:\\ProyectoNET\\ProyectoFinal\\ProyectoFinal\\wwwroot\\js\\index.js",
@@ -1545,6 +1596,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\Usuarios.js"
+    },
+    {
+      "Identity": "E:\\ProyectoNET\\ProyectoFinal\\ProyectoFinal\\wwwroot\\js\\vacaciones.js",
+      "SourceId": "ProyectoFinal",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\ProyectoNET\\ProyectoFinal\\ProyectoFinal\\wwwroot\\",
+      "BasePath": "_content/ProyectoFinal",
+      "RelativePath": "js/vacaciones.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\vacaciones.js"
     },
     {
       "Identity": "E:\\ProyectoNET\\ProyectoFinal\\ProyectoFinal\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
